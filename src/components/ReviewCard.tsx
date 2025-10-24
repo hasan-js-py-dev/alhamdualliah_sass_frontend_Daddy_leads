@@ -50,21 +50,9 @@ const ReviewCard: React.FC<ReviewCardProps> = ({
       </div>
 
       {/* Review Text */}
-      <p className="text-gray-700 text-sm leading-relaxed line-clamp-6 mb-4">
+      <p className="text-gray-700 text-sm leading-relaxed line-clamp-6">
         {review}
       </p>
-
-      {/* Footer with Source and Date */}
-      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-        <div className="flex items-center gap-2">
-          {source === 'g2' ? (
-            <span className="text-xs font-medium text-orange-600 bg-orange-50 px-2 py-1 rounded">G2</span>
-          ) : (
-            <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-1 rounded">Chrome Store</span>
-          )}
-        </div>
-        <span className="text-xs text-gray-400">{date}</span>
-      </div>
     </div>
   );
 };
