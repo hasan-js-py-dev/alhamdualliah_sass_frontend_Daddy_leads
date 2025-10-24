@@ -49,24 +49,20 @@ const HomePage = () => {
           content="Automate your B2B prospecting with powerful LinkedIn scraping, email validation, and enrichment tools. 10000+ active users trust Daddy Leads."
         />
       </Helmet>
-      <div className="min-h-[100dvh] relative overflow-hidden">
-        <div className="hero-gradient pb-12">
-          <Navbar />
-          
-          <HeroSection />
-          
-          <section className="relative pb-4 px-6 md:px-12">
-            <div className="max-w-7xl mx-auto">
-              <FeaturePills features={features} activeIndex={activeFeature} />
-            </div>
-          </section>
-          
-          <WaveTransition />
-        </div>
+      <div className="min-h-[100dvh] hero-gradient relative overflow-hidden pb-12">
+        <Navbar />
         
-        <div className="peachy-gradient py-16 px-6 md:px-12">
-          <TrustedBySection activeIndex={activeLogo} />
-        </div>
+        <HeroSection />
+        
+        <section className="relative pb-4 px-6 md:px-12">
+          <div className="max-w-7xl mx-auto">
+            <FeaturePills features={features} activeIndex={activeFeature} />
+          </div>
+        </section>
+        
+        <TrustedBySection activeIndex={activeLogo} />
+        
+        <WaveTransition />
       </div>
     </>
   );

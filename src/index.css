@@ -292,16 +292,3 @@ All colors MUST be HSL.
   opacity: 0.03;
   pointer-events: none;
 }
-
-/* Peachy gradient background for sections */
-.peachy-gradient {
-  background: linear-gradient(135deg, 
-    #FFF5E6 0%, 
-    #FFE8D1 25%, 
-    #FFD4B8 50%, 
-    #FFC299 75%, 
-    #FF9966 100%
-  );
-  position: relative;
-  overflow: hidden;
-}
