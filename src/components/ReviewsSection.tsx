@@ -329,7 +329,7 @@ const ReviewsSection: React.FC = () => {
           className="mt-24 max-w-2xl mx-auto px-6 mb-4"
         >
           {/* Main Card */}
-          <div className="relative bg-black rounded-3xl px-8 py-12 shadow-2xl overflow-hidden border border-white/10">
+          <div className="relative bg-white/10 backdrop-blur-md rounded-3xl px-8 py-12 shadow-2xl overflow-hidden border border-white/20">
             {/* Animated Stars Background */}
             <div className="absolute inset-0 overflow-hidden">
               {[...Array(20)].map((_, i) => (
@@ -368,7 +368,7 @@ const ReviewsSection: React.FC = () => {
                   className="inline-block"
                 >
                   <Button 
-                    className="relative bg-white text-[#5B21B6] hover:bg-gray-50 px-10 py-6 text-lg font-bold rounded-2xl transition-all duration-300 animate-button-shake"
+                    className="relative bg-white/90 text-[#5B21B6] hover:bg-white px-10 py-6 text-lg font-bold rounded-2xl transition-all duration-300 animate-button-shake"
                     style={{
                       boxShadow: '0 8px 0 #d1d5db, 0 12px 25px rgba(0, 0, 0, 0.5)',
                       transform: 'translateY(0px)',
@@ -406,7 +406,7 @@ const ReviewsSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-20 max-w-6xl mx-auto px-6 mb-20"
         >
-          <div className="bg-gradient-to-br from-white/80 via-blue-50/70 to-purple-50/60 backdrop-blur-sm rounded-3xl p-12 shadow-2xl border border-white/40">
+          <div className="bg-gradient-to-br from-white/50 via-blue-50/40 to-purple-50/30 backdrop-blur-md rounded-3xl p-12 shadow-2xl border border-white/30">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               {/* Title Section */}
               <div className="lg:col-span-4">
