@@ -52,8 +52,14 @@ const mockContacts: Contact[] = [
   }
 ];
 
-const ContactCard = ({ contact, triggerFind }: { contact: Contact; triggerFind: boolean }) => {
+const ContactCard = ({ contact, triggerFind, shouldReset }: { contact: Contact; triggerFind: boolean; shouldReset: boolean }) => {
   const [status, setStatus] = useState<'idle' | 'finding' | 'found'>('idle');
+
+  useEffect(() => {
+    if (shouldReset) {
+      setStatus('idle');
+    }
+  }, [shouldReset]);
 
   useEffect(() => {
     if (triggerFind && status === 'idle') {
@@ -191,29 +197,43 @@ const ContactCard = ({ contact, triggerFind }: { contact: Contact; triggerFind: 
 
 const ContactRowDemo = () => {
   const [currentActiveIndex, setCurrentActiveIndex] = useState(-1);
+  const [shouldReset, setShouldReset] = useState(false);
 
   useEffect(() => {
-    const sequence = async () => {
-      // Wait 1 second before starting
+    const runSequence = async () => {
+      // Initial delay
       await new Promise(resolve => setTimeout(resolve, 1000));
       
-      // Loop through each contact
+      // Loop through each contact one by one
       for (let i = 0; i < mockContacts.length; i++) {
         setCurrentActiveIndex(i);
-        await new Promise(resolve => setTimeout(resolve, 2500)); // Wait for animation to complete
+        await new Promise(resolve => setTimeout(resolve, 2800)); // Wait for full animation
       }
       
-      // Reset and loop again
+      // Hold the completed state for a moment
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Reset all cards
+      setShouldReset(true);
       setCurrentActiveIndex(-1);
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      await new Promise(resolve => setTimeout(resolve, 100));
+      setShouldReset(false);
+      
+      // Wait before starting next cycle
+      await new Promise(resolve => setTimeout(resolve, 1000));
     };
 
-    sequence();
-    const interval = setInterval(() => {
-      sequence();
-    }, (mockContacts.length * 2500) + 3000);
+    const executeLoop = async () => {
+      while (true) {
+        await runSequence();
+      }
+    };
 
-    return () => clearInterval(interval);
+    executeLoop();
+
+    return () => {
+      // Cleanup handled by component unmount
+    };
   }, []);
 
   return (
@@ -223,6 +243,7 @@ const ContactRowDemo = () => {
           key={contact.id} 
           contact={contact} 
           triggerFind={currentActiveIndex === index}
+          shouldReset={shouldReset}
         />
       ))}
     </div>
