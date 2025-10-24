@@ -203,54 +203,118 @@ const EnrichRow = ({ data, triggerEnrich, shouldReset }: EnrichRowProps) => {
 
 const LinkedinDomainDemo = () => {
   const [currentMode, setCurrentMode] = useState<'domain' | 'linkedin'>('domain');
-  const [triggerEnrich, setTriggerEnrich] = useState(false);
+  const [currentActiveIndex, setCurrentActiveIndex] = useState(-1);
   const [shouldReset, setShouldReset] = useState(false);
 
-  const mockData: Record<'domain' | 'linkedin', EnrichData> = {
-    domain: {
-      type: 'domain',
-      input: 'acme.com',
-      name: 'John Smith',
-      title: 'CEO',
-      company: 'Acme Corp',
-      email: 'john@acme.com',
-      location: 'San Francisco',
-    },
-    linkedin: {
-      type: 'linkedin',
-      input: 'linkedin.com/in/sarah-j',
-      name: 'Sarah Johnson',
-      title: 'VP Sales',
-      company: 'TechStart Inc',
-      email: 'sarah@techstart.com',
-      location: 'New York',
-    },
+  const mockData: Record<'domain' | 'linkedin', EnrichData[]> = {
+    domain: [
+      {
+        type: 'domain',
+        input: 'acme.com',
+        name: 'John Smith',
+        title: 'CEO',
+        company: 'Acme Corp',
+        email: 'john@acme.com',
+        location: 'San Francisco',
+      },
+      {
+        type: 'domain',
+        input: 'techco.io',
+        name: 'Emily Davis',
+        title: 'CTO',
+        company: 'TechCo',
+        email: 'emily@techco.io',
+        location: 'Austin',
+      },
+      {
+        type: 'domain',
+        input: 'innovate.ai',
+        name: 'Michael Chen',
+        title: 'Founder',
+        company: 'Innovate AI',
+        email: 'michael@innovate.ai',
+        location: 'Seattle',
+      },
+      {
+        type: 'domain',
+        input: 'salesforce.com',
+        name: 'Jessica Brown',
+        title: 'VP Marketing',
+        company: 'Salesforce',
+        email: 'jess@salesforce.com',
+        location: 'San Francisco',
+      },
+    ],
+    linkedin: [
+      {
+        type: 'linkedin',
+        input: 'linkedin.com/in/sarah-j',
+        name: 'Sarah Johnson',
+        title: 'VP Sales',
+        company: 'TechStart Inc',
+        email: 'sarah@techstart.com',
+        location: 'New York',
+      },
+      {
+        type: 'linkedin',
+        input: 'linkedin.com/in/alex-k',
+        name: 'Alex Kumar',
+        title: 'Product Lead',
+        company: 'CloudBase',
+        email: 'alex@cloudbase.io',
+        location: 'Boston',
+      },
+      {
+        type: 'linkedin',
+        input: 'linkedin.com/in/maria-g',
+        name: 'Maria Garcia',
+        title: 'Head of Ops',
+        company: 'DataFlow',
+        email: 'maria@dataflow.com',
+        location: 'Chicago',
+      },
+      {
+        type: 'linkedin',
+        input: 'linkedin.com/in/david-w',
+        name: 'David Wilson',
+        title: 'Engineering Dir',
+        company: 'DevTools',
+        email: 'david@devtools.ai',
+        location: 'Denver',
+      },
+    ],
   };
 
   useEffect(() => {
     const sequence = async () => {
-      // Wait a bit, then start enriching
-      await new Promise((resolve) => setTimeout(resolve, 500));
-      setTriggerEnrich(true);
-
-      // Wait for enrichment to complete
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // Wait to show the result
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // Reset and switch mode
+      // Reset all rows
       setShouldReset(true);
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      setCurrentActiveIndex(-1);
+      await new Promise((resolve) => setTimeout(resolve, 300));
       setShouldReset(false);
-      setTriggerEnrich(false);
+
+      // Enrich each row sequentially
+      for (let i = 0; i < 4; i++) {
+        await new Promise((resolve) => setTimeout(resolve, 600));
+        setCurrentActiveIndex(i);
+        await new Promise((resolve) => setTimeout(resolve, 1800));
+      }
+
+      // Wait before switching mode
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      // Switch mode
       setCurrentMode((prev) => (prev === 'domain' ? 'linkedin' : 'domain'));
     };
 
-    sequence();
-    const interval = setInterval(sequence, 4500);
+    // Start the sequence after a short delay
+    const timer = setTimeout(sequence, 500);
+    const interval = setInterval(sequence, 11000);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -285,22 +349,26 @@ const LinkedinDomainDemo = () => {
           <div className="col-span-1 text-xs font-bold text-gray-700 text-center">Location</div>
         </div>
 
-        {/* Data Row */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentMode}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <EnrichRow
-              data={mockData[currentMode]}
-              triggerEnrich={triggerEnrich}
-              shouldReset={shouldReset}
-            />
-          </motion.div>
-        </AnimatePresence>
+        {/* Data Rows */}
+        <div className="space-y-2">
+          <AnimatePresence mode="wait">
+            {mockData[currentMode].map((data, index) => (
+              <motion.div
+                key={`${currentMode}-${index}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+              >
+                <EnrichRow
+                  data={data}
+                  triggerEnrich={currentActiveIndex === index}
+                  shouldReset={shouldReset}
+                />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
       </motion.div>
     </div>
   );
