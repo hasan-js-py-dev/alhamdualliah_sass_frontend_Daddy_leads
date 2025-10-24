@@ -30,15 +30,15 @@ const ProductShowcase = () => {
           </p>
         </motion.div>
 
-        {/* Content Section with Title, Subtitle, Button and Contact Demo */}
-        <div className="space-y-12">
-          {/* Title and Subtitle */}
+        {/* Two Column Layout - Text and Contact Demo */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Left Column - Title, Subtitle, and Button */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.1 }}
-            className="text-center space-y-4"
+            className="space-y-6"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
               Try Advanced{' '}
@@ -47,14 +47,13 @@ const ProductShowcase = () => {
               </span>{' '}
               Scraper
             </h2>
-            <p className="text-base md:text-lg text-gray-700 max-w-2xl mx-auto">
+            <p className="text-base md:text-lg text-gray-700 leading-relaxed">
               Export leads from Sales Nav, bypass 2500 limitation without restricted account.
             </p>
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="pt-4"
             >
               <Button
                 onClick={() => navigate('/signup')}
@@ -69,10 +68,10 @@ const ProductShowcase = () => {
             </motion.div>
           </motion.div>
 
-          {/* Contact Row Demo */}
+          {/* Right Column - Contact Row Demo */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1], delay: 0.2 }}
           >
