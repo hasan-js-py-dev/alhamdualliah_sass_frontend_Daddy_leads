@@ -46,27 +46,23 @@ const TrustedBySection = ({ activeIndex }: TrustedBySectionProps) => {
           transition={{ duration: 0.6, delay: 0.9 }}
           className="overflow-x-auto scrollbar-hide"
         >
-          <div className="flex gap-3 justify-center items-center whitespace-nowrap pb-2">
+          <div className="flex gap-4 justify-center items-center whitespace-nowrap pb-2 flex-wrap">
             {logos.map((logo, index) => {
               const gradient = brandGradients[logo.name] ?? 'from-white to-white';
               return (
-                <motion.a
+                <motion.div
                   key={logo.name}
-                  href={logo.url}
-                  aria-label={`${logo.name} website`}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   animate={{
-                    scale: activeIndex === index ? 1.05 : 1,
+                    scale: activeIndex === index ? 1.08 : 1,
                     opacity: activeIndex === index ? 1 : 0.85,
                   }}
                   transition={{ duration: 0.3 }}
-                  className={`inline-flex items-center justify-center px-4 py-1.5 rounded-lg whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r ${gradient} hover:scale-[1.04] transition-transform duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-white/70`}
+                  className={`inline-flex items-center justify-center px-5 py-2 rounded-lg whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r ${gradient} animate-rainbow`}
                 >
-                  <span className="text-sm font-semibold tracking-tight">
+                  <span className="text-lg font-bold tracking-tight">
                     {logo.name}
                   </span>
-                </motion.a>
+                </motion.div>
               );
             })}
           </div>

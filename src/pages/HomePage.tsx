@@ -11,9 +11,9 @@ const HomePage = () => {
   const [activeFeature, setActiveFeature] = useState(0);
   const [activeLogo, setActiveLogo] = useState(0);
   const features = [
-    { icon: Users, text: '10000+ active user' },
+    { icon: Users, text: '👥 10000+ active user' },
     { icon: Settings, text: '🛠️ 20+ different scrapers' },
-    { icon: CheckCircle, text: 'Verify 15+ million contacts/month' },
+    { icon: CheckCircle, text: '✅ Verify 15+ million contacts/month' },
   ];
 
   useEffect(() => {

@@ -129,6 +129,24 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes rainbow-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  25% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  75% {
+    background-position: 50% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 @keyframes marquee {
   from {
     transform: translateX(0);
@@ -194,6 +212,15 @@ All colors MUST be HSL.
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient-shift 4s ease infinite;
+}
+
+.animate-rainbow {
+  background-size: 300% 300%;
+  animation: rainbow-shift 6s ease infinite;
+}
+
+.animate-shake {
+  animation: tilt-bounce 3s ease-in-out infinite;
 }
 
 .shimmer {

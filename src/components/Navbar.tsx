@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto bg-transparent backdrop-blur-sm rounded-2xl px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center">
           <motion.div
-            className="logo-animate text-white font-bold text-[22px] tracking-tight"
+            className="animate-shake bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent animate-rainbow font-bold text-[22px] tracking-tight"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
@@ -34,7 +34,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className="text-[15px] font-medium text-white/90 hover:text-white hover:underline underline-offset-4 transition-colors duration-200"
+                className="text-[15px] font-semibold bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent animate-rainbow hover:scale-105 animate-shake transition-transform duration-200"
               >
                 {link.name}
               </Link>
