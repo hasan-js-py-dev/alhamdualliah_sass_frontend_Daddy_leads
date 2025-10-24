@@ -49,19 +49,19 @@ const EmailRow = ({ email, triggerVerify, shouldReset, isValid }: EmailRowProps)
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="grid grid-cols-[2fr_1fr] gap-4 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-white/60 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+      className="grid grid-cols-[2fr_1fr] gap-3 p-3 bg-white/80 backdrop-blur-sm rounded-lg border border-white/60 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-blue-50/30 via-transparent to-purple-50/30 opacity-0 hover:opacity-100 transition-opacity duration-300" />
       
       {/* Email Address */}
-      <div className="flex items-center gap-3 relative z-10">
-        <Mail className={`w-5 h-5 flex-shrink-0 transition-colors duration-300 ${
+      <div className="flex items-center gap-2 relative z-10">
+        <Mail className={`w-4 h-4 flex-shrink-0 transition-colors duration-300 ${
           status === 'valid' ? 'text-green-600' :
           status === 'invalid' ? 'text-red-600' :
           status === 'verifying' ? 'text-blue-600' :
           'text-gray-400'
         }`} />
-        <span className="text-sm font-medium text-gray-800 truncate">
+        <span className="text-xs font-medium text-gray-800 truncate">
           {email.email}
         </span>
       </div>
@@ -75,9 +75,9 @@ const EmailRow = ({ email, triggerVerify, shouldReset, isValid }: EmailRowProps)
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="px-4 py-2 bg-gray-100 rounded-lg"
+              className="px-3 py-1 bg-gray-100 rounded-md"
             >
-              <span className="text-xs font-semibold text-gray-500">Not Verified</span>
+              <span className="text-[10px] font-semibold text-gray-500">Pending</span>
             </motion.div>
           )}
 
@@ -87,11 +87,11 @@ const EmailRow = ({ email, triggerVerify, shouldReset, isValid }: EmailRowProps)
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-lg border border-blue-300"
+              className="flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-blue-100 to-cyan-100 rounded-md border border-blue-300"
             >
-              <Loader2 className="w-4 h-4 text-blue-600 animate-spin" />
-              <span className="text-xs font-bold bg-gradient-to-r from-blue-700 to-cyan-700 bg-clip-text text-transparent">
-                Verifying...
+              <Loader2 className="w-3 h-3 text-blue-600 animate-spin" />
+              <span className="text-[10px] font-bold bg-gradient-to-r from-blue-700 to-cyan-700 bg-clip-text text-transparent">
+                Verifying
               </span>
             </motion.div>
           )}
@@ -103,13 +103,12 @@ const EmailRow = ({ email, triggerVerify, shouldReset, isValid }: EmailRowProps)
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-green-100 to-emerald-100 rounded-lg border-2 border-green-400 shadow-lg relative"
+              className="flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-green-100 to-emerald-100 rounded-md border border-green-400 shadow-md relative"
             >
-              <CheckCircle2 className="w-4 h-4 text-green-600 flex-shrink-0" />
-              <span className="text-xs font-bold bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent">
+              <CheckCircle2 className="w-3 h-3 text-green-600 flex-shrink-0" />
+              <span className="text-[10px] font-bold bg-gradient-to-r from-green-700 to-emerald-700 bg-clip-text text-transparent">
                 Valid
               </span>
-              <div className="absolute top-0 right-0 w-16 h-16 bg-green-300/30 rounded-full blur-xl" />
             </motion.div>
           )}
 
@@ -120,13 +119,12 @@ const EmailRow = ({ email, triggerVerify, shouldReset, isValid }: EmailRowProps)
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-              className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-red-100 to-pink-100 rounded-lg border-2 border-red-400 shadow-lg relative"
+              className="flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-red-100 to-pink-100 rounded-md border border-red-400 shadow-md relative"
             >
-              <XCircle className="w-4 h-4 text-red-600 flex-shrink-0" />
-              <span className="text-xs font-bold bg-gradient-to-r from-red-700 to-pink-700 bg-clip-text text-transparent">
+              <XCircle className="w-3 h-3 text-red-600 flex-shrink-0" />
+              <span className="text-[10px] font-bold bg-gradient-to-r from-red-700 to-pink-700 bg-clip-text text-transparent">
                 Invalid
               </span>
-              <div className="absolute top-0 right-0 w-16 h-16 bg-red-300/30 rounded-full blur-xl" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -197,23 +195,23 @@ const EmailVerifyDemo = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-3xl">
+    <div className="w-full max-w-lg">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/60 p-6"
+        className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-lg rounded-xl shadow-xl border border-white/60 p-4"
       >
         {/* Title */}
-        <div className="mb-5 text-center">
-          <h3 className="text-base font-bold bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent">
-            Email Verification Dashboard
+        <div className="mb-3 text-center">
+          <h3 className="text-sm font-bold bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent">
+            Email Verification
           </h3>
         </div>
 
         {/* Email Rows */}
-        <div className="space-y-3">
+        <div className="space-y-2">
           {mockEmails.map((email, index) => (
             <motion.div
               key={email.id}

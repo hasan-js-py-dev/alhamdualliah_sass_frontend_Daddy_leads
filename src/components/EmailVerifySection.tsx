@@ -50,8 +50,9 @@ const EmailVerifySection = () => {
               <Button
                 onClick={() => navigate('/signup')}
                 size="lg"
-                className="bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] text-white hover:shadow-2xl transition-all duration-400 shadow-lg"
+                className="text-white hover:shadow-2xl transition-all duration-400 shadow-lg"
                 style={{
+                  background: '#ff9c6f',
                   transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
                   animation: 'subtle-shake 3s ease-in-out infinite',
                 }}
