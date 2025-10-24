@@ -12,6 +12,7 @@ import LinkedinDomainSection from '../components/LinkedinDomainSection';
 import EmailVerifySection from '../components/EmailVerifySection';
 import CSVDownloadSection from '../components/CSVDownloadSection';
 import ScraperMarqueeSection from '../components/ScraperMarqueeSection';
+import ReviewsSection from '../components/ReviewsSection';
 
 const HomePage = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -88,6 +89,9 @@ const HomePage = () => {
 
       {/* Scraper Marquee Section */}
       <ScraperMarqueeSection />
+
+      {/* Reviews Section */}
+      <ReviewsSection />
     </>
   );
 };
