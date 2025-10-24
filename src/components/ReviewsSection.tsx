@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, FileCheck, Users, Chrome } from 'lucide-react';
+import { Shield, FileCheck, Users } from 'lucide-react';
 import { Button } from './ui/button';
 import ReviewCard from './ReviewCard';
+import chromeIcon from '@/assets/chrome-icon.png';
 
 const ReviewsSection: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -327,13 +328,26 @@ const ReviewsSection: React.FC = () => {
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_white_1px,_transparent_1px)] bg-[length:30px_30px]"></div>
             </div>
 
+            {/* Chrome Icon */}
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4, type: "spring", bounce: 0.4 }}
+              className="absolute -top-10 left-1/2 transform -translate-x-1/2 z-20"
+            >
+              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-xl">
+                <img src={chromeIcon} alt="Chrome" className="w-16 h-16" />
+              </div>
+            </motion.div>
+
             {/* Content */}
-            <div className="relative z-10 text-center">
+            <div className="relative z-10 text-center pt-8">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.5 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
                 className="text-3xl md:text-4xl font-bold text-white mb-6"
               >
                 Download LinkedIn Cookie Handler
@@ -343,15 +357,15 @@ const ReviewsSection: React.FC = () => {
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
               >
                 <a 
-                  href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm?hl=en" 
+                  href="https://cookie-editor.com/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                 >
                   <Button 
-                    className="bg-white text-[#6713e1] hover:bg-gray-50 px-8 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-button-shake"
+                    className="bg-white text-[#6713e1] hover:bg-gray-50 px-8 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 animate-button-shake"
                   >
                     Download Extension
                   </Button>

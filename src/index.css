@@ -120,13 +120,13 @@ All colors MUST be HSL.
     transform: translateX(0);
   }
   25% {
-    transform: translateX(-2px);
+    transform: translateX(-1px);
   }
   50% {
-    transform: translateX(2px);
+    transform: translateX(1px);
   }
   75% {
-    transform: translateX(-2px);
+    transform: translateX(-1px);
   }
 }
 
@@ -135,16 +135,16 @@ All colors MUST be HSL.
     transform: translateY(0px);
   }
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-8px);
   }
 }
 
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(103, 19, 225, 0.4);
+    box-shadow: 0 0 0 0 rgba(103, 19, 225, 0.3);
   }
   50% {
-    box-shadow: 0 0 0 15px rgba(103, 19, 225, 0);
+    box-shadow: 0 0 0 10px rgba(103, 19, 225, 0);
   }
 }
 
@@ -153,7 +153,7 @@ All colors MUST be HSL.
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
 }
 
@@ -299,19 +299,19 @@ All colors MUST be HSL.
 }
 
 .animate-button-shake {
-  animation: shake 2s ease-in-out infinite;
+  animation: shake 3s ease-in-out infinite;
 }
 
 .animate-icon-float {
-  animation: icon-float 3s ease-in-out infinite;
+  animation: icon-float 4s ease-in-out infinite;
 }
 
 .animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
+  animation: pulse-glow 3s ease-in-out infinite;
 }
 
 .animate-badge-bounce {
-  animation: badge-bounce 2s ease-in-out infinite;
+  animation: badge-bounce 3s ease-in-out infinite;
 }
 
 .shimmer {
