@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
+import AnimatedTitle from './AnimatedTitle';
 
 interface HeroTextSectionProps {
   onCTAClick: () => void;
@@ -15,16 +16,9 @@ const HeroTextSection = ({ onCTAClick }: HeroTextSectionProps) => {
       className="space-y-6"
     >
       <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-        <span className="bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent animate-gradient">
-          Apify Alternative,
-        </span>
+        <AnimatedTitle text="Apify Alternative," />
         <br />
-        <span
-          className="text-white"
-          style={{ textShadow: '0 1px 1px rgba(0,0,0,0.45)' }}
-        >
-          Automate Your B2B Prospecting Effortlessly
-        </span>
+        <AnimatedTitle text="Automate Your B2B Prospecting Effortlessly" />
       </h1>
       <p className="text-xl text-white/80 leading-relaxed">
         Daddy Leads lets you automate your B2B prospecting with powerful
