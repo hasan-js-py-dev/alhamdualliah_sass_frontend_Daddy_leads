@@ -242,44 +242,46 @@ const CSVDownloadSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-2xl shadow-2xl border border-gray-200 p-6 overflow-x-auto"
+          className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden"
         >
-          <Table>
-            <TableHeader>
-              <TableRow className="bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF]">
-                <TableHead className="text-white font-bold">Company</TableHead>
-                <TableHead className="text-white font-bold">First Name</TableHead>
-                <TableHead className="text-white font-bold">Last Name</TableHead>
-                <TableHead className="text-white font-bold">Title</TableHead>
-                <TableHead className="text-white font-bold">Email</TableHead>
-                <TableHead className="text-white font-bold">Status</TableHead>
-                <TableHead className="text-white font-bold">Employees</TableHead>
-                <TableHead className="text-white font-bold">Industry</TableHead>
-                <TableHead className="text-white font-bold">Location</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {sampleContacts.map((contact, index) => (
-                <TableRow key={index} className={`${rowColors[index]} hover:opacity-80 transition-opacity`}>
-                  <TableCell className="font-medium text-gray-900">{contact.companyName}</TableCell>
-                  <TableCell className="text-gray-700">{contact.firstName}</TableCell>
-                  <TableCell className="text-gray-700">{contact.lastName}</TableCell>
-                  <TableCell className="text-gray-600 text-sm">{contact.title}</TableCell>
-                  <TableCell className="text-blue-600 font-medium">{contact.email}</TableCell>
-                  <TableCell>
-                    <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">
-                      {contact.emailStatus}
-                    </span>
-                  </TableCell>
-                  <TableCell className="text-gray-700">{contact.employees}</TableCell>
-                  <TableCell className="text-gray-600 capitalize">{contact.industry}</TableCell>
-                  <TableCell className="text-gray-600 text-sm">
-                    {contact.city}, {contact.state}
-                  </TableCell>
+          <div className="max-h-[500px] overflow-auto">
+            <Table>
+              <TableHeader className="sticky top-0 z-10">
+                <TableRow className="bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF]">
+                  <TableHead className="text-white font-bold whitespace-nowrap">Company</TableHead>
+                  <TableHead className="text-white font-bold whitespace-nowrap">First Name</TableHead>
+                  <TableHead className="text-white font-bold whitespace-nowrap">Last Name</TableHead>
+                  <TableHead className="text-white font-bold whitespace-nowrap">Title</TableHead>
+                  <TableHead className="text-white font-bold whitespace-nowrap">Email</TableHead>
+                  <TableHead className="text-white font-bold whitespace-nowrap">Status</TableHead>
+                  <TableHead className="text-white font-bold whitespace-nowrap">Employees</TableHead>
+                  <TableHead className="text-white font-bold whitespace-nowrap">Industry</TableHead>
+                  <TableHead className="text-white font-bold whitespace-nowrap">Location</TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {sampleContacts.map((contact, index) => (
+                  <TableRow key={index} className={`${rowColors[index]} hover:opacity-80 transition-opacity`}>
+                    <TableCell className="font-medium text-gray-900 whitespace-nowrap">{contact.companyName}</TableCell>
+                    <TableCell className="text-gray-700 whitespace-nowrap">{contact.firstName}</TableCell>
+                    <TableCell className="text-gray-700 whitespace-nowrap">{contact.lastName}</TableCell>
+                    <TableCell className="text-gray-600 text-sm whitespace-nowrap">{contact.title}</TableCell>
+                    <TableCell className="text-blue-600 font-medium whitespace-nowrap">{contact.email}</TableCell>
+                    <TableCell className="whitespace-nowrap">
+                      <span className="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs font-semibold">
+                        {contact.emailStatus}
+                      </span>
+                    </TableCell>
+                    <TableCell className="text-gray-700 whitespace-nowrap">{contact.employees}</TableCell>
+                    <TableCell className="text-gray-600 capitalize whitespace-nowrap">{contact.industry}</TableCell>
+                    <TableCell className="text-gray-600 text-sm whitespace-nowrap">
+                      {contact.city}, {contact.state}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </motion.div>
 
         <motion.div
