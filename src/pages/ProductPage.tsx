@@ -244,7 +244,9 @@ const ProductPage = () => {
         </section>
 
         {/* FAQ Section */}
-        <FAQSection />
+        <div style={{ backgroundColor: '#faf8f0' }}>
+          <FAQSection />
+        </div>
 
         {/* CTA Section with Social Icons */}
         <section className="py-16 px-6" style={{ backgroundColor: '#faf8f0' }}>
@@ -311,7 +313,9 @@ const ProductPage = () => {
         </section>
 
         {/* Footer */}
-        <Footer />
+        <div style={{ backgroundColor: '#faf8f0' }}>
+          <Footer />
+        </div>
       </div>
     </>
   );
