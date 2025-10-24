@@ -9,7 +9,7 @@ const ProductShowcase = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-[#FFF5E6] via-[#FFE5D9] to-[#FFD4C4] overflow-hidden min-h-screen flex items-center">
+    <section className="relative py-16 px-6 md:px-12 bg-gradient-to-b from-[#FFF5E6] via-[#FFE5D9] to-[#FFD4C4] overflow-hidden">
       <AnimatedStars />
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Main Title and Subtitle */}

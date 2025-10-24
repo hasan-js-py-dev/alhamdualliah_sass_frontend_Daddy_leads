@@ -9,7 +9,7 @@ const LinkedinDomainSection = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-[#FFF5E6] via-[#FFE5D9] to-[#FFD4C4] overflow-hidden min-h-screen flex items-center">
+    <section className="relative py-16 px-6 md:px-12 bg-gradient-to-b from-[#FFF5E6] via-[#FFE5D9] to-[#FFD4C4] overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#FFF5E6] to-transparent" />
       <AnimatedStars />
       <div className="max-w-7xl mx-auto relative z-10">

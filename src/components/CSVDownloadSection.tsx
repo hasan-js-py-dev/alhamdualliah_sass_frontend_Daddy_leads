@@ -201,7 +201,7 @@ const CSVDownloadSection = () => {
   ];
 
   return (
-    <section className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-[#FFF5E6] to-gray-50 min-h-screen flex items-center">
+    <section className="relative py-16 px-6 md:px-12 bg-gradient-to-b from-[#FFF5E6] to-gray-50">
       {/* Top Wave */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
         <svg className="relative block w-full h-[60px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
