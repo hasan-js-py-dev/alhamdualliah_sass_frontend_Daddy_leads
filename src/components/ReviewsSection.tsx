@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Shield, FileCheck, Users } from 'lucide-react';
 import { Button } from './ui/button';
 import ReviewCard from './ReviewCard';
-import chromeIcon from '@/assets/chrome-icon.png';
+import chromeIcon from '@/assets/chrome-extension-icon.png';
 
 const ReviewsSection: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -336,10 +336,10 @@ const ReviewsSection: React.FC = () => {
           </motion.div>
 
           {/* Main Card */}
-          <div className="relative bg-gradient-to-br from-[#5B21B6] via-[#6D28D9] to-[#7C3AED] rounded-3xl px-8 py-16 shadow-2xl overflow-hidden">
+          <div className="relative bg-black rounded-3xl px-8 py-16 shadow-2xl overflow-hidden border border-white/10">
             {/* Animated Stars Background */}
             <div className="absolute inset-0 overflow-hidden">
-              {[...Array(20)].map((_, i) => (
+              {[...Array(30)].map((_, i) => (
                 <motion.div
                   key={i}
                   className="absolute w-1 h-1 bg-white rounded-full"
@@ -348,11 +348,11 @@ const ReviewsSection: React.FC = () => {
                     top: `${Math.random() * 100}%`,
                   }}
                   animate={{
-                    opacity: [0.2, 1, 0.2],
+                    opacity: [0.1, 0.8, 0.1],
                     scale: [1, 1.5, 1],
                   }}
                   transition={{
-                    duration: 2 + Math.random() * 2,
+                    duration: 3 + Math.random() * 2,
                     repeat: Infinity,
                     delay: Math.random() * 2,
                   }}
@@ -367,7 +367,7 @@ const ReviewsSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-3xl md:text-5xl font-bold text-white mb-10 leading-tight"
+                className="text-3xl md:text-5xl font-bold text-white mb-10"
               >
                 Download Your First Leads Now
               </motion.h2>
@@ -383,20 +383,29 @@ const ReviewsSection: React.FC = () => {
                   href="https://cookie-editor.com/" 
                   target="_blank" 
                   rel="noopener noreferrer"
+                  className="inline-block"
                 >
                   <Button 
-                    className="bg-white text-[#5B21B6] hover:bg-gray-50 px-8 py-6 text-base font-bold rounded-2xl transition-all duration-500 animate-button-shake"
+                    className="relative bg-white text-[#5B21B6] hover:bg-gray-50 px-10 py-7 text-lg font-bold rounded-2xl transition-all duration-300 animate-button-shake"
                     style={{
-                      boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3), 0 6px 12px rgba(91, 33, 182, 0.4)',
-                      transform: 'perspective(1000px) translateZ(0)',
+                      boxShadow: '0 8px 0 #d1d5db, 0 12px 25px rgba(0, 0, 0, 0.5)',
+                      transform: 'translateY(0px)',
+                    }}
+                    onMouseDown={(e) => {
+                      e.currentTarget.style.transform = 'translateY(4px)';
+                      e.currentTarget.style.boxShadow = '0 4px 0 #d1d5db, 0 8px 15px rgba(0, 0, 0, 0.4)';
+                    }}
+                    onMouseUp={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0px)';
+                      e.currentTarget.style.boxShadow = '0 8px 0 #d1d5db, 0 12px 25px rgba(0, 0, 0, 0.5)';
                     }}
                     onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'perspective(1000px) translateZ(10px) translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.4), 0 8px 15px rgba(91, 33, 182, 0.5)';
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 10px 0 #d1d5db, 0 16px 30px rgba(0, 0, 0, 0.6)';
                     }}
                     onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'perspective(1000px) translateZ(0)';
-                      e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3), 0 6px 12px rgba(91, 33, 182, 0.4)';
+                      e.currentTarget.style.transform = 'translateY(0px)';
+                      e.currentTarget.style.boxShadow = '0 8px 0 #d1d5db, 0 12px 25px rgba(0, 0, 0, 0.5)';
                     }}
                   >
                     Download Cookie Handler Extension
