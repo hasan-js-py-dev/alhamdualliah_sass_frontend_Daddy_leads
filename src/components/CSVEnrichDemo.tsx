@@ -65,15 +65,16 @@ const CSVRow = ({ contact, triggerFind, shouldReset }: { contact: Contact; trigg
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-      className="grid grid-cols-[1fr_1fr_1.2fr_2fr] gap-3 p-4 bg-white/80 backdrop-blur-sm rounded-xl border border-gray-200/60 hover:shadow-md transition-all duration-300 items-center"
+      className="grid grid-cols-[1fr_1fr_1.2fr_2fr] gap-3 p-4 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200/60 hover:shadow-lg hover:border-orange-200/60 transition-all duration-300 items-center relative overflow-hidden"
     >
-      <div className="text-sm font-medium text-gray-800 truncate">
+      <div className="absolute inset-0 bg-gradient-to-r from-orange-50/30 via-transparent to-blue-50/30 opacity-0 hover:opacity-100 transition-opacity duration-300" />
+      <div className="text-sm font-semibold bg-gradient-to-r from-[#FF6B35] to-[#FF8C42] bg-clip-text text-transparent truncate relative z-10">
         {contact.first_name}
       </div>
-      <div className="text-sm font-medium text-gray-800 truncate">
+      <div className="text-sm font-semibold bg-gradient-to-r from-[#FF8C42] to-[#FFA07A] bg-clip-text text-transparent truncate relative z-10">
         {contact.last_name}
       </div>
-      <div className="text-sm text-gray-600 truncate font-mono">
+      <div className="text-sm font-medium truncate font-mono bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent relative z-10">
         {contact.domain}
       </div>
       <div className="relative">
@@ -99,10 +100,11 @@ const CSVRow = ({ contact, triggerFind, shouldReset }: { contact: Contact; trigg
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.3 }}
-              className="flex items-center gap-2 py-2 px-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg border border-blue-200"
+              className="flex items-center gap-2 py-2 px-3 bg-gradient-to-r from-blue-50 via-cyan-50 to-blue-50 rounded-lg border-2 border-blue-300 shadow-sm relative overflow-hidden"
             >
-              <Loader2 className="w-4 h-4 text-blue-600 animate-spin" />
-              <span className="text-xs text-blue-700 font-medium">Finding...</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent animate-shimmer" />
+              <Loader2 className="w-4 h-4 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent animate-spin relative z-10" style={{ color: '#2563eb' }} />
+              <span className="text-xs font-bold bg-gradient-to-r from-blue-700 to-cyan-700 bg-clip-text text-transparent relative z-10">Finding...</span>
             </motion.div>
           )}
 
@@ -113,13 +115,14 @@ const CSVRow = ({ contact, triggerFind, shouldReset }: { contact: Contact; trigg
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
-              className="flex items-center gap-2 py-2 px-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-lg border border-green-300 relative overflow-hidden"
+              className="flex items-center gap-2 py-2 px-3 bg-gradient-to-r from-green-50 via-emerald-50 to-green-50 rounded-lg border-2 border-green-400 shadow-md relative overflow-hidden"
             >
-              <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
-              <span className="text-xs font-mono font-semibold text-green-900 truncate">
+              <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0 relative z-10" />
+              <span className="text-xs font-mono font-bold bg-gradient-to-r from-green-700 via-emerald-700 to-green-700 bg-clip-text text-transparent truncate relative z-10">
                 {contact.email}
               </span>
-              <div className="absolute top-0 right-0 w-12 h-12 bg-green-200/30 rounded-full blur-xl" />
+              <div className="absolute top-0 right-0 w-16 h-16 bg-green-300/40 rounded-full blur-2xl" />
+              <div className="absolute bottom-0 left-0 w-16 h-16 bg-emerald-300/40 rounded-full blur-2xl" />
             </motion.div>
           )}
         </AnimatePresence>
@@ -170,22 +173,33 @@ const CSVEnrichDemo = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-        className="bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] rounded-t-xl p-4 shadow-lg"
+        className="bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] rounded-t-xl p-5 shadow-2xl relative overflow-hidden"
       >
-        <div className="flex items-center gap-3 mb-3">
-          <FileSpreadsheet className="w-5 h-5 text-white" />
-          <h3 className="text-white font-bold text-sm">contacts_enrichment.csv</h3>
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
+        <div className="flex items-center gap-3 mb-4 relative z-10">
+          <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
+            <FileSpreadsheet className="w-5 h-5 text-white" />
+          </div>
+          <h3 className="text-white font-bold text-base tracking-tight">contacts_enrichment.csv</h3>
         </div>
-        <div className="grid grid-cols-[1fr_1fr_1.2fr_2fr] gap-3 text-xs font-bold text-white/90 uppercase tracking-wide">
-          <div>First Name</div>
-          <div>Last Name</div>
-          <div>Domain</div>
-          <div>Email</div>
+        <div className="grid grid-cols-[1fr_1fr_1.2fr_2fr] gap-3 text-xs font-bold text-white uppercase tracking-wider relative z-10">
+          <div className="flex items-center gap-1">
+            <span>First Name</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <span>Last Name</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <span>Domain</span>
+          </div>
+          <div className="flex items-center gap-1">
+            <span>Email</span>
+          </div>
         </div>
       </motion.div>
 
       {/* CSV Rows */}
-      <div className="space-y-3 bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-b-xl border-x border-b border-gray-200">
+      <div className="space-y-3 bg-gradient-to-br from-orange-50/30 via-gray-50 to-blue-50/30 p-5 rounded-b-xl border-x-2 border-b-2 border-gray-200/80 shadow-lg">
         {mockCSVContacts.map((contact, index) => (
           <CSVRow
             key={contact.id}

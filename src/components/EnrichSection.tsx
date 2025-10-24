@@ -30,14 +30,13 @@ const EnrichSection = () => {
             className="space-y-6"
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
-              Enrich{' '}
+              Never Skip{' '}
               <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] bg-clip-text text-transparent">
-                Unlimited Number
-              </span>{' '}
-              Of Emails
+                A Single Contact
+              </span>
             </h2>
             <p className="text-base md:text-lg text-gray-700 leading-relaxed">
-              Try enricher don't skip a single contacts.
+              Bulk email enrichment from CSV files in seconds.
             </p>
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -48,6 +47,10 @@ const EnrichSection = () => {
                 onClick={() => navigate('/signup')}
                 size="lg"
                 className="bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] text-white hover:shadow-2xl transition-all duration-400 shadow-lg"
+                style={{
+                  transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  animation: 'subtle-shake 3s ease-in-out infinite',
+                }}
               >
                 Try Email Enricher
               </Button>
