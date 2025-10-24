@@ -9,6 +9,7 @@ import TrustedBySection from '../components/TrustedBySection';
 import ProductShowcase from '../components/ProductShowcase';
 import EnrichSection from '../components/EnrichSection';
 import LinkedinDomainSection from '../components/LinkedinDomainSection';
+import EmailVerifySection from '../components/EmailVerifySection';
 
 const HomePage = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -76,6 +77,9 @@ const HomePage = () => {
 
       {/* LinkedIn & Domain Enrichment Section */}
       <LinkedinDomainSection />
+
+      {/* Email Verification Section */}
+      <EmailVerifySection />
     </>
   );
 };
