@@ -195,23 +195,23 @@ const EmailVerifyDemo = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-lg">
+    <div className="w-full max-w-3xl">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-lg rounded-xl shadow-xl border border-white/60 p-4"
+        className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/60 p-6"
       >
         {/* Title */}
-        <div className="mb-3 text-center">
-          <h3 className="text-sm font-bold bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent">
+        <div className="mb-5 text-center">
+          <h3 className="text-base font-bold bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent">
             Email Verification
           </h3>
         </div>
 
         {/* Email Rows */}
-        <div className="space-y-2">
+        <div className="space-y-2.5">
           {mockEmails.map((email, index) => (
             <motion.div
               key={email.id}
