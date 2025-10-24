@@ -3,11 +3,11 @@ import AnimatedStars from './AnimatedStars';
 
 const FooterLandscapeDecoration: React.FC = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-black min-h-[600px] pb-20">
-      {/* Curved transition from peachy section - positioned lower */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-20" style={{ marginTop: '-1px' }}>
+    <section className="relative w-full overflow-hidden bg-black min-h-[600px] pb-20 -mt-1">
+      {/* Curved transition from peachy section - positioned right after cookie section */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
         <svg
-          className="relative block w-full h-[150px] md:h-[180px]"
+          className="relative block w-full h-[120px] md:h-[150px]"
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
           style={{ transform: 'rotate(180deg)' }}
