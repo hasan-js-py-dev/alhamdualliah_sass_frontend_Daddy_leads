@@ -34,6 +34,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'PRODUCT', path: '/product' },
     { name: 'PRICING', path: '/pricing' },
+    { name: 'DOWNLOAD EXTENSION', path: 'https://cookie-editor.com/', external: true },
     { name: 'CONNECT', path: '/connect' },
   ];
 
@@ -61,21 +62,41 @@ const Navbar = () => {
         <div className="flex items-center gap-8">
           <div className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-[15px] font-bold hover:scale-105 transition-all duration-500 bg-gradient-to-r bg-clip-text text-transparent ${
-                  isScrolled
-                    ? 'from-[#6713e1] via-[#8b5cf6] to-[#6713e1] hover:from-[#5a0fc9] hover:via-[#7c3aed] hover:to-[#5a0fc9]'
-                    : 'from-white via-[#FFF5E6] to-white hover:from-[#FFE5D9] hover:via-white hover:to-[#FFE5D9]'
-                } drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]`}
-                style={{
-                  transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
-                  willChange: 'transform',
-                }}
-              >
-                {link.name}
-              </Link>
+              link.external ? (
+                <a
+                  key={link.path}
+                  href={link.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`text-[15px] font-bold hover:scale-105 transition-all duration-500 bg-gradient-to-r bg-clip-text text-transparent ${
+                    isScrolled
+                      ? 'from-[#6713e1] via-[#8b5cf6] to-[#6713e1] hover:from-[#5a0fc9] hover:via-[#7c3aed] hover:to-[#5a0fc9]'
+                      : 'from-white via-[#FFF5E6] to-white hover:from-[#FFE5D9] hover:via-white hover:to-[#FFE5D9]'
+                  } drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]`}
+                  style={{
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                    willChange: 'transform',
+                  }}
+                >
+                  {link.name}
+                </a>
+              ) : (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`text-[15px] font-bold hover:scale-105 transition-all duration-500 bg-gradient-to-r bg-clip-text text-transparent ${
+                    isScrolled
+                      ? 'from-[#6713e1] via-[#8b5cf6] to-[#6713e1] hover:from-[#5a0fc9] hover:via-[#7c3aed] hover:to-[#5a0fc9]'
+                      : 'from-white via-[#FFF5E6] to-white hover:from-[#FFE5D9] hover:via-white hover:to-[#FFE5D9]'
+                  } drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]`}
+                  style={{
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                    willChange: 'transform',
+                  }}
+                >
+                  {link.name}
+                </Link>
+              )
             ))}
           </div>
 

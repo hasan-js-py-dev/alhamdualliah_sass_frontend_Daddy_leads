@@ -368,26 +368,26 @@ const ReviewsSection: React.FC = () => {
                   className="inline-block"
                 >
                   <Button 
-                    className="relative bg-white/90 text-[#5B21B6] hover:bg-white px-10 py-6 text-lg font-bold rounded-2xl transition-all duration-300 animate-button-shake"
+                    className="relative bg-white text-[#5B21B6] hover:bg-white/95 px-10 py-6 text-lg font-bold rounded-2xl transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
                     style={{
-                      boxShadow: '0 8px 0 #d1d5db, 0 12px 25px rgba(0, 0, 0, 0.5)',
+                      boxShadow: '0 8px 0 #d1d5db, 0 12px 25px rgba(91, 33, 182, 0.3)',
                       transform: 'translateY(0px)',
                     }}
                     onMouseDown={(e) => {
                       e.currentTarget.style.transform = 'translateY(4px)';
-                      e.currentTarget.style.boxShadow = '0 4px 0 #d1d5db, 0 8px 15px rgba(0, 0, 0, 0.4)';
+                      e.currentTarget.style.boxShadow = '0 4px 0 #d1d5db, 0 8px 15px rgba(91, 33, 182, 0.25)';
                     }}
                     onMouseUp={(e) => {
                       e.currentTarget.style.transform = 'translateY(0px)';
-                      e.currentTarget.style.boxShadow = '0 8px 0 #d1d5db, 0 12px 25px rgba(0, 0, 0, 0.5)';
+                      e.currentTarget.style.boxShadow = '0 8px 0 #d1d5db, 0 12px 25px rgba(91, 33, 182, 0.3)';
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 10px 0 #d1d5db, 0 16px 30px rgba(0, 0, 0, 0.6)';
+                      e.currentTarget.style.boxShadow = '0 10px 0 #d1d5db, 0 16px 30px rgba(91, 33, 182, 0.4)';
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.transform = 'translateY(0px)';
-                      e.currentTarget.style.boxShadow = '0 8px 0 #d1d5db, 0 12px 25px rgba(0, 0, 0, 0.5)';
+                      e.currentTarget.style.boxShadow = '0 8px 0 #d1d5db, 0 12px 25px rgba(91, 33, 182, 0.3)';
                     }}
                   >
                     Download Cookie Handler Extension
@@ -420,9 +420,9 @@ const ReviewsSection: React.FC = () => {
                 <Accordion type="single" collapsible className="space-y-4">
                   <AccordionItem
                     value="item-0"
-                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/95 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/60 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         How does the LinkedIn scraping process work?
                       </span>
@@ -434,9 +434,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-1"
-                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/95 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/60 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         Do you provide emails for all the leads that you scrape?
                       </span>
@@ -448,9 +448,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-2"
-                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/95 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/60 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         What is the difference between Email Enricher and Email Verifier?
                       </span>
@@ -462,9 +462,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-3"
-                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/95 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/60 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         Can I scrape data from Apollo, ZoomInfo, and other B2B databases?
                       </span>
@@ -476,9 +476,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-4"
-                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/95 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/60 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         How long does it take to complete a scraping request?
                       </span>
@@ -490,9 +490,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-5"
-                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/95 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/60 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         Is the data scraping compliant with LinkedIn's terms of service?
                       </span>
@@ -504,9 +504,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-6"
-                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/95 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden shadow-md hover:shadow-xl transition-all duration-300"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/60 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         What file formats do you support for data export and import?
                       </span>
