@@ -6,6 +6,7 @@ import HeroSection from '../components/HeroSection';
 import FeaturePills from '../components/FeaturePills';
 import WaveTransition from '../components/WaveTransition';
 import TrustedBySection from '../components/TrustedBySection';
+import ProductShowcase from '../components/ProductShowcase';
 
 const HomePage = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -64,6 +65,9 @@ const HomePage = () => {
         
         <WaveTransition />
       </div>
+
+      {/* Product Showcase Section */}
+      <ProductShowcase />
     </>
   );
 };
