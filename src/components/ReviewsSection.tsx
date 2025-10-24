@@ -320,7 +320,7 @@ const ReviewsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-24 max-w-2xl mx-auto px-6"
+          className="mt-24 max-w-2xl mx-auto px-6 mb-32"
         >
           {/* Main Card */}
           <div className="relative bg-black rounded-3xl px-8 py-12 shadow-2xl overflow-hidden border border-white/10">
