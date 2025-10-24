@@ -26,23 +26,34 @@ const HeroTextSection = ({ onCTAClick }: HeroTextSectionProps) => {
       </p>
       <motion.div
         animate={{
-          rotate: [0, -0.5, 0.5, -0.5, 0],
-          y: [0, -1, 0, -1, 0],
+          rotate: [0, -0.2, 0.2, -0.2, 0],
+          y: [0, -0.5, 0, -0.5, 0],
         }}
         transition={{
-          duration: 3,
+          duration: 5,
           repeat: Infinity,
-          ease: "easeInOut",
+          ease: [0.4, 0.0, 0.2, 1],
+          repeatType: "loop",
         }}
-        whileHover={{ scale: 1.05, y: -2 }}
-        whileTap={{ scale: 0.98 }}
+        whileHover={{ 
+          scale: 1.05, 
+          y: -2,
+          transition: { duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }
+        }}
+        whileTap={{ 
+          scale: 0.98,
+          transition: { duration: 0.1, ease: [0.4, 0.0, 0.2, 1] }
+        }}
+        style={{ willChange: 'transform' }}
       >
         <Button
           onClick={onCTAClick}
-          className="relative bg-gradient-to-r from-[#5B6FF9] to-[#7C5CFC] text-white text-[18px] px-12 py-7 rounded-xl font-bold shadow-2xl transition-all duration-300 overflow-hidden hover:from-[#6B7FFA] hover:to-[#8C6CFD]"
+          className="relative bg-gradient-to-r from-[#5B6FF9] to-[#7C5CFC] text-white text-[18px] px-12 py-7 rounded-xl font-bold shadow-2xl overflow-hidden hover:from-[#6B7FFA] hover:to-[#8C6CFD]"
           style={{
             boxShadow:
               '0 4px 20px rgba(91, 111, 249, 0.4), 0 0 0 1px rgba(124, 92, 252, 0.1)',
+            transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+            willChange: 'transform, box-shadow',
           }}
         >
           <span className="relative z-10">Export Your Leads</span>

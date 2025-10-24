@@ -90,10 +90,16 @@ All colors MUST be HSL.
 /* Custom animations */
 @keyframes tilt-bounce {
   0%, 100% {
-    transform: rotate(-1deg) translateY(0px);
+    transform: rotate(-0.3deg) translateY(0px);
+  }
+  25% {
+    transform: rotate(0.2deg) translateY(-0.5px);
   }
   50% {
-    transform: rotate(1deg) translateY(-2px);
+    transform: rotate(0.3deg) translateY(-1px);
+  }
+  75% {
+    transform: rotate(-0.2deg) translateY(-0.5px);
   }
 }
 
@@ -217,21 +223,21 @@ All colors MUST be HSL.
 
 /* Utility classes */
 .logo-animate {
-  animation: tilt-bounce 3s ease-in-out infinite;
+  animation: tilt-bounce 5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 }
 
 .animate-gradient {
   background-size: 200% 200%;
-  animation: gradient-shift 4s ease infinite;
+  animation: gradient-shift 5s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 }
 
 .animate-rainbow {
   background-size: 300% 300%;
-  animation: rainbow-shift 6s ease infinite;
+  animation: rainbow-shift 8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 }
 
 .animate-shake {
-  animation: tilt-bounce 3s ease-in-out infinite;
+  animation: tilt-bounce 6s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 }
 
 .shimmer {

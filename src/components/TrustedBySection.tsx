@@ -56,8 +56,15 @@ const TrustedBySection = ({ activeIndex }: TrustedBySectionProps) => {
                     scale: activeIndex === index ? 1.08 : 1,
                     opacity: activeIndex === index ? 1 : 0.85,
                   }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ 
+                    duration: 0.6,
+                    ease: [0.4, 0.0, 0.2, 1]
+                  }}
                   className={`inline-flex items-center justify-center px-5 py-2 rounded-lg whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r ${gradient} animate-rainbow`}
+                  style={{
+                    transition: 'all 0.6s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                    willChange: 'transform, opacity, background-position',
+                  }}
                 >
                   <span className="text-lg font-bold tracking-tight">
                     {logo.name}

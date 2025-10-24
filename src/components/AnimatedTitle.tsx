@@ -26,18 +26,21 @@ const AnimatedTitle = ({ text, className = '' }: AnimatedTitleProps) => {
   return (
     <motion.span
       animate={{
-        rotate: [0, -1, 1, -1, 0],
-        y: [0, -2, 0, -2, 0],
+        rotate: [0, -0.3, 0.3, -0.3, 0],
+        y: [0, -1, 0, -1, 0],
       }}
       transition={{
-        duration: 4,
+        duration: 6,
         repeat: Infinity,
-        ease: "easeInOut",
+        ease: [0.4, 0.0, 0.2, 1],
+        repeatType: "loop",
       }}
-      className={`inline-block bg-gradient-to-r ${gradients[currentGradient]} bg-clip-text text-transparent transition-all duration-1000 ${className}`}
+      className={`inline-block bg-gradient-to-r ${gradients[currentGradient]} bg-clip-text text-transparent ${className}`}
       style={{
         backgroundSize: '200% 200%',
-        animation: 'gradient-shift 4s ease infinite',
+        animation: 'gradient-shift 4s ease-in-out infinite',
+        transition: 'all 1.5s cubic-bezier(0.4, 0.0, 0.2, 1)',
+        willChange: 'transform, background-position',
       }}
     >
       {text}

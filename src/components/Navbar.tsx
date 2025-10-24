@@ -21,8 +21,11 @@ const Navbar = () => {
         <Link to="/" className="flex items-center">
           <motion.div
             className="animate-shake bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent animate-rainbow font-bold text-[22px] tracking-tight"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
+            whileHover={{ 
+              scale: 1.05,
+              transition: { duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }
+            }}
+            style={{ willChange: 'transform, background-position' }}
           >
             DL
           </motion.div>
@@ -34,7 +37,11 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className="text-[15px] font-semibold bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent animate-rainbow hover:scale-105 animate-shake transition-transform duration-200"
+                className="text-[15px] font-semibold bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent animate-rainbow hover:scale-105 animate-shake"
+                style={{
+                  transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  willChange: 'transform, background-position',
+                }}
               >
                 {link.name}
               </Link>
