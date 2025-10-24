@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto bg-transparent backdrop-blur-sm rounded-2xl px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center">
           <motion.div
-            className="animate-shake bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent animate-rainbow font-bold text-[22px] tracking-tight"
+            className="animate-shake bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] bg-clip-text text-transparent font-bold text-[22px] tracking-tight"
             whileHover={{ 
               scale: 1.05,
               transition: { duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }
@@ -37,10 +37,10 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className="text-[15px] font-semibold bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent animate-rainbow hover:scale-105 animate-shake"
+                className="text-[15px] font-semibold text-gray-800 hover:text-gray-900 hover:scale-105 transition-all duration-300"
                 style={{
                   transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
-                  willChange: 'transform, background-position',
+                  willChange: 'transform',
                 }}
               >
                 {link.name}
@@ -52,13 +52,13 @@ const Navbar = () => {
             <Link to="/login">
               <Button
                 variant="outline"
-                className="inline-flex items-center justify-center text-[16px] px-4 md:px-5 py-2 md:py-2.5 rounded-xl min-h-[40px]"
+                className="inline-flex items-center justify-center text-[16px] px-4 md:px-5 py-2 md:py-2.5 rounded-xl min-h-[40px] border-gray-700 text-gray-800 hover:bg-gray-100"
               >
                 LOGIN
               </Button>
             </Link>
             <Link to="/signup">
-              <Button className="inline-flex items-center justify-center text-[16px] px-4 md:px-5 py-2 md:py-2.5 rounded-xl min-h-[40px] bg-white text-[#7C3AED] hover:bg-white/90 hover:scale-[1.03] transition-all duration-250 ease-in-out font-semibold">
+              <Button className="inline-flex items-center justify-center text-[16px] px-4 md:px-5 py-2 md:py-2.5 rounded-xl min-h-[40px] bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] text-white hover:shadow-lg hover:scale-[1.03] transition-all duration-250 ease-in-out font-semibold">
                 SIGNUP
               </Button>
             </Link>
