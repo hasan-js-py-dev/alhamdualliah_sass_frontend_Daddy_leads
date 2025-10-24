@@ -528,7 +528,7 @@ const ReviewsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-16 flex justify-center px-6"
+          className="mt-12 flex justify-center px-6"
         >
           <Link to="/signup">
             <Button 
@@ -546,7 +546,7 @@ const ReviewsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 flex justify-center gap-8 px-6"
+          className="mt-8 flex justify-center gap-8 px-6"
         >
           <a
             href="https://wa.me/1234567890"
@@ -597,17 +597,15 @@ const ReviewsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 mb-20 flex justify-center px-6"
+          className="mt-6 mb-16 flex justify-center px-6"
         >
-          <Link to="/connect">
-            <Button 
-              variant="outline"
-              size="lg" 
-              className="border-2 border-[#6713e1] text-[#6713e1] hover:bg-[#6713e1] hover:text-white px-10 py-6 text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 bg-white/80 backdrop-blur-sm"
-            >
-              For Demo Connect
-            </Button>
-          </Link>
+          <Button 
+            variant="outline"
+            size="lg" 
+            className="border-2 border-[#6713e1] text-[#6713e1] hover:bg-[#6713e1] hover:text-white px-10 py-5 text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 bg-white/80 backdrop-blur-sm cursor-default"
+          >
+            For Demo Connect
+          </Button>
         </motion.div>
       </div>
     </section>
