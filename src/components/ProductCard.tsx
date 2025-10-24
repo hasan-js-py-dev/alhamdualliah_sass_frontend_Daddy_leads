@@ -1,20 +1,40 @@
 import React from 'react';
+import { LucideIcon } from 'lucide-react';
 
 interface ProductCardProps {
   name: string;
-  initials: string;
+  icon: LucideIcon;
+  gradientFrom: string;
+  gradientTo: string;
+  iconBgFrom: string;
+  iconBgTo: string;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ name, initials }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ 
+  name, 
+  icon: Icon, 
+  gradientFrom, 
+  gradientTo,
+  iconBgFrom,
+  iconBgTo 
+}) => {
   return (
     <div 
-      className="flex-shrink-0 w-[280px] h-[200px] rounded-3xl bg-gradient-to-br from-gray-800 via-gray-900 to-black shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col items-center justify-center gap-4 border border-gray-700/50"
+      className="flex-shrink-0 w-[280px] h-[200px] rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 flex flex-col items-center justify-center gap-4 border border-white/10 hover:scale-105"
+      style={{
+        background: `linear-gradient(135deg, ${gradientFrom}, ${gradientTo})`
+      }}
       tabIndex={0}
     >
-      <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center text-white font-bold text-xl shadow-lg">
-        {initials}
+      <div 
+        className="w-16 h-16 rounded-2xl flex items-center justify-center text-white shadow-lg"
+        style={{
+          background: `linear-gradient(135deg, ${iconBgFrom}, ${iconBgTo})`
+        }}
+      >
+        <Icon size={32} strokeWidth={2} />
       </div>
-      <h3 className="text-white font-semibold text-lg text-center px-4">
+      <h3 className="text-white font-semibold text-lg text-center px-4 drop-shadow-lg">
         {name}
       </h3>
     </div>
