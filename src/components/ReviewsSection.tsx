@@ -404,9 +404,9 @@ const ReviewsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-20 max-w-6xl mx-auto px-6"
+          className="mt-20 max-w-6xl mx-auto px-6 mb-20"
         >
-          <div className="bg-gradient-to-br from-white via-blue-50 to-purple-50 rounded-3xl p-12 shadow-2xl">
+          <div className="bg-gradient-to-br from-white/80 via-blue-50/70 to-purple-50/60 backdrop-blur-sm rounded-3xl p-12 shadow-2xl border border-white/40">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               {/* Title Section */}
               <div className="lg:col-span-4">
@@ -420,9 +420,9 @@ const ReviewsSection: React.FC = () => {
                 <Accordion type="single" collapsible className="space-y-4">
                   <AccordionItem
                     value="item-0"
-                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         How does the LinkedIn scraping process work?
                       </span>
@@ -434,9 +434,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-1"
-                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         Do you provide emails for all the leads that you scrape?
                       </span>
@@ -448,9 +448,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-2"
-                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         What is the difference between Email Enricher and Email Verifier?
                       </span>
@@ -462,9 +462,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-3"
-                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         Can I scrape data from Apollo, ZoomInfo, and other B2B databases?
                       </span>
@@ -476,9 +476,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-4"
-                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         How long does it take to complete a scraping request?
                       </span>
@@ -490,9 +490,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-5"
-                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         Is the data scraping compliant with LinkedIn's terms of service?
                       </span>
@@ -504,9 +504,9 @@ const ReviewsSection: React.FC = () => {
 
                   <AccordionItem
                     value="item-6"
-                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                    className="bg-white/90 backdrop-blur-sm rounded-2xl border border-white/50 overflow-hidden shadow-md hover:shadow-lg transition-shadow"
                   >
-                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/50 transition-colors">
                       <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
                         What file formats do you support for data export and import?
                       </span>
