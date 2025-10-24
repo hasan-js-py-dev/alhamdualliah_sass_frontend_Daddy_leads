@@ -147,6 +147,35 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes float-ribbon {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes rotate-3d {
+  0% {
+    transform: perspective(1000px) rotateY(0deg) rotateX(5deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(360deg) rotateX(5deg);
+  }
+}
+
 @layer base {
   * {
     @apply border-border;

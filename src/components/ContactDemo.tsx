@@ -80,10 +80,25 @@ const ContactDemo = () => {
           </motion.div>
         </div>
         
-        <div className="relative bg-white/10 backdrop-blur-lg rounded-2xl ring-1 ring-white/15 shadow-xl overflow-hidden pt-12 pb-6 px-6 space-y-4">
+        <div 
+          className="relative bg-white/5 backdrop-blur-xl rounded-2xl ring-1 ring-white/10 overflow-hidden pt-12 pb-6 px-6 space-y-4"
+          style={{
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.1)',
+            transform: 'perspective(1000px) rotateY(0deg)',
+            transformStyle: 'preserve-3d',
+          }}
+        >
           <div
             className="absolute inset-0 pointer-events-none"
-            style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02))' }}
+            style={{ 
+              background: 'linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 50%, rgba(255,107,53,0.03) 100%)',
+            }}
+          />
+          <div
+            className="absolute inset-0 pointer-events-none opacity-30"
+            style={{
+              background: 'radial-gradient(circle at top right, rgba(255, 107, 53, 0.15), transparent 60%)',
+            }}
           />
           
           <div className="flex justify-between items-center">
