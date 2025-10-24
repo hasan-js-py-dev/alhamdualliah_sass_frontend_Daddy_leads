@@ -14,6 +14,7 @@ import CSVDownloadSection from '../components/CSVDownloadSection';
 import ScraperMarqueeSection from '../components/ScraperMarqueeSection';
 import ReviewsSection from '../components/ReviewsSection';
 import FooterLandscapeDecoration from '../components/FooterLandscapeDecoration';
+import Footer from '../components/Footer';
 
 const HomePage = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -96,6 +97,9 @@ const HomePage = () => {
 
       {/* Footer Landscape Decoration */}
       <FooterLandscapeDecoration />
+
+      {/* Footer */}
+      <Footer />
     </>
   );
 };
