@@ -117,13 +117,43 @@ All colors MUST be HSL.
 
 @keyframes shake {
   0%, 100% {
-    transform: translateX(0) rotate(0deg);
+    transform: translateX(0);
   }
-  10%, 30%, 50%, 70%, 90% {
-    transform: translateX(-3px) rotate(-1deg);
+  25% {
+    transform: translateX(-2px);
   }
-  20%, 40%, 60%, 80% {
-    transform: translateX(3px) rotate(1deg);
+  50% {
+    transform: translateX(2px);
+  }
+  75% {
+    transform: translateX(-2px);
+  }
+}
+
+@keyframes icon-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(103, 19, 225, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 15px rgba(103, 19, 225, 0);
+  }
+}
+
+@keyframes badge-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
   }
 }
 
@@ -269,7 +299,19 @@ All colors MUST be HSL.
 }
 
 .animate-button-shake {
-  animation: shake 0.8s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+  animation: shake 2s ease-in-out infinite;
+}
+
+.animate-icon-float {
+  animation: icon-float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-badge-bounce {
+  animation: badge-bounce 2s ease-in-out infinite;
 }
 
 .shimmer {

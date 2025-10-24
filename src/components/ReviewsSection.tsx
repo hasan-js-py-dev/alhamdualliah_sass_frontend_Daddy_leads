@@ -216,14 +216,20 @@ const ReviewsSection: React.FC = () => {
               className="text-center"
             >
               <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-lg">
-                    <Shield className="w-16 h-16 text-[#6366F1] absolute" strokeWidth={2} />
-                    <div className="absolute bottom-6 right-6 w-8 h-8 bg-[#6366F1] rounded-full flex items-center justify-center">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                <div className="relative animate-icon-float">
+                  <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-lg animate-pulse-glow">
+                    <Shield className="w-16 h-16 text-[#6366F1]" strokeWidth={2} />
+                    <motion.div 
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.6, type: "spring" }}
+                      className="absolute bottom-4 right-4 w-10 h-10 bg-[#6366F1] rounded-full flex items-center justify-center shadow-lg animate-badge-bounce"
+                    >
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </div>
@@ -242,15 +248,19 @@ const ReviewsSection: React.FC = () => {
               className="text-center"
             >
               <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-lg">
-                    <FileCheck className="w-16 h-16 text-[#6366F1] absolute" strokeWidth={2} />
-                    <div className="absolute top-6 right-6 w-8 h-8 bg-[#6366F1] rounded-full flex items-center justify-center">
-                      <Shield className="w-4 h-4 text-white" strokeWidth={3} />
-                    </div>
-                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-[#6366F1] font-bold text-sm">
-                      GDPR
-                    </div>
+                <div className="relative animate-icon-float" style={{ animationDelay: '0.5s' }}>
+                  <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-lg animate-pulse-glow" style={{ animationDelay: '0.5s' }}>
+                    <FileCheck className="w-16 h-16 text-[#6366F1]" strokeWidth={2} />
+                    <motion.div 
+                      initial={{ scale: 0, rotate: -180 }}
+                      whileInView={{ scale: 1, rotate: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: 0.7, type: "spring" }}
+                      className="absolute top-4 right-4 w-10 h-10 bg-[#6366F1] rounded-full flex items-center justify-center shadow-lg animate-badge-bounce"
+                      style={{ animationDelay: '0.3s' }}
+                    >
+                      <Shield className="w-5 h-5 text-white" strokeWidth={3} />
+                    </motion.div>
                   </div>
                 </div>
               </div>
@@ -269,17 +279,29 @@ const ReviewsSection: React.FC = () => {
               className="text-center"
             >
               <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-lg">
-                    <Users className="w-16 h-16 text-[#6366F1] absolute" strokeWidth={2} />
-                    <div className="absolute top-4 right-8 w-6 h-6 bg-[#6366F1] rounded-full flex items-center justify-center transform rotate-45">
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" strokeWidth="2" fill="none"/>
-                      </svg>
-                    </div>
-                    <div className="absolute top-6 right-4 w-4 h-4 bg-[#6366F1] rounded-full flex items-center justify-center">
-                      <Shield className="w-2 h-2 text-white" strokeWidth={3} />
-                    </div>
+                <div className="relative animate-icon-float" style={{ animationDelay: '1s' }}>
+                  <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-lg animate-pulse-glow" style={{ animationDelay: '1s' }}>
+                    <Users className="w-16 h-16 text-[#6366F1]" strokeWidth={2} />
+                    <motion.div 
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.8, type: "spring" }}
+                      className="absolute top-3 right-3 w-8 h-8 bg-[#6366F1] rounded-full flex items-center justify-center shadow-lg animate-badge-bounce"
+                      style={{ animationDelay: '0.6s' }}
+                    >
+                      <span className="text-white text-xs font-bold">3+</span>
+                    </motion.div>
+                    <motion.div 
+                      initial={{ scale: 0 }}
+                      whileInView={{ scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: 0.9, type: "spring" }}
+                      className="absolute bottom-3 right-3 w-6 h-6 bg-[#6366F1] rounded-full flex items-center justify-center shadow-lg animate-badge-bounce"
+                      style={{ animationDelay: '0.9s' }}
+                    >
+                      <Shield className="w-3 h-3 text-white" strokeWidth={3} />
+                    </motion.div>
                   </div>
                 </div>
               </div>
@@ -305,21 +327,8 @@ const ReviewsSection: React.FC = () => {
               <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_white_1px,_transparent_1px)] bg-[length:30px_30px]"></div>
             </div>
 
-            {/* Chrome Icon */}
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              whileInView={{ scale: 1, rotate: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4, type: "spring" }}
-              className="absolute -top-8 left-1/2 transform -translate-x-1/2"
-            >
-              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl">
-                <Chrome className="w-10 h-10 text-[#6713e1]" strokeWidth={2} />
-              </div>
-            </motion.div>
-
             {/* Content */}
-            <div className="relative z-10 text-center pt-6">
+            <div className="relative z-10 text-center">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
