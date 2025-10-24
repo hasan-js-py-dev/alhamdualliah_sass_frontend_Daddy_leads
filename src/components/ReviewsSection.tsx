@@ -115,7 +115,7 @@ const ReviewsSection: React.FC = () => {
   const duplicatedReviews = [...reviews, ...reviews, ...reviews];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#FFE5D9] via-[#FFD4C4] to-[#FFBFA9]" style={{ paddingBottom: '2px' }}>
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#FFE5D9] via-[#FFD4C4] to-[#FFBFA9]" style={{ paddingBottom: '0px' }}>
       {/* Top curved edge - transitioning from black */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
         <svg
