@@ -320,37 +320,33 @@ const ReviewsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-20 max-w-4xl mx-auto"
+          className="mt-32 max-w-4xl mx-auto px-6"
         >
-          <div className="relative bg-gradient-to-r from-[#6713e1] via-[#7c3aed] to-[#8b5cf6] rounded-3xl p-12 shadow-2xl overflow-hidden">
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_white_1px,_transparent_1px)] bg-[length:30px_30px]"></div>
+          {/* Chrome Icon - Positioned above the card */}
+          <motion.div
+            initial={{ scale: 0, rotate: -180 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4, type: "spring", bounce: 0.4 }}
+            className="flex justify-center mb-[-40px] relative z-30"
+          >
+            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-white">
+              <img src={chromeIcon} alt="Chrome" className="w-12 h-12" />
             </div>
+          </motion.div>
 
-            {/* Chrome Icon */}
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              whileInView={{ scale: 1, rotate: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.4, type: "spring", bounce: 0.4 }}
-              className="absolute -top-10 left-1/2 transform -translate-x-1/2 z-20"
-            >
-              <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-xl">
-                <img src={chromeIcon} alt="Chrome" className="w-16 h-16" />
-              </div>
-            </motion.div>
-
+          {/* Main Card */}
+          <div className="relative bg-[#5B21B6] rounded-3xl px-8 py-16 shadow-2xl overflow-hidden">
             {/* Content */}
-            <div className="relative z-10 text-center pt-8">
+            <div className="relative z-10 text-center">
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-3xl md:text-4xl font-bold text-white mb-6"
+                className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight"
               >
-                Download LinkedIn Cookie Handler
+                Download Your First<br />Leads Now
               </motion.h2>
 
               <motion.div
@@ -365,17 +361,13 @@ const ReviewsSection: React.FC = () => {
                   rel="noopener noreferrer"
                 >
                   <Button 
-                    className="bg-white text-[#6713e1] hover:bg-gray-50 px-8 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 animate-button-shake"
+                    className="bg-white text-[#5B21B6] hover:bg-gray-50 px-12 py-7 text-xl font-bold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 animate-button-shake"
                   >
-                    Download Extension
+                    Export your list
                   </Button>
                 </a>
               </motion.div>
             </div>
-
-            {/* Decorative Elements */}
-            <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full -mb-16 -ml-16"></div>
-            <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -mt-20 -mr-20"></div>
           </div>
         </motion.div>
       </div>
