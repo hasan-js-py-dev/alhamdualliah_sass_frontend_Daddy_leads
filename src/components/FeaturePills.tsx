@@ -20,7 +20,7 @@ const FeaturePills = ({ features, activeIndex }: FeaturePillsProps) => {
       transition={{ duration: 0.6, delay: 0.6 }}
       className="overflow-x-auto scrollbar-hide"
     >
-      <div className="flex gap-4 justify-center items-center whitespace-nowrap pb-4">
+      <div className="flex gap-3 justify-center items-center whitespace-nowrap pb-2">
         {features.map((feature, index) => {
           const Icon = feature.icon;
           return (
@@ -31,10 +31,10 @@ const FeaturePills = ({ features, activeIndex }: FeaturePillsProps) => {
                 opacity: activeIndex === index ? 1 : 0.85,
               }}
               transition={{ duration: 0.3 }}
-              className="flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
+              className="flex items-center gap-3 px-5 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
             >
               <Icon className="w-5 h-5 text-white" />
-              <span className="text-[22px] font-medium text-white">
+              <span className="text-[20px] font-medium text-white">
                 {feature.text}
               </span>
             </motion.div>

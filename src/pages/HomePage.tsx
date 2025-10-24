@@ -9,6 +9,7 @@ import TrustedBySection from '../components/TrustedBySection';
 
 const HomePage = () => {
   const [activeFeature, setActiveFeature] = useState(0);
+  const [activeLogo, setActiveLogo] = useState(0);
   const features = [
     { icon: Users, text: '10000+ active user' },
     { icon: Settings, text: '🛠️ 20+ different scrapers' },
@@ -21,6 +22,13 @@ const HomePage = () => {
     }, 3000);
     return () => clearInterval(interval);
   }, [features.length]);
+
+  useEffect(() => {
+    const logoInterval = setInterval(() => {
+      setActiveLogo((prev) => (prev + 1) % 8); // 8 logos total
+    }, 2500);
+    return () => clearInterval(logoInterval);
+  }, []);
 
   return (
     <>
@@ -41,18 +49,18 @@ const HomePage = () => {
           content="Automate your B2B prospecting with powerful LinkedIn scraping, email validation, and enrichment tools. 10000+ active users trust Daddy Leads."
         />
       </Helmet>
-      <div className="min-h-[100dvh] hero-gradient relative overflow-hidden">
+      <div className="min-h-[100dvh] hero-gradient relative overflow-hidden pb-12">
         <Navbar />
         
         <HeroSection />
         
-        <section className="relative pb-16 px-6 md:px-12">
+        <section className="relative pb-4 px-6 md:px-12">
           <div className="max-w-7xl mx-auto">
             <FeaturePills features={features} activeIndex={activeFeature} />
           </div>
         </section>
         
-        <TrustedBySection />
+        <TrustedBySection activeIndex={activeLogo} />
         
         <WaveTransition />
       </div>

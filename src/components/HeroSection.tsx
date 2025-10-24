@@ -13,13 +13,13 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative pt-32 pb-20 px-6 md:px-12">
+    <section className="relative pt-32 pb-8 px-6 md:px-12">
       <div className="max-w-7xl mx-auto">
         <AnimatedLines />
         
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent pointer-events-none z-20" />
         
-        <div className="relative z-30 grid md:grid-cols-2 gap-12 items-center min-h-[560px]">
+        <div className="relative z-30 grid md:grid-cols-2 gap-12 items-center min-h-[480px]">
           <HeroTextSection onCTAClick={handleCTAClick} />
           
           <motion.div

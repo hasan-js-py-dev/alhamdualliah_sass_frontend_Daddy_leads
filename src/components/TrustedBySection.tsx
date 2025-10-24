@@ -1,6 +1,11 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
-const TrustedBySection = () => {
+interface TrustedBySectionProps {
+  activeIndex: number;
+}
+
+const TrustedBySection = ({ activeIndex }: TrustedBySectionProps) => {
   const logos = [
     { name: 'Clay', url: 'https://clay.earth' },
     { name: 'ContactOut', url: 'https://contactout.com' },
@@ -23,45 +28,49 @@ const TrustedBySection = () => {
     Clearout: 'from-purple-400 to-pink-400',
   };
 
-  const loopLogos = logos.concat(logos);
-
   return (
-    <section className="mt-6 relative px-6 md:px-12">
+    <section className="relative px-6 md:px-12 pb-8">
       <div className="max-w-7xl mx-auto">
-        <h3 className="text-center uppercase tracking-wide text-white/70 text-sm mb-4">
+        <motion.h3 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="text-center uppercase tracking-wide text-white/70 text-xs mb-3"
+        >
           Trusted by
-        </h3>
+        </motion.h3>
         
-        <div className="relative overflow-hidden">
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{ maskImage: 'linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)' }}
-          />
-          <div className="group">
-            <div
-              className="flex gap-8 items-center marquee"
-              style={{ width: `${logos.length * 160 * 2}px` }}
-            >
-              {loopLogos.map((logo, index) => {
-                const gradient = brandGradients[logo.name] ?? 'from-white to-white';
-                return (
-                  <a
-                    key={`${logo.name}-${index}`}
-                    href={logo.url}
-                    aria-label={`${logo.name} website`}
-                    className={`inline-flex items-center justify-center px-6 py-2 rounded-lg whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r ${gradient} opacity-100 hover:opacity-100 hover:scale-[1.04] transition-transform duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-white/70`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="text-base font-semibold tracking-tight">
-                      {logo.name}
-                    </span>
-                  </a>
-                );
-              })}
-            </div>
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.9 }}
+          className="overflow-x-auto scrollbar-hide"
+        >
+          <div className="flex gap-3 justify-center items-center whitespace-nowrap pb-2">
+            {logos.map((logo, index) => {
+              const gradient = brandGradients[logo.name] ?? 'from-white to-white';
+              return (
+                <motion.a
+                  key={logo.name}
+                  href={logo.url}
+                  aria-label={`${logo.name} website`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  animate={{
+                    scale: activeIndex === index ? 1.05 : 1,
+                    opacity: activeIndex === index ? 1 : 0.85,
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className={`inline-flex items-center justify-center px-4 py-1.5 rounded-lg whitespace-nowrap bg-clip-text text-transparent bg-gradient-to-r ${gradient} hover:scale-[1.04] transition-transform duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-white/70`}
+                >
+                  <span className="text-sm font-semibold tracking-tight">
+                    {logo.name}
+                  </span>
+                </motion.a>
+              );
+            })}
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
