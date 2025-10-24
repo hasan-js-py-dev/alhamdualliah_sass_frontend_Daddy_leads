@@ -20,9 +20,13 @@ interface EnrichRowProps {
 const EnrichRow = ({ data, triggerEnrich, shouldReset }: EnrichRowProps) => {
   const [enriching, setEnriching] = useState(false);
   const [enriched, setEnriched] = useState(false);
+  const timerRef = React.useRef<NodeJS.Timeout>();
 
   useEffect(() => {
     if (shouldReset) {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
       setEnriching(false);
       setEnriched(false);
     }
@@ -31,13 +35,20 @@ const EnrichRow = ({ data, triggerEnrich, shouldReset }: EnrichRowProps) => {
   useEffect(() => {
     if (triggerEnrich && !enriching && !enriched) {
       setEnriching(true);
-      const timer = setTimeout(() => {
+      timerRef.current = setTimeout(() => {
         setEnriching(false);
         setEnriched(true);
-      }, 1500);
-      return () => clearTimeout(timer);
+      }, 1200);
     }
-  }, [triggerEnrich, enriching, enriched]);
+  }, [triggerEnrich]);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, []);
 
   return (
     <motion.div
@@ -47,7 +58,7 @@ const EnrichRow = ({ data, triggerEnrich, shouldReset }: EnrichRowProps) => {
     >
       {/* Input Column (Domain or LinkedIn) */}
       <div className="col-span-1 flex items-center">
-        <span className="text-xs font-medium bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] bg-clip-text text-transparent truncate">
+        <span className="text-[11px] font-semibold bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] bg-clip-text text-transparent truncate">
           {data.input}
         </span>
       </div>
@@ -290,18 +301,18 @@ const LinkedinDomainDemo = () => {
       // Reset all rows
       setShouldReset(true);
       setCurrentActiveIndex(-1);
-      await new Promise((resolve) => setTimeout(resolve, 300));
+      await new Promise((resolve) => setTimeout(resolve, 200));
       setShouldReset(false);
 
       // Enrich each row sequentially
       for (let i = 0; i < 4; i++) {
-        await new Promise((resolve) => setTimeout(resolve, 600));
+        await new Promise((resolve) => setTimeout(resolve, 400));
         setCurrentActiveIndex(i);
-        await new Promise((resolve) => setTimeout(resolve, 1800));
+        await new Promise((resolve) => setTimeout(resolve, 1400));
       }
 
       // Wait before switching mode
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise((resolve) => setTimeout(resolve, 800));
 
       // Switch mode
       setCurrentMode((prev) => (prev === 'domain' ? 'linkedin' : 'domain'));
@@ -309,7 +320,7 @@ const LinkedinDomainDemo = () => {
 
     // Start the sequence after a short delay
     const timer = setTimeout(sequence, 500);
-    const interval = setInterval(sequence, 11000);
+    const interval = setInterval(sequence, 9000);
 
     return () => {
       clearTimeout(timer);
@@ -318,28 +329,28 @@ const LinkedinDomainDemo = () => {
   }, []);
 
   return (
-    <div className="w-full max-w-2xl">
+    <div className="w-full max-w-3xl">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="bg-gradient-to-br from-white/80 to-white/60 backdrop-blur-md rounded-2xl shadow-xl border border-white/50 p-6"
+        className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/60 p-8"
       >
         {/* Header with mode indicator */}
-        <div className="mb-4 flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-gray-800">
+        <div className="mb-6 flex items-center justify-between">
+          <h3 className="text-base font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] bg-clip-text text-transparent">
             {currentMode === 'domain' ? 'Domain Enrichment' : 'LinkedIn Profile Enrichment'}
           </h3>
           <div className="flex gap-2">
-            <div className={`w-2 h-2 rounded-full ${currentMode === 'domain' ? 'bg-gradient-to-r from-[#FF6B35] to-[#FFA07A] animate-pulse' : 'bg-gray-300'}`} />
-            <div className={`w-2 h-2 rounded-full ${currentMode === 'linkedin' ? 'bg-gradient-to-r from-[#14F195] to-[#9945FF] animate-pulse' : 'bg-gray-300'}`} />
+            <div className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentMode === 'domain' ? 'bg-gradient-to-r from-[#FF6B35] to-[#FFA07A] animate-pulse shadow-lg shadow-[#FF6B35]/50' : 'bg-gray-300'}`} />
+            <div className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentMode === 'linkedin' ? 'bg-gradient-to-r from-[#14F195] to-[#9945FF] animate-pulse shadow-lg shadow-[#14F195]/50' : 'bg-gray-300'}`} />
           </div>
         </div>
 
         {/* CSV Header */}
-        <div className="grid grid-cols-6 gap-2 mb-3 px-4 py-2 bg-gradient-to-r from-[#FF6B35]/10 via-[#FF8C42]/10 to-[#FFA07A]/10 rounded-lg border border-[#FF6B35]/20">
-          <div className="col-span-1 text-xs font-bold text-gray-700">
+        <div className="grid grid-cols-6 gap-3 mb-4 px-4 py-3 bg-gradient-to-r from-[#FF6B35]/10 via-[#FF8C42]/10 to-[#FFA07A]/10 rounded-xl border border-[#FF6B35]/20">
+          <div className="col-span-1 text-xs font-bold bg-gradient-to-r from-[#FF6B35] to-[#FFA07A] bg-clip-text text-transparent">
             {currentMode === 'domain' ? 'Domain' : 'LinkedIn'}
           </div>
           <div className="col-span-1 text-xs font-bold text-gray-700 text-center">Name</div>
@@ -350,7 +361,7 @@ const LinkedinDomainDemo = () => {
         </div>
 
         {/* Data Rows */}
-        <div className="space-y-2">
+        <div className="space-y-3">
           <AnimatePresence mode="wait">
             {mockData[currentMode].map((data, index) => (
               <motion.div
@@ -358,7 +369,7 @@ const LinkedinDomainDemo = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ duration: 0.3, delay: index * 0.08 }}
               >
                 <EnrichRow
                   data={data}
