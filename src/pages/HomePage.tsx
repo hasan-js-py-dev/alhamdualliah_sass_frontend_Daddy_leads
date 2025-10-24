@@ -10,6 +10,7 @@ import ProductShowcase from '../components/ProductShowcase';
 import EnrichSection from '../components/EnrichSection';
 import LinkedinDomainSection from '../components/LinkedinDomainSection';
 import EmailVerifySection from '../components/EmailVerifySection';
+import CSVDownloadSection from '../components/CSVDownloadSection';
 
 const HomePage = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -80,6 +81,9 @@ const HomePage = () => {
 
       {/* Email Verification Section */}
       <EmailVerifySection />
+
+      {/* CSV Download Section */}
+      <CSVDownloadSection />
     </>
   );
 };
