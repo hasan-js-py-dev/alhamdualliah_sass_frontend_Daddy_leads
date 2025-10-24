@@ -18,8 +18,8 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-b from-black/60 via-black/80 to-black text-white pt-16 pb-8" style={{ marginTop: '-200px' }}>
-      <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10 bg-black/40 backdrop-blur-sm rounded-3xl py-12 shadow-2xl border border-white/10">
+    <footer className="relative bg-black text-white pt-16 pb-8">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
 
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12 px-6">

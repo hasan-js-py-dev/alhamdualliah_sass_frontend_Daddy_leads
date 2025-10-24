@@ -13,8 +13,6 @@ import EmailVerifySection from '../components/EmailVerifySection';
 import CSVDownloadSection from '../components/CSVDownloadSection';
 import ScraperMarqueeSection from '../components/ScraperMarqueeSection';
 import ReviewsSection from '../components/ReviewsSection';
-import FooterLandscapeDecoration from '../components/FooterLandscapeDecoration';
-import FAQSection from '../components/FAQSection';
 import Footer from '../components/Footer';
 
 const HomePage = () => {
@@ -95,12 +93,6 @@ const HomePage = () => {
 
       {/* Reviews Section */}
       <ReviewsSection />
-
-      {/* Footer Landscape Decoration */}
-      <FooterLandscapeDecoration />
-
-      {/* FAQ Section */}
-      <FAQSection />
 
       {/* Footer */}
       <Footer />
