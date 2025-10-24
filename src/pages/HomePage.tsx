@@ -83,11 +83,11 @@ const HomePage = () => {
       {/* Email Verification Section */}
       <EmailVerifySection />
 
-      {/* Scraper Marquee Section */}
-      <ScraperMarqueeSection />
-
       {/* CSV Download Section */}
       <CSVDownloadSection />
+
+      {/* Scraper Marquee Section */}
+      <ScraperMarqueeSection />
     </>
   );
 };

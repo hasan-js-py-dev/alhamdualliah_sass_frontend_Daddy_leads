@@ -5,15 +5,15 @@ import ScraperMarquee from './ScraperMarquee';
 
 const ScraperMarqueeSection: React.FC = () => {
   return (
-    <section className="relative">
+    <section className="relative mt-16">
       {/* Title above the black section */}
-      <div className="relative bg-gray-50 pt-16 pb-24 px-6 z-10">
+      <div className="relative bg-gray-50 pt-20 pb-28 px-6 z-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-4xl md:text-5xl font-bold text-center text-gray-900 mb-8"
+          className="text-4xl md:text-5xl font-bold text-center text-gray-900"
         >
           Try Our{' '}
           <span className="bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] bg-clip-text text-transparent">
@@ -35,6 +35,9 @@ const ScraperMarqueeSection: React.FC = () => {
         {/* Bottom wave curve */}
         <WaveDivider position="bottom" fillColor="#000000" />
       </div>
+      
+      {/* Bottom spacing */}
+      <div className="bg-gray-50 h-16"></div>
     </section>
   );
 };
