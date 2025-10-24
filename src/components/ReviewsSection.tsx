@@ -367,9 +367,9 @@ const ReviewsSection: React.FC = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight"
+                className="text-3xl md:text-5xl font-bold text-white mb-10 leading-tight"
               >
-                Download Your First<br />Leads Now
+                Download Your First Leads Now
               </motion.h2>
 
               <motion.div
@@ -377,6 +377,7 @@ const ReviewsSection: React.FC = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.8 }}
+                className="flex justify-center"
               >
                 <a 
                   href="https://cookie-editor.com/" 
@@ -384,7 +385,19 @@ const ReviewsSection: React.FC = () => {
                   rel="noopener noreferrer"
                 >
                   <Button 
-                    className="bg-white text-[#5B21B6] hover:bg-gray-50 px-8 py-6 text-base font-bold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 animate-button-shake"
+                    className="bg-white text-[#5B21B6] hover:bg-gray-50 px-8 py-6 text-base font-bold rounded-2xl transition-all duration-500 animate-button-shake"
+                    style={{
+                      boxShadow: '0 10px 25px rgba(0, 0, 0, 0.3), 0 6px 12px rgba(91, 33, 182, 0.4)',
+                      transform: 'perspective(1000px) translateZ(0)',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'perspective(1000px) translateZ(10px) translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.4), 0 8px 15px rgba(91, 33, 182, 0.5)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'perspective(1000px) translateZ(0)';
+                      e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.3), 0 6px 12px rgba(91, 33, 182, 0.4)';
+                    }}
                   >
                     Download Cookie Handler Extension
                   </Button>
