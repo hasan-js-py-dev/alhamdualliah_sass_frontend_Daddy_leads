@@ -38,7 +38,7 @@ const EnrichRow = ({ data, triggerEnrich, shouldReset }: EnrichRowProps) => {
       timerRef.current = setTimeout(() => {
         setEnriching(false);
         setEnriched(true);
-      }, 1200);
+      }, 1000);
     }
   }, [triggerEnrich]);
 
@@ -54,7 +54,7 @@ const EnrichRow = ({ data, triggerEnrich, shouldReset }: EnrichRowProps) => {
     <motion.div
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      className="grid grid-cols-6 gap-2 py-3 px-4 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 shadow-sm"
+      className="grid grid-cols-6 gap-2 py-2.5 px-3 bg-white/60 backdrop-blur-sm rounded-lg border border-white/40 shadow-sm"
     >
       {/* Input Column (Domain or LinkedIn) */}
       <div className="col-span-1 flex items-center">
@@ -301,26 +301,28 @@ const LinkedinDomainDemo = () => {
       // Reset all rows
       setShouldReset(true);
       setCurrentActiveIndex(-1);
-      await new Promise((resolve) => setTimeout(resolve, 200));
+      await new Promise((resolve) => setTimeout(resolve, 100));
       setShouldReset(false);
 
-      // Enrich each row sequentially
+      // Small delay before starting
+      await new Promise((resolve) => setTimeout(resolve, 400));
+
+      // Enrich each row sequentially with smooth timing
       for (let i = 0; i < 4; i++) {
-        await new Promise((resolve) => setTimeout(resolve, 400));
         setCurrentActiveIndex(i);
-        await new Promise((resolve) => setTimeout(resolve, 1400));
+        await new Promise((resolve) => setTimeout(resolve, 1600));
       }
 
       // Wait before switching mode
-      await new Promise((resolve) => setTimeout(resolve, 800));
+      await new Promise((resolve) => setTimeout(resolve, 1000));
 
       // Switch mode
       setCurrentMode((prev) => (prev === 'domain' ? 'linkedin' : 'domain'));
     };
 
-    // Start the sequence after a short delay
-    const timer = setTimeout(sequence, 500);
-    const interval = setInterval(sequence, 9000);
+    // Start the sequence
+    const timer = setTimeout(sequence, 300);
+    const interval = setInterval(sequence, 8000);
 
     return () => {
       clearTimeout(timer);
@@ -335,21 +337,17 @@ const LinkedinDomainDemo = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/60 p-8"
+        className="bg-gradient-to-br from-white/90 to-white/70 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/60 p-6"
       >
-        {/* Header with mode indicator */}
-        <div className="mb-6 flex items-center justify-between">
+        {/* CSV Title centered */}
+        <div className="mb-5 text-center">
           <h3 className="text-base font-bold bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] bg-clip-text text-transparent">
             {currentMode === 'domain' ? 'Domain Enrichment' : 'LinkedIn Profile Enrichment'}
           </h3>
-          <div className="flex gap-2">
-            <div className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentMode === 'domain' ? 'bg-gradient-to-r from-[#FF6B35] to-[#FFA07A] animate-pulse shadow-lg shadow-[#FF6B35]/50' : 'bg-gray-300'}`} />
-            <div className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${currentMode === 'linkedin' ? 'bg-gradient-to-r from-[#14F195] to-[#9945FF] animate-pulse shadow-lg shadow-[#14F195]/50' : 'bg-gray-300'}`} />
-          </div>
         </div>
 
         {/* CSV Header */}
-        <div className="grid grid-cols-6 gap-3 mb-4 px-4 py-3 bg-gradient-to-r from-[#FF6B35]/10 via-[#FF8C42]/10 to-[#FFA07A]/10 rounded-xl border border-[#FF6B35]/20">
+        <div className="grid grid-cols-6 gap-3 mb-3 px-4 py-2.5 bg-gradient-to-r from-[#FF6B35]/10 via-[#FF8C42]/10 to-[#FFA07A]/10 rounded-xl border border-[#FF6B35]/20">
           <div className="col-span-1 text-xs font-bold bg-gradient-to-r from-[#FF6B35] to-[#FFA07A] bg-clip-text text-transparent">
             {currentMode === 'domain' ? 'Domain' : 'LinkedIn'}
           </div>
@@ -361,24 +359,21 @@ const LinkedinDomainDemo = () => {
         </div>
 
         {/* Data Rows */}
-        <div className="space-y-3">
-          <AnimatePresence mode="wait">
-            {mockData[currentMode].map((data, index) => (
-              <motion.div
-                key={`${currentMode}-${index}`}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, delay: index * 0.08 }}
-              >
-                <EnrichRow
-                  data={data}
-                  triggerEnrich={currentActiveIndex === index}
-                  shouldReset={shouldReset}
-                />
-              </motion.div>
-            ))}
-          </AnimatePresence>
+        <div className="space-y-2.5">
+          {mockData[currentMode].map((data, index) => (
+            <motion.div
+              key={`${currentMode}-${index}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+            >
+              <EnrichRow
+                data={data}
+                triggerEnrich={currentActiveIndex === index}
+                shouldReset={shouldReset}
+              />
+            </motion.div>
+          ))}
         </div>
       </motion.div>
     </div>

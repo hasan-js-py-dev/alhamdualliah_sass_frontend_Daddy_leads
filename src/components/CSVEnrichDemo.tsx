@@ -65,7 +65,7 @@ const CSVRow = ({ contact, triggerFind, shouldReset }: { contact: Contact; trigg
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-      className="grid grid-cols-[1fr_1fr_1.2fr_2fr] gap-3 p-4 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200/60 hover:shadow-lg hover:border-orange-200/60 transition-all duration-300 items-center relative overflow-hidden"
+      className="grid grid-cols-[1fr_1fr_1.2fr_2fr] gap-3 p-3 bg-white/90 backdrop-blur-sm rounded-xl border border-gray-200/60 hover:shadow-lg hover:border-orange-200/60 transition-all duration-300 items-center relative overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-r from-orange-50/30 via-transparent to-blue-50/30 opacity-0 hover:opacity-100 transition-opacity duration-300" />
       <div className="text-sm font-semibold bg-gradient-to-r from-[#FF6B35] to-[#FF8C42] bg-clip-text text-transparent truncate relative z-10">
@@ -137,21 +137,21 @@ const CSVEnrichDemo = () => {
 
   useEffect(() => {
     const runSequence = async () => {
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 800));
       
       for (let i = 0; i < mockCSVContacts.length; i++) {
         setCurrentActiveIndex(i);
-        await new Promise(resolve => setTimeout(resolve, 2800));
+        await new Promise(resolve => setTimeout(resolve, 2300));
       }
       
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise(resolve => setTimeout(resolve, 1200));
       
       setShouldReset(true);
       setCurrentActiveIndex(-1);
       await new Promise(resolve => setTimeout(resolve, 100));
       setShouldReset(false);
       
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 800));
     };
 
     const executeLoop = async () => {
@@ -166,22 +166,16 @@ const CSVEnrichDemo = () => {
   }, []);
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* CSV Header */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
-        className="bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] rounded-t-xl p-5 shadow-2xl relative overflow-hidden"
+        className="bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] rounded-t-xl p-4 shadow-xl relative overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent" />
-        <div className="flex items-center gap-3 mb-4 relative z-10">
-          <div className="p-2 bg-white/20 rounded-lg backdrop-blur-sm">
-            <FileSpreadsheet className="w-5 h-5 text-white" />
-          </div>
-          <h3 className="text-white font-bold text-base tracking-tight">contacts_enrichment.csv</h3>
-        </div>
         <div className="grid grid-cols-[1fr_1fr_1.2fr_2fr] gap-3 text-xs font-bold text-white uppercase tracking-wider relative z-10">
           <div className="flex items-center gap-1">
             <span>First Name</span>
@@ -199,7 +193,7 @@ const CSVEnrichDemo = () => {
       </motion.div>
 
       {/* CSV Rows */}
-      <div className="space-y-3 bg-gradient-to-br from-orange-50/30 via-gray-50 to-blue-50/30 p-5 rounded-b-xl border-x-2 border-b-2 border-gray-200/80 shadow-lg">
+      <div className="space-y-2.5 bg-gradient-to-br from-orange-50/30 via-gray-50 to-blue-50/30 p-4 rounded-b-xl border-x-2 border-b-2 border-gray-200/80 shadow-lg">
         {mockCSVContacts.map((contact, index) => (
           <CSVRow
             key={contact.id}
