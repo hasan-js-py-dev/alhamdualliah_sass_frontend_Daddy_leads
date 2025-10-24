@@ -320,26 +320,13 @@ const ReviewsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-32 max-w-3xl mx-auto px-6"
+          className="mt-24 max-w-2xl mx-auto px-6"
         >
-          {/* Chrome Icon - Positioned above the card */}
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            whileInView={{ scale: 1, rotate: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.4, type: "spring", bounce: 0.4 }}
-            className="flex justify-center mb-[-40px] relative z-30"
-          >
-            <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-2xl border-4 border-white">
-              <img src={chromeIcon} alt="Chrome" className="w-12 h-12" />
-            </div>
-          </motion.div>
-
           {/* Main Card */}
-          <div className="relative bg-black rounded-3xl px-8 py-16 shadow-2xl overflow-hidden border border-white/10">
+          <div className="relative bg-black rounded-3xl px-8 py-12 shadow-2xl overflow-hidden border border-white/10">
             {/* Animated Stars Background */}
             <div className="absolute inset-0 overflow-hidden">
-              {[...Array(30)].map((_, i) => (
+              {[...Array(20)].map((_, i) => (
                 <motion.div
                   key={i}
                   className="absolute w-1 h-1 bg-white rounded-full"
@@ -361,23 +348,12 @@ const ReviewsSection: React.FC = () => {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 text-center">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.6 }}
-                className="text-3xl md:text-5xl font-bold text-white mb-10"
-              >
-                Download Extension To Export LinkedIn Cookie
-              </motion.h2>
-
+            <div className="relative z-10 flex justify-center">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.8 }}
-                className="flex justify-center"
+                transition={{ duration: 0.6, delay: 0.5 }}
               >
                 <a 
                   href="https://cookie-editor.com/" 
@@ -386,7 +362,7 @@ const ReviewsSection: React.FC = () => {
                   className="inline-block"
                 >
                   <Button 
-                    className="relative bg-white text-[#5B21B6] hover:bg-gray-50 px-10 py-7 text-lg font-bold rounded-2xl transition-all duration-300 animate-button-shake"
+                    className="relative bg-white text-[#5B21B6] hover:bg-gray-50 px-10 py-6 text-lg font-bold rounded-2xl transition-all duration-300 animate-button-shake"
                     style={{
                       boxShadow: '0 8px 0 #d1d5db, 0 12px 25px rgba(0, 0, 0, 0.5)',
                       transform: 'translateY(0px)',
