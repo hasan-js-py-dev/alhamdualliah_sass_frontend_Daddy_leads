@@ -11,7 +11,7 @@ const WaveTransition = () => (
     >
       <path
         d="M0,64 C240,100 480,100 720,64 C960,28 1200,28 1440,64 L1440,120 L0,120 Z"
-        fill="#FFFFFF"
+        fill="#FFF5E6"
       />
     </svg>
   </div>
