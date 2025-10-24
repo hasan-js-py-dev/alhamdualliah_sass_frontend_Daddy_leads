@@ -11,6 +11,7 @@ import EnrichSection from '../components/EnrichSection';
 import LinkedinDomainSection from '../components/LinkedinDomainSection';
 import EmailVerifySection from '../components/EmailVerifySection';
 import CSVDownloadSection from '../components/CSVDownloadSection';
+import ScraperMarqueeSection from '../components/ScraperMarqueeSection';
 
 const HomePage = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -81,6 +82,9 @@ const HomePage = () => {
 
       {/* Email Verification Section */}
       <EmailVerifySection />
+
+      {/* Scraper Marquee Section */}
+      <ScraperMarqueeSection />
 
       {/* CSV Download Section */}
       <CSVDownloadSection />
