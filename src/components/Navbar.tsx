@@ -43,10 +43,10 @@ const Navbar = () => {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-12 left-0 right-0 z-50 px-6 md:px-12"
-      style={{ backgroundColor: '#411c78' }}
+      className="fixed top-6 left-6 right-6 z-50"
+      style={{ backgroundColor: '#411c78', borderRadius: '16px' }}
     >
-      <div className="max-w-7xl mx-auto backdrop-blur-sm rounded-2xl px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center">
           <motion.div
             className={`animate-shake font-bold text-[26px] tracking-tight transition-all duration-1000 bg-gradient-to-r ${logoGradients[logoColorIndex]} bg-clip-text text-transparent`}
