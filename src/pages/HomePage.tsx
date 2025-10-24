@@ -8,6 +8,7 @@ import WaveTransition from '../components/WaveTransition';
 import TrustedBySection from '../components/TrustedBySection';
 import ProductShowcase from '../components/ProductShowcase';
 import EnrichSection from '../components/EnrichSection';
+import LinkedinDomainSection from '../components/LinkedinDomainSection';
 
 const HomePage = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -72,6 +73,9 @@ const HomePage = () => {
 
       {/* Email Enrichment Section */}
       <EnrichSection />
+
+      {/* LinkedIn & Domain Enrichment Section */}
+      <LinkedinDomainSection />
     </>
   );
 };
