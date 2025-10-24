@@ -58,9 +58,10 @@ const ProductShowcase = () => {
               <Button
                 onClick={() => navigate('/signup')}
                 size="lg"
-                className="bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] text-white hover:shadow-xl transition-all duration-400"
+                className="bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] text-white hover:shadow-2xl transition-all duration-400 shadow-lg"
                 style={{
                   transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                  animation: 'subtle-shake 3s ease-in-out infinite',
                 }}
               >
                 Sales Nav Scraper
