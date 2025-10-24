@@ -201,7 +201,7 @@ const CSVDownloadSection = () => {
   ];
 
   return (
-    <section className="relative py-16 px-6 md:px-12 pt-24 bg-gray-50">
+    <section className="relative py-12 px-6 md:px-12 pt-16 bg-gray-50">
 
       <div className="max-w-7xl mx-auto relative z-10 w-full">
         <motion.div
