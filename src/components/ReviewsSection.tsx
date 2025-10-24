@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Shield, FileCheck, Users } from 'lucide-react';
 import ReviewCard from './ReviewCard';
 
 const ReviewsSection: React.FC = () => {
@@ -112,7 +113,7 @@ const ReviewsSection: React.FC = () => {
   const duplicatedReviews = [...reviews, ...reviews, ...reviews];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#FFE5D9] via-[#FFD4C4] to-[#FFBFA9]" style={{ minHeight: '600px', paddingBottom: '80px' }}>
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#FFE5D9] via-[#FFD4C4] to-[#FFBFA9]" style={{ paddingBottom: '120px' }}>
       {/* Top curved edge - transitioning from black */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none z-20">
         <svg
@@ -195,6 +196,99 @@ const ReviewsSection: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Safe, GDPR, Scalable Features Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="mt-24 max-w-7xl mx-auto"
+        >
+          <div className="grid md:grid-cols-3 gap-12 px-6">
+            {/* Safe */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-center"
+            >
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-lg">
+                    <Shield className="w-16 h-16 text-[#6366F1] absolute" strokeWidth={2} />
+                    <div className="absolute bottom-6 right-6 w-8 h-8 bg-[#6366F1] rounded-full flex items-center justify-center">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">Safe</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Make sure your account never goes above the scraping limitations set by LinkedIn.
+              </p>
+            </motion.div>
+
+            {/* GDPR */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-lg">
+                    <FileCheck className="w-16 h-16 text-[#6366F1] absolute" strokeWidth={2} />
+                    <div className="absolute top-6 right-6 w-8 h-8 bg-[#6366F1] rounded-full flex items-center justify-center">
+                      <Shield className="w-4 h-4 text-white" strokeWidth={3} />
+                    </div>
+                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-[#6366F1] font-bold text-sm">
+                      GDPR
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">GDPR</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Make your lead generation process GDPR compliant without effort.
+              </p>
+            </motion.div>
+
+            {/* Scalable */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="text-center"
+            >
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className="w-32 h-32 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center border border-white/30 shadow-lg">
+                    <Users className="w-16 h-16 text-[#6366F1] absolute" strokeWidth={2} />
+                    <div className="absolute top-4 right-8 w-6 h-6 bg-[#6366F1] rounded-full flex items-center justify-center transform rotate-45">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="white">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="white" strokeWidth="2" fill="none"/>
+                      </svg>
+                    </div>
+                    <div className="absolute top-6 right-4 w-4 h-4 bg-[#6366F1] rounded-full flex items-center justify-center">
+                      <Shield className="w-2 h-2 text-white" strokeWidth={3} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">Scalable</h3>
+              <p className="text-gray-700 text-lg leading-relaxed">
+                Connect all your Sales Navigator accounts and collaborate with your team.
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );
