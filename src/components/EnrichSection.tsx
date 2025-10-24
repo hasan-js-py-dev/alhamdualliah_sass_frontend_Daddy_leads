@@ -3,13 +3,15 @@ import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { useNavigate } from 'react-router-dom';
 import CSVEnrichDemo from './CSVEnrichDemo';
+import AnimatedStars from './AnimatedStars';
 
 const EnrichSection = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative py-20 px-6 md:px-12 bg-gradient-to-b from-[#FFD4C4] via-[#FFE5D9] to-[#FFF5E6]">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-20 px-6 md:px-12 bg-gradient-to-b from-[#FFD4C4] via-[#FFE5D9] to-[#FFF5E6] overflow-hidden">
+      <AnimatedStars />
+      <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column - CSV Enrich Demo */}
           <motion.div

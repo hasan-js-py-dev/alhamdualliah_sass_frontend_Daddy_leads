@@ -3,13 +3,15 @@ import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { useNavigate } from 'react-router-dom';
 import ContactRowDemo from './ContactRowDemo';
+import AnimatedStars from './AnimatedStars';
 
 const ProductShowcase = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="relative py-20 px-6 md:px-12 bg-gradient-to-b from-[#FFF5E6] via-[#FFE5D9] to-[#FFD4C4]">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-20 px-6 md:px-12 bg-gradient-to-b from-[#FFF5E6] via-[#FFE5D9] to-[#FFD4C4] overflow-hidden">
+      <AnimatedStars />
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Main Title and Subtitle */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
