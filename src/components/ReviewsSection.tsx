@@ -392,6 +392,20 @@ const ReviewsSection: React.FC = () => {
           </div>
         </motion.div>
       </div>
+
+      {/* Bottom curved edge */}
+      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+        <svg
+          className="relative block w-full h-[100px] md:h-[120px]"
+          viewBox="0 0 1200 120"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,0 C150,80 350,80 600,40 C850,0 1050,0 1200,40 L1200,120 L0,120 Z"
+            fill="rgb(255, 191, 169)"
+          />
+        </svg>
+      </div>
     </section>
   );
 };

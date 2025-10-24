@@ -13,7 +13,7 @@ import EmailVerifySection from '../components/EmailVerifySection';
 import CSVDownloadSection from '../components/CSVDownloadSection';
 import ScraperMarqueeSection from '../components/ScraperMarqueeSection';
 import ReviewsSection from '../components/ReviewsSection';
-import FooterLandscape from '../components/FooterLandscape';
+import FooterLandscapeDecoration from '../components/FooterLandscapeDecoration';
 
 const HomePage = () => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -95,7 +95,7 @@ const HomePage = () => {
       <ReviewsSection />
 
       {/* Footer Landscape Decoration */}
-      <FooterLandscape />
+      <FooterLandscapeDecoration />
     </>
   );
 };
