@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, FileCheck, Users } from 'lucide-react';
+import { Shield, FileCheck, Users, Chrome } from 'lucide-react';
+import { Button } from './ui/button';
 import ReviewCard from './ReviewCard';
 
 const ReviewsSection: React.FC = () => {
@@ -287,6 +288,71 @@ const ReviewsSection: React.FC = () => {
                 Connect all your Sales Navigator accounts and collaborate with your team.
               </p>
             </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Cookie Handler Download Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-20 max-w-4xl mx-auto"
+        >
+          <div className="relative bg-gradient-to-r from-[#6713e1] via-[#7c3aed] to-[#8b5cf6] rounded-3xl p-12 shadow-2xl overflow-hidden">
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,_white_1px,_transparent_1px)] bg-[length:30px_30px]"></div>
+            </div>
+
+            {/* Chrome Icon */}
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4, type: "spring" }}
+              className="absolute -top-8 left-1/2 transform -translate-x-1/2"
+            >
+              <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl">
+                <Chrome className="w-10 h-10 text-[#6713e1]" strokeWidth={2} />
+              </div>
+            </motion.div>
+
+            {/* Content */}
+            <div className="relative z-10 text-center pt-6">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="text-3xl md:text-4xl font-bold text-white mb-6"
+              >
+                Download LinkedIn Cookie Handler
+              </motion.h2>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+              >
+                <a 
+                  href="https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm?hl=en" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <Button 
+                    className="bg-white text-[#6713e1] hover:bg-gray-50 px-8 py-6 text-lg font-bold rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 animate-button-shake"
+                  >
+                    Download Extension
+                  </Button>
+                </a>
+              </motion.div>
+            </div>
+
+            {/* Decorative Elements */}
+            <div className="absolute bottom-0 left-0 w-32 h-32 bg-white/5 rounded-full -mb-16 -ml-16"></div>
+            <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full -mt-20 -mr-20"></div>
           </div>
         </motion.div>
       </div>
