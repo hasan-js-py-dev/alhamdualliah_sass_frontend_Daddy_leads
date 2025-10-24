@@ -54,12 +54,12 @@ const HomePage = () => {
           content="Automate your B2B prospecting with powerful LinkedIn scraping, email validation, and enrichment tools. 10000+ active users trust Daddy Leads."
         />
       </Helmet>
-      <div className="min-h-[100dvh] hero-gradient relative overflow-hidden pb-12">
+      <div className="min-h-screen hero-gradient relative overflow-hidden pb-16">
         <Navbar />
         
         <HeroSection />
         
-        <section className="relative pb-4 px-6 md:px-12">
+        <section className="relative pb-8 px-6 md:px-12">
           <div className="max-w-7xl mx-auto">
             <FeaturePills features={features} activeIndex={activeFeature} />
           </div>

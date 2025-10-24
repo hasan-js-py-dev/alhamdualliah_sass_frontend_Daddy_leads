@@ -201,7 +201,7 @@ const CSVDownloadSection = () => {
   ];
 
   return (
-    <section className="relative py-12 px-6 md:px-12 bg-gradient-to-b from-[#FFF5E6] to-gray-50">
+    <section className="relative py-24 px-6 md:px-12 bg-gradient-to-b from-[#FFF5E6] to-gray-50 min-h-screen flex items-center">
       {/* Top Wave */}
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none rotate-180">
         <svg className="relative block w-full h-[60px]" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -214,7 +214,7 @@ const CSVDownloadSection = () => {
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10 w-full">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

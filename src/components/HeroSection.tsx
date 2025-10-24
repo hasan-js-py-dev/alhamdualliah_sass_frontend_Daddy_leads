@@ -14,8 +14,8 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative pt-32 pb-8 px-6 md:px-12">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative pt-32 pb-16 px-6 md:px-12 min-h-[85vh] flex items-center">
+      <div className="max-w-7xl mx-auto w-full">
         <AnimatedBackground />
         <AnimatedLines />
         
