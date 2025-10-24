@@ -320,7 +320,7 @@ const ReviewsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-32 max-w-4xl mx-auto px-6"
+          className="mt-32 max-w-3xl mx-auto px-6"
         >
           {/* Chrome Icon - Positioned above the card */}
           <motion.div
@@ -336,7 +336,30 @@ const ReviewsSection: React.FC = () => {
           </motion.div>
 
           {/* Main Card */}
-          <div className="relative bg-[#5B21B6] rounded-3xl px-8 py-16 shadow-2xl overflow-hidden">
+          <div className="relative bg-gradient-to-br from-[#5B21B6] via-[#6D28D9] to-[#7C3AED] rounded-3xl px-8 py-16 shadow-2xl overflow-hidden">
+            {/* Animated Stars Background */}
+            <div className="absolute inset-0 overflow-hidden">
+              {[...Array(20)].map((_, i) => (
+                <motion.div
+                  key={i}
+                  className="absolute w-1 h-1 bg-white rounded-full"
+                  style={{
+                    left: `${Math.random() * 100}%`,
+                    top: `${Math.random() * 100}%`,
+                  }}
+                  animate={{
+                    opacity: [0.2, 1, 0.2],
+                    scale: [1, 1.5, 1],
+                  }}
+                  transition={{
+                    duration: 2 + Math.random() * 2,
+                    repeat: Infinity,
+                    delay: Math.random() * 2,
+                  }}
+                />
+              ))}
+            </div>
+
             {/* Content */}
             <div className="relative z-10 text-center">
               <motion.h2
@@ -361,9 +384,9 @@ const ReviewsSection: React.FC = () => {
                   rel="noopener noreferrer"
                 >
                   <Button 
-                    className="bg-white text-[#5B21B6] hover:bg-gray-50 px-12 py-7 text-xl font-bold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 animate-button-shake"
+                    className="bg-white text-[#5B21B6] hover:bg-gray-50 px-8 py-6 text-base font-bold rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 animate-button-shake"
                   >
-                    Export your list
+                    Download Cookie Handler Extension
                   </Button>
                 </a>
               </motion.div>
