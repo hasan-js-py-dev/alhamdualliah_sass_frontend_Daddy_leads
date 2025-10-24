@@ -7,6 +7,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FAQSection from '@/components/FAQSection';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 const products = [
   {
@@ -274,30 +275,55 @@ const ProductPage = () => {
               transition={{ delay: 0.1 }}
               className="flex justify-center gap-6 mb-8"
             >
-              <a
-                href="https://wa.me/1234567890"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-14 h-14 rounded-full bg-gradient-to-br from-[#25D366] to-[#128C7E] flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-              >
-                <MessageCircle className="w-7 h-7" />
-              </a>
-              <a
-                href="https://t.me/yourusername"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-14 h-14 rounded-full bg-gradient-to-br from-[#0088cc] to-[#006699] flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-              >
-                <Send className="w-7 h-7" />
-              </a>
-              <a
-                href="https://discord.gg/yourinvite"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-14 h-14 rounded-full bg-gradient-to-br from-[#5865F2] to-[#4752C4] flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-              >
-                <MessageCircle className="w-7 h-7" />
-              </a>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href="https://wa.me/1234567890"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-14 h-14 rounded-full bg-gradient-to-br from-[#25D366] to-[#128C7E] flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+                    >
+                      <MessageCircle className="w-7 h-7" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>WhatsApp</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href="https://t.me/yourusername"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-14 h-14 rounded-full bg-gradient-to-br from-[#0088cc] to-[#006699] flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+                    >
+                      <Send className="w-7 h-7" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Telegram</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href="https://discord.gg/yourinvite"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-14 h-14 rounded-full bg-gradient-to-br from-[#5865F2] to-[#4752C4] flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+                    >
+                      <MessageCircle className="w-7 h-7" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Discord</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </motion.div>
 
             <motion.p

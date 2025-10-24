@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, MessageCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import { Button } from './ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
 
 const Footer: React.FC = () => {
   const scrapers = [
@@ -99,40 +100,73 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Social Icons */}
-        <div className="flex justify-center gap-6 mb-8 px-6">
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-          >
-            <Facebook className="w-5 h-5" />
-          </a>
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-          >
-            <Twitter className="w-5 h-5" />
-          </a>
-          <a
-            href="https://linkedin.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-          >
-            <Linkedin className="w-5 h-5" />
-          </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors"
-          >
-            <Instagram className="w-5 h-5" />
-          </a>
-        </div>
+        <TooltipProvider>
+          <div className="flex justify-center gap-6 mb-8 px-6">
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a
+                  href="https://facebook.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                >
+                  <Facebook className="w-5 h-5" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Facebook</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a
+                  href="https://twitter.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                >
+                  <Twitter className="w-5 h-5" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Twitter</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                >
+                  <Linkedin className="w-5 h-5" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>LinkedIn</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
+                >
+                  <Instagram className="w-5 h-5" />
+                </a>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Instagram</p>
+              </TooltipContent>
+            </Tooltip>
+          </div>
+        </TooltipProvider>
 
         {/* Horizontal Line */}
         <div className="border-t border-white/10 mb-6 mx-6"></div>

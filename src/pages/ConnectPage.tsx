@@ -5,6 +5,7 @@ import Footer from '@/components/Footer';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { MessageCircle, Send, Mail, User, Building2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useToast } from '@/hooks/use-toast';
@@ -61,33 +62,58 @@ const ConnectPage = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="flex justify-center gap-8 mb-16"
             >
-              <a
-                href="https://wa.me/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-20 h-20 rounded-full flex items-center justify-center text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
-                style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)' }}
-              >
-                <MessageCircle className="w-10 h-10" />
-              </a>
-              <a
-                href="https://t.me/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-20 h-20 rounded-full flex items-center justify-center text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
-                style={{ background: 'linear-gradient(135deg, #0088cc, #006699)' }}
-              >
-                <Send className="w-10 h-10" />
-              </a>
-              <a
-                href="https://discord.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-20 h-20 rounded-full flex items-center justify-center text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
-                style={{ background: 'linear-gradient(135deg, #5865F2, #4752C4)' }}
-              >
-                <MessageCircle className="w-10 h-10" />
-              </a>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href="https://wa.me/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-20 h-20 rounded-full flex items-center justify-center text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
+                      style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)' }}
+                    >
+                      <MessageCircle className="w-10 h-10" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>WhatsApp</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href="https://t.me/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-20 h-20 rounded-full flex items-center justify-center text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
+                      style={{ background: 'linear-gradient(135deg, #0088cc, #006699)' }}
+                    >
+                      <Send className="w-10 h-10" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Telegram</p>
+                  </TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href="https://discord.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-20 h-20 rounded-full flex items-center justify-center text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
+                      style={{ background: 'linear-gradient(135deg, #5865F2, #4752C4)' }}
+                    >
+                      <MessageCircle className="w-10 h-10" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Discord</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </motion.div>
 
             {/* Demo Request Form */}

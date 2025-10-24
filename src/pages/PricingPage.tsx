@@ -6,6 +6,7 @@ import FAQSection from '@/components/FAQSection';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Check, MessageCircle, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -180,35 +181,60 @@ const PricingPage = () => {
               <p className="text-gray-700 max-w-2xl mx-auto">
                 Have questions about pricing? Connect with us for personalized assistance
               </p>
-              <div className="flex justify-center gap-6">
-                <a
-                  href="https://wa.me/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-                  style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)' }}
-                >
-                  <MessageCircle className="w-7 h-7" />
-                </a>
-                <a
-                  href="https://t.me/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-                  style={{ background: 'linear-gradient(135deg, #0088cc, #006699)' }}
-                >
-                  <Send className="w-7 h-7" />
-                </a>
-                <a
-                  href="https://discord.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
-                  style={{ background: 'linear-gradient(135deg, #5865F2, #4752C4)' }}
-                >
-                  <MessageCircle className="w-7 h-7" />
-                </a>
-              </div>
+              <TooltipProvider>
+                <div className="flex justify-center gap-6">
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href="https://wa.me/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+                        style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)' }}
+                      >
+                        <MessageCircle className="w-7 h-7" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>WhatsApp</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href="https://t.me/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+                        style={{ background: 'linear-gradient(135deg, #0088cc, #006699)' }}
+                      >
+                        <Send className="w-7 h-7" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Telegram</p>
+                    </TooltipContent>
+                  </Tooltip>
+
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <a
+                        href="https://discord.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+                        style={{ background: 'linear-gradient(135deg, #5865F2, #4752C4)' }}
+                      >
+                        <MessageCircle className="w-7 h-7" />
+                      </a>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Discord</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+              </TooltipProvider>
             </motion.div>
           </div>
         </main>
