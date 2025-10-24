@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import FAQSection from '@/components/FAQSection';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Check } from 'lucide-react';
+import { Check, MessageCircle, Send } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -164,10 +165,63 @@ const PricingPage = () => {
                 </Card>
               </motion.div>
             </div>
+
+            {/* Get Connected Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-center mt-16 space-y-6"
+            >
+              <h3 className="text-2xl font-bold" style={{ color: '#411c78' }}>
+                Get Connected
+              </h3>
+              <p className="text-gray-700 max-w-2xl mx-auto">
+                Have questions about pricing? Connect with us for personalized assistance
+              </p>
+              <div className="flex justify-center gap-6">
+                <a
+                  href="https://wa.me/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+                  style={{ background: 'linear-gradient(135deg, #25D366, #128C7E)' }}
+                >
+                  <MessageCircle className="w-7 h-7" />
+                </a>
+                <a
+                  href="https://t.me/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+                  style={{ background: 'linear-gradient(135deg, #0088cc, #006699)' }}
+                >
+                  <Send className="w-7 h-7" />
+                </a>
+                <a
+                  href="https://discord.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
+                  style={{ background: 'linear-gradient(135deg, #5865F2, #4752C4)' }}
+                >
+                  <MessageCircle className="w-7 h-7" />
+                </a>
+              </div>
+            </motion.div>
           </div>
         </main>
 
-        <Footer />
+        {/* FAQ Section */}
+        <div style={{ backgroundColor: '#faf8f0' }}>
+          <FAQSection />
+        </div>
+
+        {/* Footer */}
+        <div style={{ backgroundColor: '#faf8f0' }}>
+          <Footer />
+        </div>
       </div>
     </>
   );
