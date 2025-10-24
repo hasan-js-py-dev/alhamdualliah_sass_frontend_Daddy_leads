@@ -13,6 +13,12 @@ interface FeaturePillsProps {
 }
 
 const FeaturePills = ({ features, activeIndex }: FeaturePillsProps) => {
+  const pillGradients = [
+    'from-[#14F195] via-[#00D4FF] to-[#0EA5E9]',
+    'from-[#FF6B9D] via-[#FFA500] to-[#FBBF24]',
+    'from-[#9945FF] via-[#C026D3] to-[#EC4899]',
+  ];
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -23,6 +29,7 @@ const FeaturePills = ({ features, activeIndex }: FeaturePillsProps) => {
       <div className="flex gap-3 justify-center items-center whitespace-nowrap pb-2">
         {features.map((feature, index) => {
           const Icon = feature.icon;
+          const gradient = pillGradients[index % pillGradients.length];
           return (
             <motion.div
               key={index}
@@ -33,8 +40,8 @@ const FeaturePills = ({ features, activeIndex }: FeaturePillsProps) => {
               transition={{ duration: 0.3 }}
               className="flex items-center gap-3 px-5 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 shadow-lg"
             >
-              <Icon className="w-5 h-5 bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent animate-rainbow" />
-              <span className="text-[20px] font-semibold bg-gradient-to-r from-[#14F195] via-[#00D4FF] to-[#9945FF] bg-clip-text text-transparent animate-rainbow">
+              <Icon className={`w-5 h-5 bg-gradient-to-r ${gradient} bg-clip-text text-transparent animate-rainbow`} />
+              <span className={`text-[20px] font-semibold bg-gradient-to-r ${gradient} bg-clip-text text-transparent animate-rainbow`}>
                 {feature.text}
               </span>
             </motion.div>

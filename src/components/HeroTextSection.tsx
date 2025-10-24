@@ -25,9 +25,17 @@ const HeroTextSection = ({ onCTAClick }: HeroTextSectionProps) => {
         scraping and enrichment tools.
       </p>
       <motion.div
+        animate={{
+          rotate: [0, -0.5, 0.5, -0.5, 0],
+          y: [0, -1, 0, -1, 0],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
         whileHover={{ scale: 1.05, y: -2 }}
         whileTap={{ scale: 0.98 }}
-        transition={{ duration: 0.2 }}
       >
         <Button
           onClick={onCTAClick}
