@@ -4,6 +4,12 @@ import { Shield, FileCheck, Users } from 'lucide-react';
 import { Button } from './ui/button';
 import ReviewCard from './ReviewCard';
 import chromeIcon from '@/assets/chrome-extension-icon.png';
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/components/ui/accordion';
 
 const ReviewsSection: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -388,6 +394,129 @@ const ReviewsSection: React.FC = () => {
                   </Button>
                 </a>
               </motion.div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* FAQ Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mt-20 max-w-6xl mx-auto px-6"
+        >
+          <div className="bg-gradient-to-br from-white via-blue-50 to-purple-50 rounded-3xl p-12 shadow-2xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+              {/* Title Section */}
+              <div className="lg:col-span-4">
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+                  Frequently Asked Questions
+                </h2>
+              </div>
+
+              {/* FAQ Accordion */}
+              <div className="lg:col-span-8">
+                <Accordion type="single" collapsible className="space-y-4">
+                  <AccordionItem
+                    value="item-0"
+                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                      <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
+                        How does the LinkedIn scraping process work?
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-5 pt-2 text-gray-700 leading-relaxed">
+                      Our LinkedIn scrapers use advanced automation to extract data from LinkedIn Sales Navigator, LinkedIn profiles, and company pages. Simply provide your search criteria or profile URLs, and our tool will collect names, titles, companies, emails, and other relevant information in minutes. All data is exported in CSV format for easy integration with your CRM.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="item-1"
+                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                      <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
+                        Do you provide emails for all the leads that you scrape?
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-5 pt-2 text-gray-700 leading-relaxed">
+                      Yes! Our Email Enricher automatically finds and verifies professional email addresses for the leads we scrape. We use multiple data sources and verification methods to ensure high accuracy rates (95%+). If an email isn't available in our database, we use advanced algorithms to generate and verify potential email addresses.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="item-2"
+                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                      <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
+                        What is the difference between Email Enricher and Email Verifier?
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-5 pt-2 text-gray-700 leading-relaxed">
+                      Email Enricher finds missing email addresses for your leads by searching across multiple databases and using intelligent email pattern matching. Email Verifier checks if existing email addresses are valid, deliverable, and active by performing real-time verification checks including syntax validation, domain verification, and mailbox confirmation.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="item-3"
+                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                      <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
+                        Can I scrape data from Apollo, ZoomInfo, and other B2B databases?
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-5 pt-2 text-gray-700 leading-relaxed">
+                      Absolutely! We offer specialized scrapers for Apollo, ZoomInfo, Crunchbase, and other major B2B databases. These scrapers can extract company information, contact details, funding data, and technographic information. You can use filters to target specific industries, company sizes, locations, and more.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="item-4"
+                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                      <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
+                        How long does it take to complete a scraping request?
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-5 pt-2 text-gray-700 leading-relaxed">
+                      Processing time depends on the size of your request. Small batches (up to 500 leads) typically complete in 5-15 minutes. Medium batches (500-2,000 leads) take 30-60 minutes. Large requests (2,000+ leads) may take 2-4 hours. You'll receive an email notification when your data is ready for download.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="item-5"
+                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                      <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
+                        Is the data scraping compliant with LinkedIn's terms of service?
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-5 pt-2 text-gray-700 leading-relaxed">
+                      We prioritize ethical data collection practices. Our tools are designed for legitimate business purposes such as lead generation, market research, and recruitment. We recommend users review and comply with LinkedIn's terms of service and applicable data protection regulations (GDPR, CCPA) in their jurisdiction. Users are responsible for how they use the collected data.
+                    </AccordionContent>
+                  </AccordionItem>
+
+                  <AccordionItem
+                    value="item-6"
+                    className="bg-white rounded-2xl border-none overflow-hidden shadow-md hover:shadow-lg transition-shadow"
+                  >
+                    <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-gray-50 transition-colors">
+                      <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
+                        What file formats do you support for data export and import?
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="px-6 pb-5 pt-2 text-gray-700 leading-relaxed">
+                      We support CSV (Comma Separated Values) and Excel (XLSX) formats for both import and export. You can upload your existing lead lists for enrichment or verification, and download the processed results in your preferred format. Our CSV files are compatible with all major CRM systems including Salesforce, HubSpot, Pipedrive, and more.
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </div>
             </div>
           </div>
         </motion.div>
