@@ -37,10 +37,10 @@ const HeroTextSection = ({ onCTAClick }: HeroTextSectionProps) => {
       >
         <Button
           onClick={onCTAClick}
-          className="relative bg-white text-[#7C3AED] text-lg px-10 py-6 rounded-xl font-bold shadow-2xl transition-all duration-300 overflow-hidden hover:bg-white/90"
+          className="relative bg-gradient-to-r from-[#5B6FF9] to-[#7C5CFC] text-white text-[18px] px-12 py-7 rounded-xl font-bold shadow-2xl transition-all duration-300 overflow-hidden hover:from-[#6B7FFA] hover:to-[#8C6CFD]"
           style={{
             boxShadow:
-              '0 4px 20px rgba(255, 255, 255, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.05)',
+              '0 4px 20px rgba(91, 111, 249, 0.4), 0 0 0 1px rgba(124, 92, 252, 0.1)',
           }}
         >
           <span className="relative z-10">Export Your Leads</span>
