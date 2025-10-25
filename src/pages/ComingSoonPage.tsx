@@ -1,40 +1,41 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import { Button } from '../components/ui/button';
+import { DashboardLayout } from '../components/DashboardLayout';
+import { ArrowLeft } from 'lucide-react';
 
 interface ComingSoonPageProps {
-  title: string;
+  title?: string;
 }
 
-const ComingSoonPage = ({ title }: ComingSoonPageProps) => {
+const ComingSoonPage = ({ title = 'Feature' }: ComingSoonPageProps) => {
   return (
     <>
       <Helmet>
-        <title>{`${title} — Daddy Leads`}</title>
-        <meta name="description" content={`${title} page coming soon.`} />
+        <title>{`${title} — Daddy Leads Dashboard`}</title>
+        <meta name="description" content={`${title} coming soon to Daddy Leads`} />
       </Helmet>
-      <div className="min-h-screen bg-[#0f0f10] relative overflow-hidden">
-        <Navbar />
-        <div className="flex items-center justify-center pt-40 px-6">
-          <div className="max-w-md w-full bg-white/5 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-2xl text-center">
-            <h2 className="text-3xl font-bold text-white mb-2">
+
+      <DashboardLayout>
+        <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#f5f3ff' }}>
+          <div className="text-center space-y-6 px-4">
+            <h1 className="text-6xl font-bold" style={{ color: '#6366f1' }}>
               {title}
-            </h2>
-            <p className="text-white/80 mb-4">Coming Soon</p>
-            <p className="text-white/70 mb-8">
-              We're working hard to bring you this page. Please check back
-              later.
+            </h1>
+            <p className="text-2xl font-semibold text-gray-800">Coming Soon</p>
+            <p className="text-lg text-gray-600 max-w-md mx-auto">
+              We're working hard to bring you this feature. Stay tuned!
             </p>
-            <Link to="/">
-              <Button className="bg-gradient-to-r from-[#7C3AED] to-[#C026D3] text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:scale-105 transition-transform duration-200">
-                Back to Home
-              </Button>
-            </Link>
+            <Button asChild size="lg" style={{ backgroundColor: '#6366f1' }}>
+              <Link to="/dashboard">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Dashboard
+              </Link>
+            </Button>
           </div>
         </div>
-      </div>
+      </DashboardLayout>
     </>
   );
 };

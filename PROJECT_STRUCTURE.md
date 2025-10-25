@@ -59,6 +59,10 @@ Image and media assets used in the application
 ## `/src/components` Directory
 Reusable React components
 
+### Authentication & Dashboard
+- `src/components/ProtectedRoute.tsx` - Higher-order component for route protection
+- `src/components/DashboardLayout.tsx` - Main dashboard layout with sidebar navigation
+
 ### Main Components
 - `src/components/Navbar.tsx` - Navigation bar component with logo and menu
 - `src/components/Footer.tsx` - Footer component with social links and company info
@@ -171,16 +175,26 @@ Shadcn UI component library - Reusable, accessible UI primitives
 ## `/src/pages` Directory
 Page-level components for routing
 
-### Main Pages
+### Marketing Pages (Public)
 - `src/pages/HomePage.tsx` - Landing page (route: `/`)
 - `src/pages/ProductPage.tsx` - Products listing page (route: `/product`)
 - `src/pages/PricingPage.tsx` - Pricing calculator page (route: `/pricing`)
 - `src/pages/ConnectPage.tsx` - Demo request & contact page (route: `/connect`)
+
+### Authentication Pages
 - `src/pages/AccessPage.tsx` - Unified authentication page (routes: `/access?p=login` and `/access?p=signup`)
   - Handles both login and signup flows based on URL parameter
   - MongoDB-ready authentication structure
   - Google OAuth support
-- `src/pages/ComingSoonPage.tsx` - Coming soon placeholder page
+
+### Dashboard Pages (Protected)
+- `src/pages/DashboardPage.tsx` - Main dashboard page showing Sales Navigator exports (route: `/dashboard`)
+  - Uses DashboardLayout component
+  - Protected by ProtectedRoute wrapper
+  - Displays data table with export management
+
+### Utility Pages
+- `src/pages/ComingSoonPage.tsx` - Coming soon placeholder for unfinished dashboard pages
 - `src/pages/NotFound.tsx` - 404 error page
 
 ---
@@ -235,18 +249,36 @@ Available animations:
 
 ## Routing Structure
 
-### Routes
-- `/` - HomePage (Marketing domain)
-- `/product` - ProductPage (20+ scraper tools listing) (Marketing domain)
-- `/pricing` - PricingPage (B2B Leads Finder & B2B Data Scraper pricing) (Marketing domain)
-- `/connect` - ConnectPage (Demo request form with social links) (Marketing domain)
-- `/access?p=login` - AccessPage (Login mode) (App subdomain)
-- `/access?p=signup` - AccessPage (Signup mode) (App subdomain)
+### Public Marketing Routes (daddy-leads.com)
+- `/` - Homepage (HomePage)
+- `/product` - ProductPage (20+ scraper tools listing)
+- `/pricing` - PricingPage (B2B Leads Finder & B2B Data Scraper pricing)
+- `/connect` - ConnectPage (Demo request form with social links)
+
+### Authentication Routes
+- `/access?p=login` - AccessPage (Login mode) - Can be accessed from either domain
+- `/access?p=signup` - AccessPage (Signup mode) - Can be accessed from either domain
+
+### Protected Dashboard Routes (app.daddy-leads.com)
+All dashboard routes require authentication. Users are redirected to `/access?p=login` if not authenticated.
+
+- `/dashboard` - Main dashboard (Sales Navigator Export)
+- `/dashboard/sales-navigator` - Sales Navigator Export
+- `/dashboard/url-enrichment` - URL Enrichment (Coming Soon)
+- `/dashboard/email-finder` - Email Finder (Coming Soon)
+- `/dashboard/email-verifier` - Email Verifier (Coming Soon)
+- `/dashboard/credits` - Credits Management (Coming Soon)
+- `/dashboard/team` - Team Management (Coming Soon)
+- `/dashboard/api` - API Settings (Coming Soon)
+- `/dashboard/account` - Account Settings (Coming Soon)
+
+### Error Pages
 - `*` - NotFound (404 page)
 
 ### URL Structure
-- **Marketing pages**: Use main domain (e.g., daddyleads.com)
-- **Authentication pages**: Use app subdomain (e.g., app.daddyleads.com/access?p=login)
+- **Marketing pages**: Use main domain (e.g., daddy-leads.com)
+- **Authentication pages**: Can work on both domains but typically on app subdomain (e.g., app.daddy-leads.com/access?p=login)
+- **Dashboard pages**: Use app subdomain (e.g., app.daddy-leads.com/dashboard)
 - All authentication routes are handled by a single AccessPage component that switches between login and signup modes based on the `p` query parameter
 
 ---
