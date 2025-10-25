@@ -1,16 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
 import HeroTextSection from './HeroTextSection';
 import ContactDemo from './ContactDemo';
 import AnimatedLines from './AnimatedLines';
 import AnimatedBackground from './AnimatedBackground';
+import { SIGNUP_URL } from '@/config/domains';
 
 const HeroSection = () => {
-  const navigate = useNavigate();
-
   const handleCTAClick = () => {
-    navigate('/access?p=signup');
+    window.location.href = SIGNUP_URL;
   };
 
   return (

@@ -4,13 +4,13 @@ import { Shield, FileCheck, Users } from 'lucide-react';
 import { Button } from './ui/button';
 import ReviewCard from './ReviewCard';
 import chromeIcon from '@/assets/chrome-extension-icon.png';
-import { Link } from 'react-router-dom';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import { SIGNUP_URL } from '@/config/domains';
 
 const ReviewsSection: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -530,14 +530,14 @@ const ReviewsSection: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-12 flex justify-center px-6"
         >
-          <Link to="/access?p=signup">
+          <a href={SIGNUP_URL}>
             <Button 
               size="lg" 
               className="bg-gradient-to-r from-[#6713e1] via-[#8b5cf6] to-[#a78bfa] text-white hover:from-[#5a0fc9] hover:via-[#7c3aed] hover:to-[#9178ed] px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-[0_20px_50px_rgba(103,19,225,0.4)] hover:scale-105 transition-all duration-300"
             >
               Get Started
             </Button>
-          </Link>
+          </a>
         </motion.div>
 
         {/* Social Media Icons */}

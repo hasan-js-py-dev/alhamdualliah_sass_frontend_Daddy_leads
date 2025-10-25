@@ -1,12 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
-import { useNavigate } from 'react-router-dom';
 import CSVEnrichDemo from './CSVEnrichDemo';
 import AnimatedStars from './AnimatedStars';
+import { SIGNUP_URL } from '@/config/domains';
 
 const EnrichSection = () => {
-  const navigate = useNavigate();
 
   return (
     <section className="relative py-16 px-6 md:px-12 bg-gradient-to-b from-[#FFD4C4] via-[#FFE5D9] to-[#FFF5E6] overflow-hidden">
@@ -47,7 +46,7 @@ const EnrichSection = () => {
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
               <Button
-                onClick={() => navigate('/access?p=signup')}
+                onClick={() => window.location.href = SIGNUP_URL}
                 size="lg"
                 className="bg-gradient-to-r from-[#FF6B35] via-[#FF8C42] to-[#FFA07A] text-white hover:shadow-2xl transition-all duration-400 shadow-lg"
                 style={{

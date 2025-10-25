@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
 import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip';
+import { LOGIN_URL, SIGNUP_URL } from '@/config/domains';
 
 const Footer: React.FC = () => {
   const scrapers = [
@@ -83,17 +84,17 @@ const Footer: React.FC = () => {
               </Link>
               
               <div className="pt-4 space-y-3">
-                <Link to="/access?p=signup">
+                <a href={SIGNUP_URL}>
                   <Button className="w-full bg-white text-black hover:bg-white/90">
                     Sign Up
                   </Button>
-                </Link>
+                </a>
                 
-                <Link to="/access?p=login">
+                <a href={LOGIN_URL}>
                   <Button variant="outline" className="w-full">
                     Login
                   </Button>
-                </Link>
+                </a>
               </div>
             </div>
           </div>

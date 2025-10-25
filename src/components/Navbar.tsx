@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
+import { LOGIN_URL, SIGNUP_URL } from '@/config/domains';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -94,19 +95,19 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <Link to="/access?p=login">
+            <a href={LOGIN_URL}>
               <Button
                 variant="outline"
                 className="inline-flex items-center justify-center text-[16px] px-4 md:px-5 py-2 md:py-2.5 rounded-xl min-h-[40px] transition-all duration-500 font-semibold border-white/40 text-white hover:bg-white/15 hover:border-white/60"
               >
                 LOGIN
               </Button>
-            </Link>
-            <Link to="/access?p=signup">
+            </a>
+            <a href={SIGNUP_URL}>
               <Button className="inline-flex items-center justify-center text-[16px] px-4 md:px-5 py-2 md:py-2.5 rounded-xl min-h-[40px] hover:shadow-lg hover:scale-[1.03] transition-all duration-500 ease-in-out font-semibold bg-white text-[#411c78] hover:bg-white/90">
                 SIGNUP
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </div>

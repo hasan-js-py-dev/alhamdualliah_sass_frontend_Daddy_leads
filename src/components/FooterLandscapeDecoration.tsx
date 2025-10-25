@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import AnimatedStars from './AnimatedStars';
 import { Button } from './ui/button';
 import { MessageCircle } from 'lucide-react';
+import { SIGNUP_URL } from '@/config/domains';
 
 const FooterLandscapeDecoration: React.FC = () => {
   return (
@@ -29,11 +29,11 @@ const FooterLandscapeDecoration: React.FC = () => {
 
       {/* Get Started Button and Messaging Icons */}
       <div className="relative z-30 flex flex-col items-center justify-center min-h-[500px] px-6">
-        <Link to="/access?p=signup" className="mb-12">
+        <a href={SIGNUP_URL} className="mb-12">
           <Button size="lg" className="bg-white text-black hover:bg-white/90 text-lg px-12 py-6 h-auto rounded-full shadow-2xl">
             Get Started
           </Button>
-        </Link>
+        </a>
 
         {/* Messaging Apps Icons */}
         <div className="flex justify-center gap-8">

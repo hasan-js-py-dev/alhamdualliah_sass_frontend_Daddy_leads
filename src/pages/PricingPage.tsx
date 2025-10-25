@@ -8,8 +8,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Check, MessageCircle, Send } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { SIGNUP_URL } from '@/config/domains';
 
 const PricingPage = () => {
   const [leadsQuantity, setLeadsQuantity] = useState<number>(1000);
@@ -112,7 +112,7 @@ const PricingPage = () => {
                     </div>
 
                     <Button asChild className="w-full" style={{ backgroundColor: '#411c78' }}>
-                      <Link to="/access?p=signup">Get Started</Link>
+                      <a href={SIGNUP_URL}>Get Started</a>
                     </Button>
                   </CardContent>
                 </Card>
@@ -162,7 +162,7 @@ const PricingPage = () => {
                     </div>
 
                     <Button asChild className="w-full" style={{ backgroundColor: '#411c78' }}>
-                      <Link to="/access?p=signup">Get Started</Link>
+                      <a href={SIGNUP_URL}>Get Started</a>
                     </Button>
                   </CardContent>
                 </Card>

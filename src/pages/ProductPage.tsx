@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Check, Database, Mail, Globe, UserCheck, MapPin, Building2, MessageCircle, Send } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -8,6 +7,7 @@ import Footer from '@/components/Footer';
 import FAQSection from '@/components/FAQSection';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { SIGNUP_URL } from '@/config/domains';
 
 const products = [
   {
@@ -230,14 +230,14 @@ const ProductPage = () => {
                     </div>
                   </div>
 
-                  <Link to="/access?p=signup">
+                  <a href={SIGNUP_URL}>
                     <Button 
                       size="lg"
                       className="w-full bg-[#5b4cee] hover:bg-[#4c3dd8] text-white py-6 text-lg font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
                     >
                       GET STARTED
                     </Button>
-                  </Link>
+                  </a>
                 </motion.div>
               </div>
             </div>
@@ -258,14 +258,14 @@ const ProductPage = () => {
               viewport={{ once: true }}
               className="mb-8"
             >
-              <Link to="/access?p=signup">
+              <a href={SIGNUP_URL}>
                 <Button 
                   size="lg"
                   className="bg-[#5b4cee] hover:bg-[#4c3dd8] text-white px-12 py-6 text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
                 >
                   Get Started Now
                 </Button>
-              </Link>
+              </a>
             </motion.div>
 
             <motion.div
