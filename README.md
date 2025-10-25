@@ -1,8 +1,67 @@
-# Welcome to your Lovable project
+# Daddy Leads
+
+A comprehensive B2B lead scraping and enrichment platform.
 
 ## Project info
 
 **URL**: https://lovable.dev/projects/c9b9b3df-7806-4bd1-9f5c-ba10528db196
+
+## Project Structure
+
+This project uses a standard monorepo structure with frontend code at the root and backend code in a separate folder:
+
+```
+daddy-leads/
+├── src/               # Frontend source code (React components)
+├── public/            # Frontend static assets
+├── backend/           # Backend API and services
+│   ├── api/          # API endpoints (auth, etc.)
+│   ├── config/       # Configuration & env examples
+│   └── README.md     # Backend setup guide
+├── index.html         # Frontend HTML template
+├── vite.config.ts     # Frontend build configuration
+├── tailwind.config.ts # Frontend styling configuration
+└── vercel.json        # Deployment configuration
+```
+
+### Frontend (Root Level)
+All React/TypeScript frontend code lives at the project root:
+- `src/components/` - Reusable UI components
+- `src/pages/` - Page components and routing
+  - `src/pages/dashboard/` - Protected dashboard pages
+- `src/hooks/` - Custom React hooks
+- `src/config/` - Frontend configuration (domains, etc.)
+
+### Backend (backend/ folder)
+All backend/API code lives in the `backend/` folder:
+- `backend/api/auth/` - Authentication endpoints (signup, login, logout, verify)
+- `backend/config/` - Environment variable examples
+- `backend/MONGODB_SETUP.md` - Database setup instructions
+
+## Quick Start
+
+### Frontend Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+The frontend will be available at `http://localhost:8080`
+
+### Backend Setup
+
+The backend runs separately from the frontend. See `backend/README.md` for detailed setup instructions.
+
+```bash
+# Backend requires:
+# 1. MongoDB database (see backend/MONGODB_SETUP.md)
+# 2. Node.js server (Express recommended)
+# 3. Environment variables (see backend/config/env.example)
+```
 
 ## How can I edit this code?
 
@@ -50,24 +109,74 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+## Domains & Routing
+
+- **Marketing Site**: `daddy-leads.com` → Public pages (Home, Product, Pricing)
+- **Application**: `app.daddy-leads.com` → Dashboard (protected routes requiring authentication)
+- **Backend API**: Separate server (configure URL in environment variables)
+
+The frontend automatically redirects to the correct subdomain for authentication:
+- Signup/Login buttons → `app.daddy-leads.com/access`
+- After authentication → `app.daddy-leads.com/dashboard`
+
+## Technology Stack
 
 This project is built with:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Frontend
+- **React 18** + TypeScript
+- **Vite** - Fast build tool
+- **Tailwind CSS** - Utility-first styling
+- **React Router DOM** - Client-side routing
+- **shadcn-ui** - Accessible component library
+- **Framer Motion** - Animations
 
-## How can I deploy this project?
+### Backend
+- **Node.js** + Express
+- **MongoDB** - Database
+- **JWT** - Authentication tokens
+- **bcrypt** - Password hashing
 
-Simply open [Lovable](https://lovable.dev/projects/c9b9b3df-7806-4bd1-9f5c-ba10528db196) and click on Share -> Publish.
+## Deployment
 
-## Can I connect a custom domain to my Lovable project?
+### Frontend (Vercel)
+1. Connect your repository to Vercel
+2. Configure domains:
+   - Main domain: `daddy-leads.com`
+   - App subdomain: `app.daddy-leads.com`
+3. The `vercel.json` file handles routing for both domains
 
-Yes, you can!
+Simply open [Lovable](https://lovable.dev/projects/c9b9b3df-7806-4bd1-9f5c-ba10528db196) and click on Share → Publish.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Backend
+Deploy your backend API separately to:
+- Vercel Serverless Functions
+- Heroku
+- AWS Lambda
+- Any Node.js hosting service
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+See `backend/README.md` for deployment instructions.
+
+## Documentation
+
+- `backend/README.md` - Backend setup and API documentation
+- `backend/MONGODB_SETUP.md` - Database setup guide
+- `VERCEL_DEPLOYMENT.md` - Detailed deployment instructions
+- `PROJECT_STRUCTURE.md` - Complete project structure documentation
+
+## Custom Domain
+
+To connect a custom domain, navigate to Project > Settings > Domains and click Connect Domain.
+
+Read more: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+
+## Environment Variables
+
+### Frontend
+Create `.env` in the project root:
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+### Backend
+See `backend/config/env.example` for all required environment variables.
