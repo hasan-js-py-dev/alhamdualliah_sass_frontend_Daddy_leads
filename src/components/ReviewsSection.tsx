@@ -530,7 +530,7 @@ const ReviewsSection: React.FC = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="mt-12 flex justify-center px-6"
         >
-          <Link to="/signup">
+          <Link to="/access?p=signup">
             <Button 
               size="lg" 
               className="bg-gradient-to-r from-[#6713e1] via-[#8b5cf6] to-[#a78bfa] text-white hover:from-[#5a0fc9] hover:via-[#7c3aed] hover:to-[#9178ed] px-12 py-6 text-xl font-bold rounded-2xl shadow-2xl hover:shadow-[0_20px_50px_rgba(103,19,225,0.4)] hover:scale-105 transition-all duration-300"

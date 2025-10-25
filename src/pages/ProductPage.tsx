@@ -230,7 +230,7 @@ const ProductPage = () => {
                     </div>
                   </div>
 
-                  <Link to="/signup">
+                  <Link to="/access?p=signup">
                     <Button 
                       size="lg"
                       className="w-full bg-[#5b4cee] hover:bg-[#4c3dd8] text-white py-6 text-lg font-bold rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300"
@@ -258,7 +258,7 @@ const ProductPage = () => {
               viewport={{ once: true }}
               className="mb-8"
             >
-              <Link to="/signup">
+              <Link to="/access?p=signup">
                 <Button 
                   size="lg"
                   className="bg-[#5b4cee] hover:bg-[#4c3dd8] text-white px-12 py-6 text-lg font-bold rounded-2xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"

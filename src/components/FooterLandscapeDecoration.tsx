@@ -29,7 +29,7 @@ const FooterLandscapeDecoration: React.FC = () => {
 
       {/* Get Started Button and Messaging Icons */}
       <div className="relative z-30 flex flex-col items-center justify-center min-h-[500px] px-6">
-        <Link to="/signup" className="mb-12">
+        <Link to="/access?p=signup" className="mb-12">
           <Button size="lg" className="bg-white text-black hover:bg-white/90 text-lg px-12 py-6 h-auto rounded-full shadow-2xl">
             Get Started
           </Button>

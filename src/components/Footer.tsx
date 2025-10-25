@@ -83,13 +83,13 @@ const Footer: React.FC = () => {
               </Link>
               
               <div className="pt-4 space-y-3">
-                <Link to="/signup">
+                <Link to="/access?p=signup">
                   <Button className="w-full bg-white text-black hover:bg-white/90">
                     Sign Up
                   </Button>
                 </Link>
                 
-                <Link to="/login">
+                <Link to="/access?p=login">
                   <Button variant="outline" className="w-full">
                     Login
                   </Button>

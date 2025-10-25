@@ -173,11 +173,13 @@ Page-level components for routing
 
 ### Main Pages
 - `src/pages/HomePage.tsx` - Landing page (route: `/`)
-- `src/pages/ProductPage.tsx` - Products listing page (route: `/products`)
+- `src/pages/ProductPage.tsx` - Products listing page (route: `/product`)
 - `src/pages/PricingPage.tsx` - Pricing calculator page (route: `/pricing`)
 - `src/pages/ConnectPage.tsx` - Demo request & contact page (route: `/connect`)
-- `src/pages/LoginPage.tsx` - User login page (route: `/login`)
-- `src/pages/SignupPage.tsx` - User signup page (route: `/signup`)
+- `src/pages/AccessPage.tsx` - Unified authentication page (routes: `/access?p=login` and `/access?p=signup`)
+  - Handles both login and signup flows based on URL parameter
+  - MongoDB-ready authentication structure
+  - Google OAuth support
 - `src/pages/ComingSoonPage.tsx` - Coming soon placeholder page
 - `src/pages/NotFound.tsx` - 404 error page
 
@@ -234,13 +236,18 @@ Available animations:
 ## Routing Structure
 
 ### Routes
-- `/` - HomePage
-- `/products` - ProductPage (20+ scraper tools listing)
-- `/pricing` - PricingPage (B2B Leads Finder & B2B Data Scraper pricing)
-- `/connect` - ConnectPage (Demo request form with social links)
-- `/login` - LoginPage
-- `/signup` - SignupPage
+- `/` - HomePage (Marketing domain)
+- `/product` - ProductPage (20+ scraper tools listing) (Marketing domain)
+- `/pricing` - PricingPage (B2B Leads Finder & B2B Data Scraper pricing) (Marketing domain)
+- `/connect` - ConnectPage (Demo request form with social links) (Marketing domain)
+- `/access?p=login` - AccessPage (Login mode) (App subdomain)
+- `/access?p=signup` - AccessPage (Signup mode) (App subdomain)
 - `*` - NotFound (404 page)
+
+### URL Structure
+- **Marketing pages**: Use main domain (e.g., daddyleads.com)
+- **Authentication pages**: Use app subdomain (e.g., app.daddyleads.com/access?p=login)
+- All authentication routes are handled by a single AccessPage component that switches between login and signup modes based on the `p` query parameter
 
 ---
 

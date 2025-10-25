@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,8 +8,11 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Eye, EyeOff, Check } from 'lucide-react';
 import AnimatedTitle from '@/components/AnimatedTitle';
 
-const SignupPage = () => {
+const AccessPage = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const mode = searchParams.get('p') || 'login'; // 'login' or 'signup'
+  
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [formData, setFormData] = useState({
@@ -22,10 +25,36 @@ const SignupPage = () => {
     acceptTerms: false,
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const switchMode = (newMode: string) => {
+    setSearchParams({ p: newMode });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle signup logic here
-    console.log('Signup submitted:', formData);
+    
+    // TODO: Implement MongoDB authentication here
+    // This is where you'll make API calls to your MongoDB backend
+    
+    if (mode === 'signup') {
+      // Handle signup with MongoDB
+      console.log('Signup with MongoDB:', {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        email: formData.email,
+        password: formData.password,
+      });
+    } else {
+      // Handle login with MongoDB
+      console.log('Login with MongoDB:', {
+        email: formData.email,
+        password: formData.password,
+      });
+    }
+  };
+
+  const handleGoogleAuth = () => {
+    // TODO: Implement Google OAuth with MongoDB
+    console.log('Google OAuth');
   };
 
   const features = [
@@ -50,12 +79,12 @@ const SignupPage = () => {
   return (
     <>
       <Helmet>
-        <title>Create Account - Daddy Leads | B2B Lead Generation Platform</title>
-        <meta name="description" content="Sign up for Daddy Leads to access powerful B2B data scraping, email verification, and lead generation tools. Get started free today." />
+        <title>{mode === 'signup' ? 'Create Account' : 'Login'} - Daddy Leads | B2B Lead Generation Platform</title>
+        <meta name="description" content={mode === 'signup' ? 'Sign up for Daddy Leads to access powerful B2B data scraping, email verification, and lead generation tools. Get started free today.' : 'Sign in to Daddy Leads to access your B2B data scraping tools, email verification, and lead generation platform.'} />
       </Helmet>
 
       <div className="min-h-screen flex" style={{ backgroundColor: '#faf8f0' }}>
-        {/* Left Column - Signup Form */}
+        {/* Left Column - Auth Form */}
         <div className="w-1/2 flex items-center justify-center px-8 py-12">
           <div className="w-full max-w-md">
             {/* Logo */}
@@ -66,13 +95,14 @@ const SignupPage = () => {
             </Link>
 
             <h1 className="text-3xl font-bold mb-8" style={{ color: '#411c78' }}>
-              Create your free account
+              {mode === 'signup' ? 'Create your free account' : 'Welcome Back!'}
             </h1>
 
             {/* Google Button */}
             <Button
               type="button"
               variant="outline"
+              onClick={handleGoogleAuth}
               className="w-full mb-6 h-12 border-2 bg-white hover:bg-gray-50"
               style={{ borderColor: '#d1d5db', color: '#1f2937' }}
             >
@@ -107,41 +137,43 @@ const SignupPage = () => {
               </div>
             </div>
 
-            {/* Signup Form */}
+            {/* Auth Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="firstName" className="text-gray-700">First Name</Label>
-                  <Input
-                    id="firstName"
-                    type="text"
-                    placeholder="First Name"
-                    value={formData.firstName}
-                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-                    required
-                    className="bg-white border-gray-300"
-                  />
+              {mode === 'signup' && (
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="firstName" className="text-gray-700">First Name</Label>
+                    <Input
+                      id="firstName"
+                      type="text"
+                      placeholder="First Name"
+                      value={formData.firstName}
+                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                      required
+                      className="bg-white border-gray-300"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="lastName" className="text-gray-700">Last Name</Label>
+                    <Input
+                      id="lastName"
+                      type="text"
+                      placeholder="Last Name"
+                      value={formData.lastName}
+                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                      required
+                      className="bg-white border-gray-300"
+                    />
+                  </div>
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="lastName" className="text-gray-700">Last Name</Label>
-                  <Input
-                    id="lastName"
-                    type="text"
-                    placeholder="Last Name"
-                    value={formData.lastName}
-                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
-                    required
-                    className="bg-white border-gray-300"
-                  />
-                </div>
-              </div>
+              )}
 
               <div className="space-y-2">
-                <Label htmlFor="email" className="text-gray-700">Work Email</Label>
+                <Label htmlFor="email" className="text-gray-700">{mode === 'signup' ? 'Work Email' : 'Email'}</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="Work Email"
+                  placeholder={mode === 'signup' ? 'Work Email' : 'Gmail or business email'}
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
@@ -171,76 +203,99 @@ const SignupPage = () => {
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="confirmPassword" className="text-gray-700">Confirm Password</Label>
-                <div className="relative">
-                  <Input
-                    id="confirmPassword"
-                    type={showConfirmPassword ? 'text' : 'password'}
-                    placeholder="Please confirm your password"
-                    value={formData.confirmPassword}
-                    onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
-                    required
-                    className="bg-white border-gray-300 pr-10"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
-                  >
-                    {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-                  </button>
-                </div>
-              </div>
+              {mode === 'signup' && (
+                <>
+                  <div className="space-y-2">
+                    <Label htmlFor="confirmPassword" className="text-gray-700">Confirm Password</Label>
+                    <div className="relative">
+                      <Input
+                        id="confirmPassword"
+                        type={showConfirmPassword ? 'text' : 'password'}
+                        placeholder="Please confirm your password"
+                        value={formData.confirmPassword}
+                        onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })}
+                        required
+                        className="bg-white border-gray-300 pr-10"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-700"
+                      >
+                        {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                      </button>
+                    </div>
+                  </div>
 
-              <div className="flex items-start space-x-2 pt-2">
-                <Checkbox
-                  id="updates"
-                  checked={formData.agreeToUpdates}
-                  onCheckedChange={(checked) =>
-                    setFormData({ ...formData, agreeToUpdates: checked as boolean })
-                  }
-                />
-                <label htmlFor="updates" className="text-sm text-gray-600 leading-tight cursor-pointer">
-                  I agree to receive occasional news and updates.
-                </label>
-              </div>
+                  <div className="flex items-start space-x-2 pt-2">
+                    <Checkbox
+                      id="updates"
+                      checked={formData.agreeToUpdates}
+                      onCheckedChange={(checked) =>
+                        setFormData({ ...formData, agreeToUpdates: checked as boolean })
+                      }
+                    />
+                    <label htmlFor="updates" className="text-sm text-gray-600 leading-tight cursor-pointer">
+                      I agree to receive occasional news and updates.
+                    </label>
+                  </div>
 
-              <div className="flex items-start space-x-2">
-                <Checkbox
-                  id="terms"
-                  checked={formData.acceptTerms}
-                  onCheckedChange={(checked) =>
-                    setFormData({ ...formData, acceptTerms: checked as boolean })
-                  }
-                  required
-                />
-                <label htmlFor="terms" className="text-sm text-gray-600 leading-tight cursor-pointer">
-                  I accept the{' '}
-                  <a href="#" className="text-[#6366f1] hover:underline">
-                    Terms & Conditions
-                  </a>{' '}
-                  and{' '}
-                  <a href="#" className="text-[#6366f1] hover:underline">
-                    Privacy Policy
-                  </a>
-                  .
-                </label>
-              </div>
+                  <div className="flex items-start space-x-2">
+                    <Checkbox
+                      id="terms"
+                      checked={formData.acceptTerms}
+                      onCheckedChange={(checked) =>
+                        setFormData({ ...formData, acceptTerms: checked as boolean })
+                      }
+                      required
+                    />
+                    <label htmlFor="terms" className="text-sm text-gray-600 leading-tight cursor-pointer">
+                      I accept the{' '}
+                      <a href="#" className="text-[#6366f1] hover:underline">
+                        Terms & Conditions
+                      </a>{' '}
+                      and{' '}
+                      <a href="#" className="text-[#6366f1] hover:underline">
+                        Privacy Policy
+                      </a>
+                      .
+                    </label>
+                  </div>
+                </>
+              )}
 
               <Button
                 type="submit"
                 className="w-full h-12 text-base font-semibold mt-6"
                 style={{ backgroundColor: '#6366f1', color: 'white' }}
               >
-                Create Account
+                {mode === 'signup' ? 'Create Account' : 'Sign In'}
               </Button>
 
               <p className="text-center text-sm text-gray-600 mt-4">
-                Already have an account?{' '}
-                <Link to="/login" className="text-[#6366f1] hover:underline font-medium">
-                  Sign in
-                </Link>
+                {mode === 'signup' ? (
+                  <>
+                    Already have an account?{' '}
+                    <button
+                      type="button"
+                      onClick={() => switchMode('login')}
+                      className="text-[#6366f1] hover:underline font-medium"
+                    >
+                      Sign in
+                    </button>
+                  </>
+                ) : (
+                  <>
+                    Need an account?{' '}
+                    <button
+                      type="button"
+                      onClick={() => switchMode('signup')}
+                      className="text-[#6366f1] hover:underline font-medium"
+                    >
+                      Create an account for free
+                    </button>
+                  </>
+                )}
               </p>
             </form>
           </div>
@@ -284,4 +339,4 @@ const SignupPage = () => {
   );
 };
 
-export default SignupPage;
+export default AccessPage;

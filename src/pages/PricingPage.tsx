@@ -112,7 +112,7 @@ const PricingPage = () => {
                     </div>
 
                     <Button asChild className="w-full" style={{ backgroundColor: '#411c78' }}>
-                      <Link to="/signup">Get Started</Link>
+                      <Link to="/access?p=signup">Get Started</Link>
                     </Button>
                   </CardContent>
                 </Card>
@@ -162,7 +162,7 @@ const PricingPage = () => {
                     </div>
 
                     <Button asChild className="w-full" style={{ backgroundColor: '#411c78' }}>
-                      <Link to="/signup">Get Started</Link>
+                      <Link to="/access?p=signup">Get Started</Link>
                     </Button>
                   </CardContent>
                 </Card>
