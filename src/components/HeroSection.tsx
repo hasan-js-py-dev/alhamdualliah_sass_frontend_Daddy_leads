@@ -10,7 +10,7 @@ const HeroSection = () => {
   const navigate = useNavigate();
 
   const handleCTAClick = () => {
-    navigate('/login');
+    navigate('/access?p=signup');
   };
 
   return (

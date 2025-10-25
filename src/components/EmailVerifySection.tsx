@@ -48,7 +48,7 @@ const EmailVerifySection = () => {
               transition={{ type: 'spring', stiffness: 300, damping: 20 }}
             >
               <Button
-                onClick={() => navigate('/signup')}
+                onClick={() => navigate('/access?p=signup')}
                 size="lg"
                 className="text-white hover:shadow-2xl transition-all duration-400 shadow-lg"
                 style={{

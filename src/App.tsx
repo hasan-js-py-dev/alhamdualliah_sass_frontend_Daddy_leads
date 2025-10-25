@@ -4,14 +4,14 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import { ProtectedRoute } from "./pages/dashboard/components/ProtectedRoute";
 import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import PricingPage from "./pages/PricingPage";
 import ConnectPage from "./pages/ConnectPage";
 import AccessPage from "./pages/AccessPage";
-import DashboardPage from "./pages/DashboardPage";
-import ComingSoonPage from "./pages/ComingSoonPage";
+import DashboardPage from "./pages/dashboard/DashboardPage";
+import ComingSoonPage from "./pages/dashboard/ComingSoonPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();

@@ -5,6 +5,49 @@ This document provides a comprehensive overview of the Daddy Leads project struc
 
 ---
 
+## Project Structure
+
+```
+daddy-leads/
+├── backend/                          # Backend code (MongoDB, APIs)
+│   ├── README.md                     # Backend setup guide
+│   ├── MONGODB_SETUP.md             # MongoDB configuration guide
+│   ├── api/                         # API endpoints
+│   │   └── auth/                    # Authentication endpoints
+│   │       ├── signup.js           # User registration handler
+│   │       ├── login.js            # User login handler
+│   │       ├── logout.js           # User logout handler
+│   │       └── verify.js           # Session verification handler
+│   └── config/                      # Configuration files
+│       └── env.example              # Environment variables template
+├── public/                          # Static assets
+│   ├── favicon.ico
+│   ├── robots.txt
+│   └── placeholder.svg
+├── src/                             # Frontend source code
+│   ├── assets/                      # Images and media
+│   ├── components/                  # Reusable components
+│   ├── data/                        # Mock data
+│   ├── hooks/                       # Custom React hooks
+│   ├── lib/                         # Utility functions
+│   └── pages/                       # Page components
+│       ├── dashboard/               # Protected dashboard pages
+│       │   ├── components/          # Dashboard-specific components
+│       │   │   ├── DashboardLayout.tsx
+│       │   │   └── ProtectedRoute.tsx
+│       │   ├── DashboardPage.tsx
+│       │   └── ComingSoonPage.tsx
+│       ├── AccessPage.tsx           # Auth page (login/signup)
+│       ├── HomePage.tsx             # Marketing homepage
+│       ├── ProductPage.tsx          # Products listing
+│       ├── PricingPage.tsx          # Pricing calculator
+│       ├── ConnectPage.tsx          # Contact/demo request
+│       └── NotFound.tsx             # 404 page
+└── vercel.json                       # Vercel SPA configuration
+```
+
+---
+
 ## Root Directory Files
 
 ### Configuration Files
@@ -21,6 +64,28 @@ This document provides a comprehensive overview of the Daddy Leads project struc
 - `package.json` - Project dependencies and scripts (read-only)
 - `package-lock.json` - Locked versions of dependencies (read-only)
 - `.gitignore` - Git ignore rules (read-only)
+- `vercel.json` - Vercel deployment configuration for SPA routing
+
+---
+
+## `/backend` Directory
+Backend code separated from frontend for better organization
+
+### Structure
+- `backend/README.md` - Backend setup and deployment guide
+- `backend/MONGODB_SETUP.md` - Complete MongoDB installation and configuration guide
+- `backend/api/auth/` - Authentication API endpoint examples
+  - `signup.js` - User registration with validation and password hashing
+  - `login.js` - User login with JWT token generation
+  - `logout.js` - User logout and session cleanup
+  - `verify.js` - Session token verification
+- `backend/config/env.example` - Template for environment variables
+
+### Purpose
+- Keeps backend code separate from frontend
+- Provides API implementation examples
+- Includes MongoDB setup instructions
+- Contains environment configuration templates
 
 ---
 
@@ -58,10 +123,6 @@ Image and media assets used in the application
 
 ## `/src/components` Directory
 Reusable React components
-
-### Authentication & Dashboard
-- `src/components/ProtectedRoute.tsx` - Higher-order component for route protection
-- `src/components/DashboardLayout.tsx` - Main dashboard layout with sidebar navigation
 
 ### Main Components
 - `src/components/Navbar.tsx` - Navigation bar component with logo and menu
@@ -187,14 +248,18 @@ Page-level components for routing
   - MongoDB-ready authentication structure
   - Google OAuth support
 
-### Dashboard Pages (Protected)
-- `src/pages/DashboardPage.tsx` - Main dashboard page showing Sales Navigator exports (route: `/dashboard`)
-  - Uses DashboardLayout component
-  - Protected by ProtectedRoute wrapper
-  - Displays data table with export management
+### Dashboard Pages (Protected) - `/src/pages/dashboard`
+All dashboard pages are in a separate folder for better organization.
+
+#### Main Dashboard Pages
+- `src/pages/dashboard/DashboardPage.tsx` - Main dashboard showing Sales Navigator exports
+- `src/pages/dashboard/ComingSoonPage.tsx` - Coming soon placeholder for unfinished features
+
+#### Dashboard Components - `/src/pages/dashboard/components`
+- `src/pages/dashboard/components/DashboardLayout.tsx` - Dashboard layout with sidebar navigation
+- `src/pages/dashboard/components/ProtectedRoute.tsx` - Route protection HOC (checks authentication)
 
 ### Utility Pages
-- `src/pages/ComingSoonPage.tsx` - Coming soon placeholder for unfinished dashboard pages
 - `src/pages/NotFound.tsx` - 404 error page
 
 ---
@@ -228,8 +293,8 @@ Mock data and constants
 
 ### Color System (`src/index.css`)
 - Uses HSL color format for all colors
-- Primary brand color: `#411c78` (purple)
-- Background color: `#faf8f0` (cream)
+- Primary brand color: `#411c78` (purple) / `#6366f1` (indigo for dashboard)
+- Background colors: `#faf8f0` (cream for marketing), `#f5f3ff` (light purple for dashboard)
 - All colors defined as CSS custom properties with HSL values
 
 ### Typography
@@ -256,11 +321,11 @@ Available animations:
 - `/connect` - ConnectPage (Demo request form with social links)
 
 ### Authentication Routes
-- `/access?p=login` - AccessPage (Login mode) - Can be accessed from either domain
-- `/access?p=signup` - AccessPage (Signup mode) - Can be accessed from either domain
+- `/access?p=login` - AccessPage (Login mode) - Works on both domains
+- `/access?p=signup` - AccessPage (Signup mode) - Works on both domains
 
 ### Protected Dashboard Routes (app.daddy-leads.com)
-All dashboard routes require authentication. Users are redirected to `/access?p=login` if not authenticated.
+All dashboard routes require authentication. Unauthorized users are redirected to `/access?p=login`.
 
 - `/dashboard` - Main dashboard (Sales Navigator Export)
 - `/dashboard/sales-navigator` - Sales Navigator Export
@@ -277,7 +342,7 @@ All dashboard routes require authentication. Users are redirected to `/access?p=
 
 ### URL Structure
 - **Marketing pages**: Use main domain (e.g., daddy-leads.com)
-- **Authentication pages**: Can work on both domains but typically on app subdomain (e.g., app.daddy-leads.com/access?p=login)
+- **Authentication pages**: Work on both domains, typically app subdomain (e.g., app.daddy-leads.com/access?p=login)
 - **Dashboard pages**: Use app subdomain (e.g., app.daddy-leads.com/dashboard)
 - All authentication routes are handled by a single AccessPage component that switches between login and signup modes based on the `p` query parameter
 
@@ -298,6 +363,7 @@ All dashboard routes require authentication. Users are redirected to `/access?p=
 - Trusted by section
 - Reviews section
 - Footer with social links
+- All CTAs now properly link to `/access?p=signup`
 
 #### ProductPage (`/products`)
 - 20+ scraper tools with detailed features
@@ -322,9 +388,19 @@ All dashboard routes require authentication. Users are redirected to `/access?p=
 - Tooltips on hover showing platform names
 - Contact information
 
+#### DashboardPage (`/dashboard`)
+- Sales Navigator Export management
+- Data table with export status, leads count, and actions
+- Search and filter functionality
+- "New Export" CTA button
+- Sidebar navigation to all dashboard features
+- Protected by authentication
+
 ### Component Patterns
 - All social icons wrapped in tooltips
-- Consistent color scheme (#411c78 purple, #faf8f0 cream)
+- Consistent color scheme:
+  - Marketing: #411c78 purple, #faf8f0 cream
+  - Dashboard: #6366f1 indigo, #f5f3ff light purple
 - Responsive design throughout
 - Framer Motion animations
 - Hover effects on interactive elements
@@ -348,6 +424,12 @@ All dashboard routes require authentication. Users are redirected to `/access?p=
 ### Forms & Validation
 - **React Hook Form 7.61.1** - Form management
 - **Zod 3.25.76** - Schema validation
+
+### Backend
+- **MongoDB** - Database (not installed in frontend)
+- **Express.js** - Backend framework (recommended, not included)
+- **bcrypt** - Password hashing (backend only)
+- **jsonwebtoken** - JWT tokens (backend only)
 
 ### Additional Libraries
 - **Lucide React 0.462.0** - Icons
@@ -373,8 +455,11 @@ All dashboard routes require authentication. Users are redirected to `/access?p=
 - Follow React best practices (keys, refs, etc.)
 
 ### File Organization
-- Components in `/src/components`
-- Pages in `/src/pages`
+- Marketing components in `/src/components`
+- Marketing pages in `/src/pages`
+- Dashboard pages in `/src/pages/dashboard`
+- Dashboard components in `/src/pages/dashboard/components`
+- Backend code in `/backend`
 - Hooks in `/src/hooks`
 - Utils in `/src/lib`
 - UI primitives in `/src/components/ui`
@@ -411,6 +496,14 @@ npm run build
 npm run preview
 ```
 
+### Deployment
+See `VERCEL_DEPLOYMENT.md` for comprehensive deployment guide including:
+- Custom domain setup (daddy-leads.com and app.daddy-leads.com)
+- MongoDB integration
+- Environment variables configuration
+- CORS setup
+- Security best practices
+
 ---
 
 ## Contact & Social Links
@@ -445,13 +538,20 @@ The following files cannot be modified through the AI editor:
 Managed through `lov-add-dependency` and `lov-remove-dependency` tools only.
 
 ### Color System
-- Primary: #411c78 (deep purple)
-- Background: #faf8f0 (cream/beige)
+- Marketing: #411c78 (deep purple), #faf8f0 (cream)
+- Dashboard: #6366f1 (indigo), #f5f3ff (light purple)
 - All colors converted to HSL in CSS custom properties
 - Semantic tokens used throughout
+
+### Folder Structure Best Practices
+- Backend code is completely separated in `/backend` folder
+- Dashboard pages are organized in `/src/pages/dashboard`
+- Dashboard-specific components in `/src/pages/dashboard/components`
+- This separation improves maintainability and scalability
 
 ---
 
 **Last Updated:** 2025-10-25
 **Project:** Daddy Leads - B2B Lead Scraping Platform
 **Framework:** React + TypeScript + Vite + Tailwind CSS
+**Backend:** MongoDB + Express.js (separate folder)
