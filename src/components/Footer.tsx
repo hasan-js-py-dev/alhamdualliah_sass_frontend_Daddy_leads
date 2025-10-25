@@ -37,21 +37,21 @@ const Footer: React.FC = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
                 <Mail className="w-4 h-4 flex-shrink-0" />
-                <a href="mailto:support@daddyleads.com" className="text-sm">
-                  support@daddyleads.com
+                <a href="mailto:contact@daddy-leads.com" className="text-sm">
+                  contact@daddy-leads.com
                 </a>
               </div>
               
               <div className="flex items-center gap-3 text-white/70 hover:text-white transition-colors">
                 <Phone className="w-4 h-4 flex-shrink-0" />
-                <a href="tel:+1234567890" className="text-sm">
-                  +1 (234) 567-890
+                <a href="tel:+971525554980" className="text-sm">
+                  +971 52 555 4980
                 </a>
               </div>
               
               <div className="flex items-center gap-3 text-white/70">
                 <MapPin className="w-4 h-4 flex-shrink-0" />
-                <span className="text-sm">San Francisco, CA</span>
+                <span className="text-sm">Dubai, UAE</span>
               </div>
             </div>
           </div>
