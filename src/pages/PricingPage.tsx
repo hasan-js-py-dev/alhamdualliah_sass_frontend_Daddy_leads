@@ -30,11 +30,13 @@ const PricingPage = () => {
   ];
 
   const dataFeatures = [
-    'LinkedIn Profile Scraper',
-    'Zoominfo Scraper',
-    'Google Map & Directories Scraper',
-    'Crunchbase Scraper',
-    'Email Verifier'
+    'Email Verifier',
+    'LinkedIn Sales Nav Company Scraper',
+    'Yelp Scraper',
+    'Google Map Scraper',
+    'Restaurant Directories',
+    'RealEstate Directories',
+    'Scrape Companies from b2b Databases'
   ];
 
   return (

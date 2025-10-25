@@ -39,16 +39,15 @@ const FAQSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative py-20 px-6 md:px-12 bg-gradient-to-br from-[#6366f1] via-[#8b5cf6] to-[#a855f7] overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent_50%)]"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(255,255,255,0.08),transparent_50%)]"></div>
+    <section className="relative py-20 px-6 md:px-12 overflow-hidden"
+      style={{ backgroundColor: 'transparent' }}
+    >
       
       <div className="max-w-6xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Title Section */}
           <div className="lg:col-span-4">
-            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold leading-tight" style={{ color: '#411c78' }}>
               Frequently Asked Questions
             </h2>
           </div>
@@ -60,10 +59,10 @@ const FAQSection: React.FC = () => {
                 <AccordionItem
                   key={index}
                   value={`item-${index}`}
-                  className="bg-white/95 backdrop-blur-sm rounded-2xl border-none overflow-hidden shadow-lg"
+                  className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 overflow-hidden shadow-lg"
                 >
-                  <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white transition-colors">
-                    <span className="text-base md:text-lg font-semibold text-gray-900 pr-4">
+                  <AccordionTrigger className="px-6 py-5 text-left hover:no-underline hover:bg-white/90 transition-colors">
+                    <span className="text-base md:text-lg font-semibold pr-4" style={{ color: '#411c78' }}>
                       {faq.question}
                     </span>
                   </AccordionTrigger>
