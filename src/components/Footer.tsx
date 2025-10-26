@@ -106,7 +106,7 @@ const Footer: React.FC = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <a
-                  href="https://facebook.com"
+                  href="https://www.facebook.com/daddyleeads"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -122,7 +122,7 @@ const Footer: React.FC = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <a
-                  href="https://twitter.com"
+                  href="https://x.com/daddyleadss"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -138,7 +138,7 @@ const Footer: React.FC = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/company/daddyleadss/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
@@ -154,7 +154,7 @@ const Footer: React.FC = () => {
             <Tooltip>
               <TooltipTrigger asChild>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/daddyleadss"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all duration-300 hover:scale-110"
