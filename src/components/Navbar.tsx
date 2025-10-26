@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
-import { LOGIN_URL, SIGNUP_URL } from '@/config/domains';
+import { LOGIN_URL, SIGNUP_URL, MARKETING_DOMAIN } from '@/config/domains';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoColorIndex, setLogoColorIndex] = useState(0);
+  const location = useLocation();
+  
+  // Check if we're on app subdomain pages (access or dashboard)
+  const isAppDomain = location.pathname.startsWith('/access') || location.pathname.startsWith('/dashboard');
 
   const logoGradients = [
     'from-[#6713e1] via-[#8b5cf6] to-[#a78bfa]',
@@ -48,18 +52,33 @@ const Navbar = () => {
       style={{ backgroundColor: '#411c78', borderRadius: '16px' }}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center">
-          <motion.div
-            className={`animate-shake font-bold text-[26px] tracking-tight transition-all duration-1000 bg-gradient-to-r ${logoGradients[logoColorIndex]} bg-clip-text text-transparent`}
-            whileHover={{ 
-              scale: 1.05,
-              transition: { duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }
-            }}
-            style={{ willChange: 'transform, background-position' }}
-          >
-            DL
-          </motion.div>
-        </Link>
+        {isAppDomain ? (
+          <a href={MARKETING_DOMAIN || '/'} className="flex items-center">
+            <motion.div
+              className={`animate-shake font-bold text-[26px] tracking-tight transition-all duration-1000 bg-gradient-to-r ${logoGradients[logoColorIndex]} bg-clip-text text-transparent`}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }
+              }}
+              style={{ willChange: 'transform, background-position' }}
+            >
+              DL
+            </motion.div>
+          </a>
+        ) : (
+          <Link to="/" className="flex items-center">
+            <motion.div
+              className={`animate-shake font-bold text-[26px] tracking-tight transition-all duration-1000 bg-gradient-to-r ${logoGradients[logoColorIndex]} bg-clip-text text-transparent`}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.3, ease: [0.4, 0.0, 0.2, 1] }
+              }}
+              style={{ willChange: 'transform, background-position' }}
+            >
+              DL
+            </motion.div>
+          </Link>
+        )}
 
         <div className="flex items-center gap-8">
           <div className="hidden md:flex items-center gap-6">
@@ -70,6 +89,18 @@ const Navbar = () => {
                   href={link.path}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="text-[15px] font-bold hover:scale-105 transition-all duration-500 text-white hover:text-white/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]"
+                  style={{
+                    transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+                    willChange: 'transform',
+                  }}
+                >
+                  {link.name}
+                </a>
+              ) : isAppDomain ? (
+                <a
+                  key={link.path}
+                  href={`${MARKETING_DOMAIN}${link.path}`}
                   className="text-[15px] font-bold hover:scale-105 transition-all duration-500 text-white hover:text-white/80 drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]"
                   style={{
                     transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
