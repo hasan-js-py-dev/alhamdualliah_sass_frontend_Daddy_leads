@@ -38,7 +38,7 @@ const FooterLandscapeDecoration: React.FC = () => {
         {/* Messaging Apps Icons */}
         <div className="flex justify-center gap-8">
           <a
-            href="https://wa.me/1234567890"
+            href="https://wa.me/message/UPRRNRLKPFAQL1"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col items-center gap-3 transition-transform hover:scale-110"
@@ -50,7 +50,7 @@ const FooterLandscapeDecoration: React.FC = () => {
           </a>
           
           <a
-            href="https://t.me/yourusername"
+            href="https://t.me/daddyleadss"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col items-center gap-3 transition-transform hover:scale-110"
@@ -64,7 +64,7 @@ const FooterLandscapeDecoration: React.FC = () => {
           </a>
           
           <a
-            href="https://discord.gg/yourinvite"
+            href="https://discord.gg/daddyleadss"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col items-center gap-3 transition-transform hover:scale-110"

@@ -279,7 +279,7 @@ const ProductPage = () => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <a
-                      href="https://wa.me/1234567890"
+                      href="https://wa.me/message/UPRRNRLKPFAQL1"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-14 h-14 rounded-full bg-gradient-to-br from-[#25D366] to-[#128C7E] flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
@@ -295,7 +295,7 @@ const ProductPage = () => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <a
-                      href="https://t.me/yourusername"
+                      href="https://t.me/daddyleadss"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-14 h-14 rounded-full bg-gradient-to-br from-[#0088cc] to-[#006699] flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
@@ -311,7 +311,7 @@ const ProductPage = () => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <a
-                      href="https://discord.gg/yourinvite"
+                      href="https://discord.gg/daddyleadss"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-14 h-14 rounded-full bg-gradient-to-br from-[#5865F2] to-[#4752C4] flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
