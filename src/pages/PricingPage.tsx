@@ -188,7 +188,7 @@ const PricingPage = () => {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
-                        href="https://wa.me/message/UPRRNRLKPFAQL1"
+                        href="https://wa.link/vryx6n"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"
@@ -222,7 +222,7 @@ const PricingPage = () => {
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <a
-                        href="https://discord.gg/daddyleadss"
+                        href="https://discord.gg/n977c57Wee"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="w-14 h-14 rounded-full flex items-center justify-center text-white shadow-lg hover:shadow-xl hover:scale-110 transition-all duration-300"

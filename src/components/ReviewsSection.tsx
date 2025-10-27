@@ -549,7 +549,7 @@ const ReviewsSection: React.FC = () => {
           className="mt-8 flex justify-center gap-8 px-6"
         >
           <a
-            href="https://wa.me/message/UPRRNRLKPFAQL1"
+            href="https://wa.link/vryx6n"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col items-center gap-3 transition-transform hover:scale-110 duration-300"
@@ -577,7 +577,7 @@ const ReviewsSection: React.FC = () => {
           </a>
           
           <a
-            href="https://discord.gg/daddyleadss"
+            href="https://discord.gg/n977c57Wee"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex flex-col items-center gap-3 transition-transform hover:scale-110 duration-300"
