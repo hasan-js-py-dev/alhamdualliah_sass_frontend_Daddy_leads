@@ -65,10 +65,7 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-/**
- * Index for faster email lookups
- */
-userSchema.index({ email: 1 });
+// Email index is already created via schema definition (unique: true)
 
 /**
  * Pre-save middleware to hash password
