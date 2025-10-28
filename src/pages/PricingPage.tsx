@@ -80,7 +80,7 @@ const PricingPage = () => {
                   <CardHeader>
                     <CardTitle className="text-2xl" style={{ color: '#411c78' }}>B2B LEADS FINDER</CardTitle>
                     <CardDescription className="text-lg font-semibold text-gray-700">
-                      $19 per 10,000 leads • Min. purchase $19
+                      $0.0019 per lead • Min. purchase $19 (10,000 credits)
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
@@ -138,7 +138,7 @@ const PricingPage = () => {
                   <CardHeader>
                     <CardTitle className="text-2xl" style={{ color: '#411c78' }}>B2B DATA SCRAPER</CardTitle>
                     <CardDescription className="text-lg font-semibold text-gray-700">
-                      $9 per 10,000 credits
+                      $0.0009 per credit • Min. purchase $9 (10,000 credits)
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
