@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Eye, EyeOff, Check } from 'lucide-react';
+import { toast } from 'sonner';
 import AnimatedTitle from '@/components/AnimatedTitle';
+import { authService } from '@/services/authService';
 
 const AccessPage = () => {
   const navigate = useNavigate();
@@ -13,6 +16,8 @@ const AccessPage = () => {
   const mode = searchParams.get('p') || 'login'; // 'login' or 'signup'
   
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -27,23 +32,46 @@ const AccessPage = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // TODO: Implement MongoDB authentication here
-    // This is where you'll make API calls to your MongoDB backend
-    
-    if (mode === 'signup') {
-      // Handle signup with MongoDB
-      console.log('Signup with MongoDB:', {
-        firstName: formData.firstName,
-        lastName: formData.lastName,
-        email: formData.email,
-        password: formData.password,
-      });
-    } else {
-      // Handle login with MongoDB
-      console.log('Login with MongoDB:', {
-        email: formData.email,
-        password: formData.password,
-      });
+    if (mode === 'signup' && !agreeToTerms) {
+      toast.error('Please agree to the Terms and Conditions');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      if (mode === 'signup') {
+        const result = await authService.signup({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          agreeToTerms,
+        });
+
+        if (result.success) {
+          toast.success('Account created successfully!');
+          navigate('/dashboard');
+        } else {
+          toast.error(result.message || 'Signup failed. Please try again.');
+        }
+      } else {
+        const result = await authService.login({
+          email: formData.email,
+          password: formData.password,
+        });
+
+        if (result.success) {
+          toast.success('Logged in successfully!');
+          navigate('/dashboard');
+        } else {
+          toast.error(result.message || 'Invalid email or password.');
+        }
+      }
+    } catch (error) {
+      toast.error('An error occurred. Please try again.');
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -155,12 +183,29 @@ const AccessPage = () => {
                 </div>
               </div>
 
+              {mode === 'signup' && (
+                <div className="flex items-start space-x-2 mt-4">
+                  <Checkbox
+                    id="terms"
+                    checked={agreeToTerms}
+                    onCheckedChange={(checked) => setAgreeToTerms(checked as boolean)}
+                  />
+                  <label
+                    htmlFor="terms"
+                    className="text-sm text-gray-600 leading-tight cursor-pointer"
+                  >
+                    I agree to the Terms and Conditions
+                  </label>
+                </div>
+              )}
+
               <Button
                 type="submit"
+                disabled={loading}
                 className="w-full h-12 text-base font-semibold mt-6"
                 style={{ backgroundColor: '#6366f1', color: 'white' }}
               >
-                {mode === 'signup' ? 'Create Account' : 'Sign In'}
+                {loading ? 'Processing...' : mode === 'signup' ? 'Create Account' : 'Sign In'}
               </Button>
 
               <p className="text-center text-sm text-gray-600 mt-4">

@@ -1,32 +1,27 @@
 import { Navigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-
-// TODO: Replace with actual MongoDB authentication check
-const useAuth = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    // TODO: Check MongoDB session/token
-    // For now, check localStorage for demo purposes
-    const token = localStorage.getItem('authToken');
-    setIsAuthenticated(!!token);
-  }, []);
-
-  return isAuthenticated;
-};
+import { useAuth } from '@/contexts/AuthContext';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
 }
 
 export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
-  const isAuthenticated = useAuth();
+  const { user, loading } = useAuth();
 
-  if (isAuthenticated === null) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: '#faf8f0' }}>
+        <div className="text-center">
+          <div className="w-16 h-16 rounded-xl bg-gradient-to-br from-[#14F195] via-[#00D4FF] to-[#9945FF] flex items-center justify-center text-white font-bold text-2xl shadow-lg mx-auto mb-4 animate-pulse">
+            DL
+          </div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
   }
 
-  if (!isAuthenticated) {
+  if (!user) {
     return <Navigate to="/access?p=login" replace />;
   }
 
