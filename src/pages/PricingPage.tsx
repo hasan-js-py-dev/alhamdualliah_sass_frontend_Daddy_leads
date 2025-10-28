@@ -12,12 +12,13 @@ import { motion } from 'framer-motion';
 import { SIGNUP_URL } from '@/config/domains';
 
 const PricingPage = () => {
-  const [leadsQuantity, setLeadsQuantity] = useState<number>(1000);
+  const [leadsQuantity, setLeadsQuantity] = useState<number>(10000);
   const [dataQuantity, setDataQuantity] = useState<number>(10000);
 
-  const leadsPrice = 0.019; // $19 per 1000 leads
-  const dataPrice = 0.0009; // $9 per 10000 credits
-  const minLeadsQuantity = 1000; // Minimum $19 purchase
+  const leadsPrice = 0.0019; // $19 per 10,000 leads
+  const dataPrice = 0.0009; // $9 per 10,000 credits
+  const minLeadsQuantity = 10000; // Minimum $19 purchase
+  const minDataQuantity = 10000; // Minimum $9 purchase
 
   const leadsFeatures = [
     'LinkedIn Sales Nav Scraper',
@@ -79,7 +80,7 @@ const PricingPage = () => {
                   <CardHeader>
                     <CardTitle className="text-2xl" style={{ color: '#411c78' }}>B2B LEADS FINDER</CardTitle>
                     <CardDescription className="text-lg font-semibold text-gray-700">
-                      $19 per 1,000 leads • Min. purchase $19
+                      $19 per 10,000 leads • Min. purchase $19
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
@@ -89,7 +90,7 @@ const PricingPage = () => {
                       <Input
                         type="number"
                         min={minLeadsQuantity}
-                        step="100"
+                        step="1000"
                         value={leadsQuantity}
                         onChange={(e) => setLeadsQuantity(Math.max(minLeadsQuantity, Number(e.target.value) || minLeadsQuantity))}
                         className="text-lg"
@@ -146,10 +147,10 @@ const PricingPage = () => {
                       <label className="text-sm font-medium text-gray-700">Number of records:</label>
                       <Input
                         type="number"
-                        min="100"
+                        min={minDataQuantity}
                         step="1000"
                         value={dataQuantity}
-                        onChange={(e) => setDataQuantity(Math.max(100, Number(e.target.value) || 100))}
+                        onChange={(e) => setDataQuantity(Math.max(minDataQuantity, Number(e.target.value) || minDataQuantity))}
                         className="text-lg"
                       />
                       <div className="p-4 rounded-lg" style={{ backgroundColor: '#411c78' }}>
