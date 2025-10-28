@@ -13,10 +13,11 @@ import { SIGNUP_URL } from '@/config/domains';
 
 const PricingPage = () => {
   const [leadsQuantity, setLeadsQuantity] = useState<number>(1000);
-  const [dataQuantity, setDataQuantity] = useState<number>(1000);
+  const [dataQuantity, setDataQuantity] = useState<number>(10000);
 
-  const leadsPrice = 0.001;
-  const dataPrice = 0.0005;
+  const leadsPrice = 0.019; // $19 per 1000 leads
+  const dataPrice = 0.0009; // $9 per 10000 credits
+  const minLeadsQuantity = 1000; // Minimum $19 purchase
 
   const leadsFeatures = [
     'LinkedIn Sales Nav Scraper',
@@ -78,7 +79,7 @@ const PricingPage = () => {
                   <CardHeader>
                     <CardTitle className="text-2xl" style={{ color: '#411c78' }}>B2B LEADS FINDER</CardTitle>
                     <CardDescription className="text-lg font-semibold text-gray-700">
-                      ${leadsPrice} per valid email
+                      $19 per 1,000 leads • Min. purchase $19
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
@@ -87,9 +88,10 @@ const PricingPage = () => {
                       <label className="text-sm font-medium text-gray-700">Number of emails:</label>
                       <Input
                         type="number"
-                        min="1"
+                        min={minLeadsQuantity}
+                        step="100"
                         value={leadsQuantity}
-                        onChange={(e) => setLeadsQuantity(Number(e.target.value) || 0)}
+                        onChange={(e) => setLeadsQuantity(Math.max(minLeadsQuantity, Number(e.target.value) || minLeadsQuantity))}
                         className="text-lg"
                       />
                       <div className="p-4 rounded-lg" style={{ backgroundColor: '#411c78' }}>
@@ -111,6 +113,13 @@ const PricingPage = () => {
                       ))}
                     </div>
 
+                    {/* Note */}
+                    <div className="p-3 rounded-lg bg-purple-50 border border-purple-200">
+                      <p className="text-sm text-gray-700">
+                        <span className="font-semibold">Note:</span> Credits charged only for valid emails (not catchall or invalid).
+                      </p>
+                    </div>
+
                     <Button asChild className="w-full" style={{ backgroundColor: '#411c78' }}>
                       <a href={SIGNUP_URL}>Get Started</a>
                     </Button>
@@ -128,7 +137,7 @@ const PricingPage = () => {
                   <CardHeader>
                     <CardTitle className="text-2xl" style={{ color: '#411c78' }}>B2B DATA SCRAPER</CardTitle>
                     <CardDescription className="text-lg font-semibold text-gray-700">
-                      ${dataPrice} per successful data scrape
+                      $9 per 10,000 credits
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-6">
@@ -137,9 +146,10 @@ const PricingPage = () => {
                       <label className="text-sm font-medium text-gray-700">Number of records:</label>
                       <Input
                         type="number"
-                        min="1"
+                        min="100"
+                        step="1000"
                         value={dataQuantity}
-                        onChange={(e) => setDataQuantity(Number(e.target.value) || 0)}
+                        onChange={(e) => setDataQuantity(Math.max(100, Number(e.target.value) || 100))}
                         className="text-lg"
                       />
                       <div className="p-4 rounded-lg" style={{ backgroundColor: '#411c78' }}>
@@ -159,6 +169,13 @@ const PricingPage = () => {
                           <span className="text-gray-700">{feature}</span>
                         </div>
                       ))}
+                    </div>
+
+                    {/* Note */}
+                    <div className="p-3 rounded-lg bg-purple-50 border border-purple-200">
+                      <p className="text-sm text-gray-700">
+                        <span className="font-semibold">Note:</span> Credits charged only for successful rows.
+                      </p>
                     </div>
 
                     <Button asChild className="w-full" style={{ backgroundColor: '#411c78' }}>
