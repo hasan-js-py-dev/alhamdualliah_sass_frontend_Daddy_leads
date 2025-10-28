@@ -14,6 +14,8 @@ const AccessPage = () => {
   
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
     email: '',
     password: '',
   });
@@ -31,6 +33,8 @@ const AccessPage = () => {
     if (mode === 'signup') {
       // Handle signup with MongoDB
       console.log('Signup with MongoDB:', {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
         email: formData.email,
         password: formData.password,
       });
@@ -87,6 +91,35 @@ const AccessPage = () => {
 
             {/* Auth Form */}
             <form onSubmit={handleSubmit} className="space-y-4">
+              {mode === 'signup' && (
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <Label htmlFor="firstName" className="text-gray-700">First Name</Label>
+                    <Input
+                      id="firstName"
+                      type="text"
+                      placeholder="First Name"
+                      value={formData.firstName}
+                      onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                      required
+                      className="bg-white border-gray-300"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <Label htmlFor="lastName" className="text-gray-700">Last Name</Label>
+                    <Input
+                      id="lastName"
+                      type="text"
+                      placeholder="Last Name"
+                      value={formData.lastName}
+                      onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                      required
+                      className="bg-white border-gray-300"
+                    />
+                  </div>
+                </div>
+              )}
+
               <div className="space-y-2">
                 <Label htmlFor="email" className="text-gray-700">Email</Label>
                 <Input
