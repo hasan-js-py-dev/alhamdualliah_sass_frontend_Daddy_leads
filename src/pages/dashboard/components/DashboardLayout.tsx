@@ -71,24 +71,24 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-72 flex flex-col bg-gradient-to-b from-[#6b46c1] to-[#5a3aa3] text-white shadow-2xl">
+      <aside className="w-72 flex flex-col bg-gradient-to-br from-orange-50 via-amber-50 to-rose-50 text-gray-900 shadow-2xl border-r border-gray-200">
         {/* Logo */}
-        <div className="p-6 border-b border-white/10">
+        <div className="p-6 border-b border-gray-200">
           <Link to="/dashboard" className="flex items-center space-x-3 group">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-white to-white/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <span className="text-xl font-bold bg-gradient-to-br from-[#6b46c1] to-[#5a3aa3] bg-clip-text text-transparent">DL</span>
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-orange-500 to-rose-500 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+              <span className="text-xl font-bold text-white">DL</span>
             </div>
-            <span className="text-white font-bold text-xl tracking-tight">Daddy Leads</span>
+            <span className="text-gray-900 font-bold text-xl tracking-tight">Daddy Leads</span>
           </Link>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-4 py-4 space-y-3 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
+        <nav className="flex-1 px-4 py-4 space-y-3 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
           {/* B2B Lead Finder */}
           <Collapsible open={leadFinderOpen} onOpenChange={setLeadFinderOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-200 group">
-              <span className="text-sm font-bold tracking-wide uppercase text-white/90">B2B Lead Finder</span>
-              <ChevronDown size={18} className={`transition-transform duration-200 text-white/70 group-hover:text-white ${leadFinderOpen ? 'rotate-180' : ''}`} />
+            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/60 transition-all duration-200 group">
+              <span className="text-sm font-bold tracking-wide uppercase text-gray-900">B2B Lead Finder</span>
+              <ChevronDown size={18} className={`transition-transform duration-200 text-gray-600 group-hover:text-gray-900 ${leadFinderOpen ? 'rotate-180' : ''}`} />
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="space-y-1.5 mt-2">
@@ -100,12 +100,12 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       to={item.path}
                       className={`flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl transition-all duration-200 group ${
                         isActive
-                          ? 'bg-white/20 shadow-lg'
-                          : 'hover:bg-white/10 hover:translate-x-1'
+                          ? 'bg-white/80 shadow-md'
+                          : 'hover:bg-white/60 hover:translate-x-1'
                       }`}
                     >
-                      <item.icon size={20} className="flex-shrink-0" />
-                      <span className={`text-base font-medium bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>
+                      <item.icon size={20} className="flex-shrink-0 text-gray-700" />
+                      <span className="text-base font-medium text-gray-900">
                         {item.name}
                       </span>
                     </Link>
@@ -113,7 +113,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 })}
                 <button
                   onClick={() => setShowAllLeadFinder(!showAllLeadFinder)}
-                  className="flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 w-full group hover:translate-x-1"
+                  className="flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-gray-700 hover:bg-white/60 hover:text-gray-900 transition-all duration-200 w-full group hover:translate-x-1"
                 >
                   <Menu size={20} className="flex-shrink-0" />
                   <span className="text-base font-medium">{showAllLeadFinder ? 'Show Less' : 'Show All'}</span>
@@ -124,9 +124,9 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
           {/* Data Scraper */}
           <Collapsible open={dataScraperOpen} onOpenChange={setDataScraperOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-200 group">
-              <span className="text-sm font-bold tracking-wide uppercase text-white/90">Data Scraper</span>
-              <ChevronDown size={18} className={`transition-transform duration-200 text-white/70 group-hover:text-white ${dataScraperOpen ? 'rotate-180' : ''}`} />
+            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/60 transition-all duration-200 group">
+              <span className="text-sm font-bold tracking-wide uppercase text-gray-900">Data Scraper</span>
+              <ChevronDown size={18} className={`transition-transform duration-200 text-gray-600 group-hover:text-gray-900 ${dataScraperOpen ? 'rotate-180' : ''}`} />
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="space-y-1.5 mt-2">
@@ -138,12 +138,12 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       to={item.path}
                       className={`flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl transition-all duration-200 group ${
                         isActive
-                          ? 'bg-white/20 shadow-lg'
-                          : 'hover:bg-white/10 hover:translate-x-1'
+                          ? 'bg-white/80 shadow-md'
+                          : 'hover:bg-white/60 hover:translate-x-1'
                       }`}
                     >
-                      <item.icon size={20} className="flex-shrink-0" />
-                      <span className={`text-base font-medium bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>
+                      <item.icon size={20} className="flex-shrink-0 text-gray-700" />
+                      <span className="text-base font-medium text-gray-900">
                         {item.name}
                       </span>
                     </Link>
@@ -151,7 +151,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                 })}
                 <button
                   onClick={() => setShowAllDataScraper(!showAllDataScraper)}
-                  className="flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 w-full group hover:translate-x-1"
+                  className="flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-gray-700 hover:bg-white/60 hover:text-gray-900 transition-all duration-200 w-full group hover:translate-x-1"
                 >
                   <Menu size={20} className="flex-shrink-0" />
                   <span className="text-base font-medium">{showAllDataScraper ? 'Show Less' : 'Show All'}</span>
@@ -162,19 +162,19 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </nav>
 
         {/* Credits Section */}
-        <div className="px-4 pb-6 space-y-3 border-t border-white/20 pt-6">
-          <div className="px-4 py-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 shadow-lg">
-            <div className="text-xs font-semibold text-white/60 mb-3 uppercase tracking-wide">Your Credits</div>
+        <div className="px-4 pb-6 space-y-3 border-t border-gray-200 pt-6">
+          <div className="px-4 py-4 rounded-xl bg-white/60 backdrop-blur-sm border border-gray-200 shadow-md">
+            <div className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wide">Your Credits</div>
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-white/90">Lead Finder</span>
-                <span className="text-base font-bold bg-gradient-to-r from-orange-400 to-yellow-300 bg-clip-text text-transparent px-3 py-1 rounded-lg bg-white/20">
+                <span className="text-sm font-medium text-gray-900">Lead Finder</span>
+                <span className="text-base font-bold text-orange-600 px-3 py-1 rounded-lg bg-orange-50">
                   {user?.credits?.leadsFinderCredits || 0}
                 </span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-white/90">Data Scraper</span>
-                <span className="text-base font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent px-3 py-1 rounded-lg bg-white/20">
+                <span className="text-sm font-medium text-gray-900">Data Scraper</span>
+                <span className="text-base font-bold text-blue-600 px-3 py-1 rounded-lg bg-blue-50">
                   {user?.credits?.dataScraperCredits || 0}
                 </span>
               </div>
@@ -182,7 +182,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </div>
 
           <Button 
-            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
             onClick={() => navigate('/dashboard/buy-credits')}
           >
             <CreditCard className="mr-2" size={18} />
@@ -190,7 +190,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </Button>
 
           <Button 
-            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
             onClick={() => window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')}
           >
             <Download className="mr-2" size={18} />
@@ -199,18 +199,18 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
           {/* Account */}
           <Collapsible open={accountOpen} onOpenChange={setAccountOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-200 group">
+            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/60 transition-all duration-200 group">
               <div className="flex items-center space-x-3">
-                <Settings size={20} className="text-white/70 group-hover:text-white transition-colors" />
-                <span className="text-sm font-semibold text-white/90 group-hover:text-white">Account</span>
+                <Settings size={20} className="text-gray-600 group-hover:text-gray-900 transition-colors" />
+                <span className="text-sm font-semibold text-gray-900">Account</span>
               </div>
-              <ChevronDown size={18} className={`transition-transform duration-200 text-white/70 group-hover:text-white ${accountOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown size={18} className={`transition-transform duration-200 text-gray-600 group-hover:text-gray-900 ${accountOpen ? 'rotate-180' : ''}`} />
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="space-y-1 mt-2">
                 <button
                   onClick={handleLogout}
-                  className="w-full flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all duration-200 group hover:translate-x-1"
+                  className="w-full flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-gray-700 hover:bg-white/60 hover:text-gray-900 transition-all duration-200 group hover:translate-x-1"
                 >
                   <LogOut size={20} className="flex-shrink-0" />
                   <span className="text-base font-medium">Logout</span>
