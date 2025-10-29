@@ -299,12 +299,18 @@ Then import and use in your components.
 ```typescript
 // Use Tailwind classes
 <div className="flex items-center gap-4 p-6 bg-background">
+  <p>Content here</p>
+</div>
 
 // Use cn() for conditional classes
+import { cn } from '@/lib/utils';
+
 <div className={cn(
   "base-class",
   condition && "conditional-class"
 )}>
+  <p>Content here</p>
+</div>
 ```
 
 ## Environment Variables
