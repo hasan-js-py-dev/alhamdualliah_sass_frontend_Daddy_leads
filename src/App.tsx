@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./pages/dashboard/components/ProtectedRoute";
 import { DomainRedirect } from "./components/DomainRedirect";
 import HomePage from "./pages/HomePage";
@@ -10,6 +11,7 @@ import ProductPage from "./pages/ProductPage";
 import PricingPage from "./pages/PricingPage";
 import ConnectPage from "./pages/ConnectPage";
 import AccessPage from "./pages/AccessPage";
+import DashboardHomePage from "./pages/dashboard/DashboardHomePage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import ComingSoonPage from "./pages/dashboard/ComingSoonPage";
 import NotFound from "./pages/NotFound";
@@ -18,31 +20,32 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-            {/* Public Marketing Routes - Only on main domain */}
-            <Route path="/" element={<DomainRedirect type="marketing"><HomePage /></DomainRedirect>} />
-            <Route path="/product" element={<DomainRedirect type="marketing"><ProductPage /></DomainRedirect>} />
-            <Route path="/pricing" element={<DomainRedirect type="marketing"><PricingPage /></DomainRedirect>} />
-            <Route path="/connect" element={<DomainRedirect type="marketing"><ConnectPage /></DomainRedirect>} />
-            
-            {/* Auth Routes - Only on app subdomain */}
-            <Route path="/access" element={<DomainRedirect type="app"><AccessPage /></DomainRedirect>} />
-            
-            {/* Protected Dashboard Routes - Only on app subdomain */}
-            <Route 
-              path="/dashboard" 
-              element={
-                <DomainRedirect type="app">
-                  <ProtectedRoute>
-                    <DashboardPage />
-                  </ProtectedRoute>
-                </DomainRedirect>
-              } 
-            />
+    <AuthProvider>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <Routes>
+              {/* Public Marketing Routes - Only on main domain */}
+              <Route path="/" element={<DomainRedirect type="marketing"><HomePage /></DomainRedirect>} />
+              <Route path="/product" element={<DomainRedirect type="marketing"><ProductPage /></DomainRedirect>} />
+              <Route path="/pricing" element={<DomainRedirect type="marketing"><PricingPage /></DomainRedirect>} />
+              <Route path="/connect" element={<DomainRedirect type="marketing"><ConnectPage /></DomainRedirect>} />
+              
+              {/* Auth Routes - Only on app subdomain */}
+              <Route path="/access" element={<DomainRedirect type="app"><AccessPage /></DomainRedirect>} />
+              
+              {/* Protected Dashboard Routes - Only on app subdomain */}
+              <Route 
+                path="/dashboard" 
+                element={
+                  <DomainRedirect type="app">
+                    <ProtectedRoute>
+                      <DashboardHomePage />
+                    </ProtectedRoute>
+                  </DomainRedirect>
+                } 
+              />
             <Route 
               path="/dashboard/sales-navigator" 
               element={
@@ -124,11 +127,12 @@ const App = () => (
               } 
             />
             
-            {/* 404 */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </BrowserRouter>
-      </TooltipProvider>
+              {/* 404 */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </TooltipProvider>
+      </AuthProvider>
   </QueryClientProvider>
 );
 
