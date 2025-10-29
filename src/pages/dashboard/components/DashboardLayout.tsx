@@ -9,7 +9,8 @@ import {
   CreditCard,
   Settings,
   LogOut,
-  Download
+  Download,
+  Menu
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -30,21 +31,42 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const [leadFinderOpen, setLeadFinderOpen] = useState(true);
   const [dataScraperOpen, setDataScraperOpen] = useState(true);
   const [accountOpen, setAccountOpen] = useState(false);
+  const [showAllLeadFinder, setShowAllLeadFinder] = useState(false);
+  const [showAllDataScraper, setShowAllDataScraper] = useState(false);
 
   const handleLogout = async () => {
     await logout();
     navigate('/access?p=login');
   };
 
-  const leadFinderTools = [
-    { name: 'Sales Navigator Export', path: '/dashboard/sales-navigator', icon: Zap },
-    { name: 'Email Finder', path: '/dashboard/email-finder', icon: Mail },
-    { name: 'Email Verifier', path: '/dashboard/email-verifier', icon: CheckCircle },
+  const allLeadFinderTools = [
+    { name: 'LinkedIn Sales Nav Scraper', path: '/dashboard/linkedin-sales-nav-scraper', icon: Zap, isDefault: true },
+    { name: 'Bulk LinkedIn Profile Enricher', path: '/dashboard/bulk-linkedin-profile-enricher', icon: Database, isDefault: true },
+    { name: 'Apollo Scraper', path: '/dashboard/apollo-scraper', icon: Database, isDefault: true },
+    { name: 'Email Enricher', path: '/dashboard/email-enricher', icon: Mail, isDefault: false },
+    { name: 'Domain Enricher', path: '/dashboard/domain-enricher', icon: Database, isDefault: false },
+    { name: 'Zoominfo Scraper', path: '/dashboard/zoominfo-scraper', icon: Database, isDefault: false },
+    { name: 'Crunchbase Scraper', path: '/dashboard/crunchbase-scraper', icon: Database, isDefault: false },
+    { name: 'Lemlist Scraper', path: '/dashboard/lemlist-scraper', icon: Mail, isDefault: false },
   ];
 
-  const dataScraperTools = [
-    { name: 'URL Enrichment', path: '/dashboard/url-enrichment', icon: Database },
+  const allDataScraperTools = [
+    { name: 'Email Verifier', path: '/dashboard/email-verifier', icon: CheckCircle, isDefault: true },
+    { name: 'LinkedIn Sales Nav Company Scraper', path: '/dashboard/linkedin-company-scraper', icon: Database, isDefault: true },
+    { name: 'Google Map Scraper', path: '/dashboard/google-map-scraper', icon: Database, isDefault: true },
+    { name: 'Yelp Scraper', path: '/dashboard/yelp-scraper', icon: Database, isDefault: false },
+    { name: 'Restaurant Directories', path: '/dashboard/restaurant-directories', icon: Database, isDefault: false },
+    { name: 'RealEstate Directories', path: '/dashboard/realestate-directories', icon: Database, isDefault: false },
+    { name: 'Scrape Companies from B2B Databases', path: '/dashboard/b2b-databases', icon: Database, isDefault: false },
   ];
+
+  const leadFinderTools = showAllLeadFinder 
+    ? allLeadFinderTools 
+    : allLeadFinderTools.filter(tool => tool.isDefault);
+
+  const dataScraperTools = showAllDataScraper 
+    ? allDataScraperTools 
+    : allDataScraperTools.filter(tool => tool.isDefault);
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -87,6 +109,13 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </Link>
                   );
                 })}
+                <button
+                  onClick={() => setShowAllLeadFinder(!showAllLeadFinder)}
+                  className="flex items-center space-x-3 px-3 py-2 ml-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-colors w-full"
+                >
+                  <Menu size={18} />
+                  <span className="text-sm">{showAllLeadFinder ? 'Show Less' : 'Show All'}</span>
+                </button>
               </div>
             </CollapsibleContent>
           </Collapsible>
@@ -116,6 +145,13 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                     </Link>
                   );
                 })}
+                <button
+                  onClick={() => setShowAllDataScraper(!showAllDataScraper)}
+                  className="flex items-center space-x-3 px-3 py-2 ml-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-colors w-full"
+                >
+                  <Menu size={18} />
+                  <span className="text-sm">{showAllDataScraper ? 'Show Less' : 'Show All'}</span>
+                </button>
               </div>
             </CollapsibleContent>
           </Collapsible>
