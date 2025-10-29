@@ -137,6 +137,150 @@ const App = () => (
                 </DomainRedirect>
               } 
             />
+
+            {/* B2B Lead Finder Products */}
+            <Route 
+              path="/dashboard/linkedin-sales-nav-scraper" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="LinkedIn Sales Nav Scraper" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/email-enricher" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Email Enricher" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/domain-enricher" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Domain Enricher" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/bulk-linkedin-profile-enricher" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Bulk LinkedIn Profile Enricher" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/apollo-scraper" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Apollo Scraper" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/zoominfo-scraper" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Zoominfo Scraper" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/crunchbase-scraper" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Crunchbase Scraper" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/lemlist-scraper" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Lemlist Scraper" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+
+            {/* Data Scraper Products */}
+            <Route 
+              path="/dashboard/linkedin-company-scraper" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="LinkedIn Sales Nav Company Scraper" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/yelp-scraper" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Yelp Scraper" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/google-map-scraper" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Google Map Scraper" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/restaurant-directories" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Restaurant Directories" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/realestate-directories" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="RealEstate Directories" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/b2b-databases" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <ComingSoonPage title="Scrape Companies from B2B Databases" />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
             
               {/* 404 */}
               <Route path="*" element={<NotFound />} />
