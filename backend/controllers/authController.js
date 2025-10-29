@@ -2,6 +2,7 @@ const User = require('../models/User');
 const Session = require('../models/Session');
 const { generateToken, getTokenExpirationMs } = require('../utils/tokenUtils');
 const { successResponse, errorResponse } = require('../utils/responseUtils');
+const logger = require('../utils/logger');
 
 /**
  * User Signup Controller
@@ -39,26 +40,20 @@ const signup = async (req, res) => {
     const expiresIn = getTokenExpirationMs();
     await Session.createSession(user._id, token, expiresIn);
 
-    // Prepare user data (without password)
-    const userData = {
-      id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      credits: {
-        leadsFinderCredits: user.credits.leadsFinderCredits,
-        dataScraperCredits: user.credits.dataScraperCredits,
-      },
-    };
-
+    // Return success with token and minimal user data
     res.status(201).json(
       successResponse('Account created successfully', {
         token,
-        user: userData,
+        user: {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+        },
       })
     );
   } catch (error) {
-    console.error('Signup error:', error);
+    logger.error('Signup error', { userId: error.userId });
     res.status(500).json(errorResponse('An error occurred during signup. Please try again.'));
   }
 };
@@ -82,26 +77,20 @@ const login = async (req, res) => {
     const expiresIn = getTokenExpirationMs();
     await Session.createSession(user._id, token, expiresIn);
 
-    // Prepare user data (without password)
-    const userData = {
-      id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      credits: {
-        leadsFinderCredits: user.credits.leadsFinderCredits,
-        dataScraperCredits: user.credits.dataScraperCredits,
-      },
-    };
-
+    // Return success with token and minimal user data
     res.status(200).json(
       successResponse('Login successful', {
         token,
-        user: userData,
+        user: {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+        },
       })
     );
   } catch (error) {
-    console.error('Login error:', error);
+    logger.error('Login error', { userId: req.user?._id });
     res.status(500).json(errorResponse('An error occurred during login. Please try again.'));
   }
 };
@@ -115,25 +104,19 @@ const verify = async (req, res) => {
     // User is already authenticated by JWT middleware
     const user = req.user;
 
-    // Prepare user data
-    const userData = {
-      id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      credits: {
-        leadsFinderCredits: user.credits.leadsFinderCredits,
-        dataScraperCredits: user.credits.dataScraperCredits,
-      },
-    };
-
+    // Return minimal user data
     res.status(200).json(
       successResponse('Token verified', {
-        user: userData,
+        user: {
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          email: user.email,
+        },
       })
     );
   } catch (error) {
-    console.error('Verify error:', error);
+    logger.error('Verify error', { userId: req.user?._id });
     res.status(500).json(errorResponse('An error occurred during verification. Please try again.'));
   }
 };
@@ -144,19 +127,24 @@ const verify = async (req, res) => {
  */
 const logout = async (req, res) => {
   try {
+    // req.user is guaranteed to exist because authenticateJWT middleware runs first
     const token = req.headers.authorization?.replace('Bearer ', '');
 
     if (!token) {
-      return res.status(401).json(errorResponse('No token provided'));
+      return res.status(400).json(errorResponse('No token provided'));
     }
 
-    // Delete session from database
+    // Delete session for authenticated user only
     await Session.deleteSession(token);
 
     res.status(200).json(successResponse('Logout successful'));
   } catch (error) {
-    console.error('Logout error:', error);
-    res.status(500).json(errorResponse('An error occurred during logout. Please try again.'));
+    // Log error without exposing sensitive details
+    logger.error('Logout error', { 
+      userId: req.user?._id,
+      timestamp: new Date().toISOString() 
+    });
+    res.status(500).json(errorResponse('Logout failed'));
   }
 };
 

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const crypto = require('crypto');
 
 const sessionSchema = new mongoose.Schema(
   {
@@ -31,33 +32,46 @@ const sessionSchema = new mongoose.Schema(
 sessionSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
 /**
- * Static method to create a new session
+ * Hash token using HMAC-SHA256
+ */
+sessionSchema.statics.hashToken = function (token) {
+  return crypto
+    .createHmac('sha256', process.env.SESSION_SECRET)
+    .update(token)
+    .digest('hex');
+};
+
+/**
+ * Static method to create a new session with hashed token
  */
 sessionSchema.statics.createSession = async function (userId, token, expiresIn) {
   const expiresAt = new Date(Date.now() + expiresIn);
+  const hashedToken = this.hashToken(token);
 
   return await this.create({
     userId,
-    token,
+    token: hashedToken,
     expiresAt,
   });
 };
 
 /**
- * Static method to find valid session
+ * Static method to find valid session with hashed token
  */
 sessionSchema.statics.findValidSession = async function (token) {
+  const hashedToken = this.hashToken(token);
   return await this.findOne({
-    token,
+    token: hashedToken,
     expiresAt: { $gt: new Date() },
   }).populate('userId', '-password');
 };
 
 /**
- * Static method to delete session (logout)
+ * Static method to delete session (logout) with hashed token
  */
 sessionSchema.statics.deleteSession = async function (token) {
-  return await this.deleteOne({ token });
+  const hashedToken = this.hashToken(token);
+  return await this.deleteOne({ token: hashedToken });
 };
 
 /**

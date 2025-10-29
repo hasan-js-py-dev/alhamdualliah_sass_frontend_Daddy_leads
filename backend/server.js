@@ -68,11 +68,12 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 
-// Logging middleware
+// Logging middleware - simplified format to avoid exposing sensitive data
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 } else {
-  app.use(morgan('combined'));
+  // Production: log minimal info without request bodies or query params
+  app.use(morgan(':method :url :status :response-time ms'));
 }
 
 // Initialize Passport

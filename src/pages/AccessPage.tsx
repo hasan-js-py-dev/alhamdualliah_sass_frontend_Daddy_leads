@@ -34,6 +34,19 @@ const AccessPage = () => {
     }
   }, [user, authLoading, navigate]);
 
+  // Clear sensitive form data on unmount
+  useEffect(() => {
+    return () => {
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+      });
+      setAgreeToTerms(false);
+    };
+  }, []);
+
   const switchMode = (newMode: string) => {
     setSearchParams({ p: newMode });
   };
@@ -60,6 +73,14 @@ const AccessPage = () => {
 
         if (result.success) {
           toast.success('Account created successfully!');
+          // Clear form data immediately after successful submission
+          setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+          });
+          setAgreeToTerms(false);
           // Navigation will happen automatically via useEffect when user state updates
         } else {
           toast.error(result.message || 'Signup failed. Please try again.');
@@ -69,6 +90,13 @@ const AccessPage = () => {
 
         if (result.success) {
           toast.success('Logged in successfully!');
+          // Clear form data immediately after successful submission
+          setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+          });
           // Navigation will happen automatically via useEffect when user state updates
         } else {
           toast.error(result.message || 'Invalid email or password.');

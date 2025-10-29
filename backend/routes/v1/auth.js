@@ -34,6 +34,6 @@ router.get('/verify', authenticateJWT, authController.verify);
  * @desc    Logout user and invalidate session
  * @access  Private
  */
-router.post('/logout', authController.logout);
+router.post('/logout', authenticateJWT, authController.logout);
 
 module.exports = router;
