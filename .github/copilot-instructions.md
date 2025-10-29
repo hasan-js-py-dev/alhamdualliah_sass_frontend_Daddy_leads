@@ -297,20 +297,28 @@ Then import and use in your components.
 
 ### Styling a Component
 ```typescript
-// Use Tailwind classes
-<div className="flex items-center gap-4 p-6 bg-background">
-  <p>Content here</p>
-</div>
+// Example 1: Using Tailwind classes
+export const SimpleComponent = () => {
+  return (
+    <div className="flex items-center gap-4 p-6 bg-background">
+      <p>Content here</p>
+    </div>
+  );
+};
 
-// Use cn() for conditional classes
+// Example 2: Using cn() for conditional classes
 import { cn } from '@/lib/utils';
 
-<div className={cn(
-  "base-class",
-  condition && "conditional-class"
-)}>
-  <p>Content here</p>
-</div>
+export const ConditionalComponent = ({ isActive }: { isActive: boolean }) => {
+  return (
+    <div className={cn(
+      "base-class p-4 rounded-lg",
+      isActive && "bg-primary text-white"
+    )}>
+      <p>Content here</p>
+    </div>
+  );
+};
 ```
 
 ## Environment Variables
