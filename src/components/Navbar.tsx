@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Button } from './ui/button';
 import { LOGIN_URL, SIGNUP_URL, MARKETING_DOMAIN } from '@/config/domains';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoColorIndex, setLogoColorIndex] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
+  const { user, loading: authLoading } = useAuth();
   
   // Check if we're on app subdomain pages (access or dashboard)
   const isAppDomain = location.pathname.startsWith('/access') || location.pathname.startsWith('/dashboard');
@@ -42,6 +45,18 @@ const Navbar = () => {
     { name: 'DOWNLOAD EXTENSION', path: 'https://cookie-editor.com/', external: true },
     { name: 'CONNECT', path: '/connect' },
   ];
+
+  const handleAuthClick = (e: React.MouseEvent<HTMLAnchorElement>, type: 'login' | 'signup') => {
+    e.preventDefault();
+    
+    // If user is already logged in, redirect to dashboard
+    if (!authLoading && user) {
+      navigate('/dashboard');
+    } else {
+      // Otherwise, go to login/signup page
+      window.location.href = type === 'login' ? LOGIN_URL : SIGNUP_URL;
+    }
+  };
 
   return (
     <motion.nav
@@ -126,7 +141,7 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3">
-            <a href={LOGIN_URL}>
+            <a href={LOGIN_URL} onClick={(e) => handleAuthClick(e, 'login')}>
               <Button
                 variant="outline"
                 className="inline-flex items-center justify-center text-[16px] px-4 md:px-5 py-2 md:py-2.5 rounded-xl min-h-[40px] transition-all duration-500 font-semibold border-white/40 text-white hover:bg-white/15 hover:border-white/60"
@@ -134,7 +149,7 @@ const Navbar = () => {
                 LOGIN
               </Button>
             </a>
-            <a href={SIGNUP_URL}>
+            <a href={SIGNUP_URL} onClick={(e) => handleAuthClick(e, 'signup')}>
               <Button className="inline-flex items-center justify-center text-[16px] px-4 md:px-5 py-2 md:py-2.5 rounded-xl min-h-[40px] hover:shadow-lg hover:scale-[1.03] transition-all duration-500 ease-in-out font-semibold bg-white text-[#411c78] hover:bg-white/90">
                 SIGNUP
               </Button>
