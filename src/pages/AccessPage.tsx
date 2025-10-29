@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { Button } from '@/components/ui/button';
@@ -9,11 +9,13 @@ import { Eye, EyeOff, Check } from 'lucide-react';
 import { toast } from 'sonner';
 import AnimatedTitle from '@/components/AnimatedTitle';
 import { authService } from '@/services/authService';
+import { useAuth } from '@/contexts/AuthContext';
 
 const AccessPage = () => {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const mode = searchParams.get('p') || 'login'; // 'login' or 'signup'
+  const { user, loading: authLoading, login: authLogin } = useAuth();
   
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -24,6 +26,13 @@ const AccessPage = () => {
     email: '',
     password: '',
   });
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (!authLoading && user) {
+      navigate('/dashboard', { replace: true });
+    }
+  }, [user, authLoading, navigate]);
 
   const switchMode = (newMode: string) => {
     setSearchParams({ p: newMode });
@@ -51,19 +60,16 @@ const AccessPage = () => {
 
         if (result.success) {
           toast.success('Account created successfully!');
-          navigate('/dashboard');
+          // Navigation will happen automatically via useEffect when user state updates
         } else {
           toast.error(result.message || 'Signup failed. Please try again.');
         }
       } else {
-        const result = await authService.login({
-          email: formData.email,
-          password: formData.password,
-        });
+        const result = await authLogin(formData.email, formData.password);
 
         if (result.success) {
           toast.success('Logged in successfully!');
-          navigate('/dashboard');
+          // Navigation will happen automatically via useEffect when user state updates
         } else {
           toast.error(result.message || 'Invalid email or password.');
         }
