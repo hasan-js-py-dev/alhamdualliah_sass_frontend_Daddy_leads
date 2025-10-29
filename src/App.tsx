@@ -13,6 +13,7 @@ import ConnectPage from "./pages/ConnectPage";
 import AccessPage from "./pages/AccessPage";
 import DashboardHomePage from "./pages/dashboard/DashboardHomePage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
+import BuyCreditsPage from "./pages/dashboard/BuyCreditsPage";
 import ComingSoonPage from "./pages/dashboard/ComingSoonPage";
 import NotFound from "./pages/NotFound";
 
@@ -57,7 +58,17 @@ const App = () => (
               } 
             />
             <Route 
-              path="/dashboard/url-enrichment" 
+              path="/dashboard/buy-credits" 
+              element={
+                <DomainRedirect type="app">
+                  <ProtectedRoute>
+                    <BuyCreditsPage />
+                  </ProtectedRoute>
+                </DomainRedirect>
+              } 
+            />
+            <Route 
+              path="/dashboard/url-enrichment"
               element={
                 <DomainRedirect type="app">
                   <ProtectedRoute>

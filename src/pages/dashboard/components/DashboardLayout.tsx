@@ -141,7 +141,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
           <Button 
             className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold"
-            onClick={() => navigate('/pricing')}
+            onClick={() => navigate('/dashboard/buy-credits')}
           >
             Buy credits
           </Button>
@@ -165,7 +165,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                   <span className="text-sm">Logout</span>
                 </button>
                 <button
-                  onClick={() => window.open('https://chromewebstore.google.com', '_blank')}
+                  onClick={() => window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')}
                   className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-colors"
                 >
                   <Download size={18} />
