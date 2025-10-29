@@ -40,24 +40,24 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   };
 
   const allLeadFinderTools = [
-    { name: 'LinkedIn Sales Nav Scraper', path: '/dashboard/linkedin-sales-nav-scraper', icon: Zap, isDefault: true },
-    { name: 'Bulk LinkedIn Profile Enricher', path: '/dashboard/bulk-linkedin-profile-enricher', icon: Database, isDefault: true },
-    { name: 'Apollo Scraper', path: '/dashboard/apollo-scraper', icon: Database, isDefault: true },
-    { name: 'Email Enricher', path: '/dashboard/email-enricher', icon: Mail, isDefault: false },
-    { name: 'Domain Enricher', path: '/dashboard/domain-enricher', icon: Database, isDefault: false },
-    { name: 'Zoominfo Scraper', path: '/dashboard/zoominfo-scraper', icon: Database, isDefault: false },
-    { name: 'Crunchbase Scraper', path: '/dashboard/crunchbase-scraper', icon: Database, isDefault: false },
-    { name: 'Lemlist Scraper', path: '/dashboard/lemlist-scraper', icon: Mail, isDefault: false },
+    { name: 'LinkedIn Sales Nav Scraper', path: '/dashboard/linkedin-sales-nav-scraper', icon: Zap, isDefault: true, gradient: 'from-blue-400 to-cyan-300' },
+    { name: 'Bulk LinkedIn Profile Enricher', path: '/dashboard/bulk-linkedin-profile-enricher', icon: Database, isDefault: true, gradient: 'from-purple-400 to-pink-300' },
+    { name: 'Apollo Scraper', path: '/dashboard/apollo-scraper', icon: Database, isDefault: true, gradient: 'from-orange-400 to-yellow-300' },
+    { name: 'Email Enricher', path: '/dashboard/email-enricher', icon: Mail, isDefault: false, gradient: 'from-green-400 to-emerald-300' },
+    { name: 'Domain Enricher', path: '/dashboard/domain-enricher', icon: Database, isDefault: false, gradient: 'from-indigo-400 to-blue-300' },
+    { name: 'Zoominfo Scraper', path: '/dashboard/zoominfo-scraper', icon: Database, isDefault: false, gradient: 'from-red-400 to-orange-300' },
+    { name: 'Crunchbase Scraper', path: '/dashboard/crunchbase-scraper', icon: Database, isDefault: false, gradient: 'from-teal-400 to-cyan-300' },
+    { name: 'Lemlist Scraper', path: '/dashboard/lemlist-scraper', icon: Mail, isDefault: false, gradient: 'from-violet-400 to-purple-300' },
   ];
 
   const allDataScraperTools = [
-    { name: 'Email Verifier', path: '/dashboard/email-verifier', icon: CheckCircle, isDefault: true },
-    { name: 'LinkedIn Sales Nav Company Scraper', path: '/dashboard/linkedin-company-scraper', icon: Database, isDefault: true },
-    { name: 'Google Map Scraper', path: '/dashboard/google-map-scraper', icon: Database, isDefault: true },
-    { name: 'Yelp Scraper', path: '/dashboard/yelp-scraper', icon: Database, isDefault: false },
-    { name: 'Restaurant Directories', path: '/dashboard/restaurant-directories', icon: Database, isDefault: false },
-    { name: 'RealEstate Directories', path: '/dashboard/realestate-directories', icon: Database, isDefault: false },
-    { name: 'Scrape Companies from B2B Databases', path: '/dashboard/b2b-databases', icon: Database, isDefault: false },
+    { name: 'Email Verifier', path: '/dashboard/email-verifier', icon: CheckCircle, isDefault: true, gradient: 'from-emerald-400 to-green-300' },
+    { name: 'LinkedIn Sales Nav Company Scraper', path: '/dashboard/linkedin-company-scraper', icon: Database, isDefault: true, gradient: 'from-sky-400 to-blue-300' },
+    { name: 'Google Map Scraper', path: '/dashboard/google-map-scraper', icon: Database, isDefault: true, gradient: 'from-rose-400 to-pink-300' },
+    { name: 'Yelp Scraper', path: '/dashboard/yelp-scraper', icon: Database, isDefault: false, gradient: 'from-amber-400 to-orange-300' },
+    { name: 'Restaurant Directories', path: '/dashboard/restaurant-directories', icon: Database, isDefault: false, gradient: 'from-fuchsia-400 to-pink-300' },
+    { name: 'RealEstate Directories', path: '/dashboard/realestate-directories', icon: Database, isDefault: false, gradient: 'from-lime-400 to-green-300' },
+    { name: 'Scrape Companies from B2B Databases', path: '/dashboard/b2b-databases', icon: Database, isDefault: false, gradient: 'from-cyan-400 to-teal-300' },
   ];
 
   const leadFinderTools = showAllLeadFinder 
@@ -71,50 +71,52 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   return (
     <div className="flex h-screen bg-gray-50">
       {/* Sidebar */}
-      <aside className="w-64 flex flex-col bg-[#6b46c1] text-white">
+      <aside className="w-72 flex flex-col bg-gradient-to-b from-[#6b46c1] to-[#5a3aa3] text-white shadow-2xl">
         {/* Logo */}
-        <div className="p-6">
-          <Link to="/dashboard" className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-lg bg-white flex items-center justify-center">
-              <span className="text-xl font-bold text-[#6b46c1]">DL</span>
+        <div className="p-6 border-b border-white/10">
+          <Link to="/dashboard" className="flex items-center space-x-3 group">
+            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-white to-white/90 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
+              <span className="text-xl font-bold bg-gradient-to-br from-[#6b46c1] to-[#5a3aa3] bg-clip-text text-transparent">DL</span>
             </div>
-            <span className="text-white font-semibold text-lg">Daddy Leads</span>
+            <span className="text-white font-bold text-xl tracking-tight">Daddy Leads</span>
           </Link>
         </div>
 
         {/* Navigation */}
-        <nav className="flex-1 px-3 space-y-2 overflow-y-auto">
+        <nav className="flex-1 px-4 py-4 space-y-3 overflow-y-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent">
           {/* B2B Lead Finder */}
           <Collapsible open={leadFinderOpen} onOpenChange={setLeadFinderOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2.5 rounded-lg hover:bg-white/10 transition-colors">
-              <span className="text-sm font-semibold">B2B Lead Finder</span>
-              <ChevronDown size={16} className={`transition-transform ${leadFinderOpen ? 'rotate-180' : ''}`} />
+            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-200 group">
+              <span className="text-sm font-bold tracking-wide uppercase text-white/90">B2B Lead Finder</span>
+              <ChevronDown size={18} className={`transition-transform duration-200 text-white/70 group-hover:text-white ${leadFinderOpen ? 'rotate-180' : ''}`} />
             </CollapsibleTrigger>
             <CollapsibleContent>
-              <div className="space-y-1 mt-1">
+              <div className="space-y-1.5 mt-2">
                 {leadFinderTools.map((item) => {
                   const isActive = location.pathname === item.path;
                   return (
                     <Link
                       key={item.path}
                       to={item.path}
-                      className={`flex items-center space-x-3 px-3 py-2 ml-2 rounded-lg transition-colors ${
+                      className={`flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl transition-all duration-200 group ${
                         isActive
-                          ? 'bg-white/20 text-white'
-                          : 'text-white/80 hover:bg-white/10 hover:text-white'
+                          ? 'bg-white/20 shadow-lg'
+                          : 'hover:bg-white/10 hover:translate-x-1'
                       }`}
                     >
-                      <item.icon size={18} />
-                      <span className="text-sm">{item.name}</span>
+                      <item.icon size={20} className="flex-shrink-0" />
+                      <span className={`text-base font-medium bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>
+                        {item.name}
+                      </span>
                     </Link>
                   );
                 })}
                 <button
                   onClick={() => setShowAllLeadFinder(!showAllLeadFinder)}
-                  className="flex items-center space-x-3 px-3 py-2 ml-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-colors w-full"
+                  className="flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 w-full group hover:translate-x-1"
                 >
-                  <Menu size={18} />
-                  <span className="text-sm">{showAllLeadFinder ? 'Show Less' : 'Show All'}</span>
+                  <Menu size={20} className="flex-shrink-0" />
+                  <span className="text-base font-medium">{showAllLeadFinder ? 'Show Less' : 'Show All'}</span>
                 </button>
               </div>
             </CollapsibleContent>
@@ -122,35 +124,37 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
           {/* Data Scraper */}
           <Collapsible open={dataScraperOpen} onOpenChange={setDataScraperOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2.5 rounded-lg hover:bg-white/10 transition-colors">
-              <span className="text-sm font-semibold">Data Scraper</span>
-              <ChevronDown size={16} className={`transition-transform ${dataScraperOpen ? 'rotate-180' : ''}`} />
+            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-200 group">
+              <span className="text-sm font-bold tracking-wide uppercase text-white/90">Data Scraper</span>
+              <ChevronDown size={18} className={`transition-transform duration-200 text-white/70 group-hover:text-white ${dataScraperOpen ? 'rotate-180' : ''}`} />
             </CollapsibleTrigger>
             <CollapsibleContent>
-              <div className="space-y-1 mt-1">
+              <div className="space-y-1.5 mt-2">
                 {dataScraperTools.map((item) => {
                   const isActive = location.pathname === item.path;
                   return (
                     <Link
                       key={item.path}
                       to={item.path}
-                      className={`flex items-center space-x-3 px-3 py-2 ml-2 rounded-lg transition-colors ${
+                      className={`flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl transition-all duration-200 group ${
                         isActive
-                          ? 'bg-white/20 text-white'
-                          : 'text-white/80 hover:bg-white/10 hover:text-white'
+                          ? 'bg-white/20 shadow-lg'
+                          : 'hover:bg-white/10 hover:translate-x-1'
                       }`}
                     >
-                      <item.icon size={18} />
-                      <span className="text-sm">{item.name}</span>
+                      <item.icon size={20} className="flex-shrink-0" />
+                      <span className={`text-base font-medium bg-gradient-to-r ${item.gradient} bg-clip-text text-transparent`}>
+                        {item.name}
+                      </span>
                     </Link>
                   );
                 })}
                 <button
                   onClick={() => setShowAllDataScraper(!showAllDataScraper)}
-                  className="flex items-center space-x-3 px-3 py-2 ml-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-colors w-full"
+                  className="flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-white/70 hover:bg-white/10 hover:text-white transition-all duration-200 w-full group hover:translate-x-1"
                 >
-                  <Menu size={18} />
-                  <span className="text-sm">{showAllDataScraper ? 'Show Less' : 'Show All'}</span>
+                  <Menu size={20} className="flex-shrink-0" />
+                  <span className="text-base font-medium">{showAllDataScraper ? 'Show Less' : 'Show All'}</span>
                 </button>
               </div>
             </CollapsibleContent>
@@ -158,54 +162,58 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </nav>
 
         {/* Credits Section */}
-        <div className="px-3 pb-4 space-y-3 border-t border-white/10 pt-4">
-          <div className="px-3 py-2 rounded-lg bg-white/5">
-            <div className="text-xs text-white/70 mb-1">Credits</div>
-            <div className="flex items-center justify-between">
-              <span className="text-sm font-medium">Lead Finder</span>
-              <span className="text-sm font-bold bg-white/20 px-2 py-0.5 rounded">
-                {user?.credits?.leadsFinderCredits || 0}
-              </span>
-            </div>
-            <div className="flex items-center justify-between mt-2">
-              <span className="text-sm font-medium">Data Scraper</span>
-              <span className="text-sm font-bold bg-white/20 px-2 py-0.5 rounded">
-                {user?.credits?.dataScraperCredits || 0}
-              </span>
+        <div className="px-4 pb-6 space-y-3 border-t border-white/20 pt-6">
+          <div className="px-4 py-4 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-white/10 shadow-lg">
+            <div className="text-xs font-semibold text-white/60 mb-3 uppercase tracking-wide">Your Credits</div>
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-white/90">Lead Finder</span>
+                <span className="text-base font-bold bg-gradient-to-r from-orange-400 to-yellow-300 bg-clip-text text-transparent px-3 py-1 rounded-lg bg-white/20">
+                  {user?.credits?.leadsFinderCredits || 0}
+                </span>
+              </div>
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-white/90">Data Scraper</span>
+                <span className="text-base font-bold bg-gradient-to-r from-blue-400 to-cyan-300 bg-clip-text text-transparent px-3 py-1 rounded-lg bg-white/20">
+                  {user?.credits?.dataScraperCredits || 0}
+                </span>
+              </div>
             </div>
           </div>
 
           <Button 
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold"
+            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
             onClick={() => navigate('/dashboard/buy-credits')}
           >
-            Buy credits
+            <CreditCard className="mr-2" size={18} />
+            Buy Credits
+          </Button>
+
+          <Button 
+            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-bold py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+            onClick={() => window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')}
+          >
+            <Download className="mr-2" size={18} />
+            Cookie Exporter Extension
           </Button>
 
           {/* Account */}
           <Collapsible open={accountOpen} onOpenChange={setAccountOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2.5 rounded-lg hover:bg-white/10 transition-colors">
-              <div className="flex items-center space-x-2">
-                <Settings size={18} />
-                <span className="text-sm font-medium">Account</span>
+            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/10 transition-all duration-200 group">
+              <div className="flex items-center space-x-3">
+                <Settings size={20} className="text-white/70 group-hover:text-white transition-colors" />
+                <span className="text-sm font-semibold text-white/90 group-hover:text-white">Account</span>
               </div>
-              <ChevronDown size={16} className={`transition-transform ${accountOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown size={18} className={`transition-transform duration-200 text-white/70 group-hover:text-white ${accountOpen ? 'rotate-180' : ''}`} />
             </CollapsibleTrigger>
             <CollapsibleContent>
-              <div className="space-y-1 mt-1 ml-2">
+              <div className="space-y-1 mt-2">
                 <button
                   onClick={handleLogout}
-                  className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-colors"
+                  className="w-full flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-white/80 hover:bg-white/10 hover:text-white transition-all duration-200 group hover:translate-x-1"
                 >
-                  <LogOut size={18} />
-                  <span className="text-sm">Logout</span>
-                </button>
-                <button
-                  onClick={() => window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')}
-                  className="w-full flex items-center space-x-3 px-3 py-2 rounded-lg text-white/80 hover:bg-white/10 hover:text-white transition-colors"
-                >
-                  <Download size={18} />
-                  <span className="text-sm">Get Extension</span>
+                  <LogOut size={20} className="flex-shrink-0" />
+                  <span className="text-base font-medium">Logout</span>
                 </button>
               </div>
             </CollapsibleContent>
