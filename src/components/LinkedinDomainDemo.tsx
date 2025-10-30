@@ -40,7 +40,7 @@ const EnrichRow = ({ data, triggerEnrich, shouldReset }: EnrichRowProps) => {
         setEnriched(true);
       }, 1000);
     }
-  }, [triggerEnrich]);
+  }, [triggerEnrich, enriching, enriched]);
 
   useEffect(() => {
     return () => {
