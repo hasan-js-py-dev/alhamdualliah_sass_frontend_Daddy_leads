@@ -53,7 +53,7 @@ const signup = async (req, res) => {
       })
     );
   } catch (error) {
-    logger.error('Signup error', { userId: error.userId });
+    logger.error('Signup error', { error: error.message, stack: error.stack });
     res.status(500).json(errorResponse('An error occurred during signup. Please try again.'));
   }
 };

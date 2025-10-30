@@ -21,6 +21,10 @@ const { errorHandler } = require('./middleware/errorHandler');
 // Initialize Express app
 const app = express();
 
+// Trust proxy - Required when behind Nginx/reverse proxy
+// This allows Express to correctly read X-Forwarded-* headers
+app.set('trust proxy', true);
+
 // Security middleware
 app.use(helmet());
 
