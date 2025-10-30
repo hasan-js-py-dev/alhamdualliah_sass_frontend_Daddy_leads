@@ -72,7 +72,7 @@ const AccessPage = () => {
         });
 
         if (result.success) {
-          toast.success('Account created successfully!');
+          toast.success('Account created successfully! Please login to continue.');
           // Clear form data immediately after successful submission
           setFormData({
             firstName: '',
@@ -81,7 +81,10 @@ const AccessPage = () => {
             password: '',
           });
           setAgreeToTerms(false);
-          // Navigation will happen automatically via useEffect when user state updates
+          // Redirect to login page after successful signup
+          setTimeout(() => {
+            switchMode('login');
+          }, 1500);
         } else {
           toast.error(result.message || 'Signup failed. Please try again.');
         }
