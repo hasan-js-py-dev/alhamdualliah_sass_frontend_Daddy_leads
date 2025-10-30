@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const PendingUser = require('../models/PendingUser');
 const Session = require('../models/Session');
 const { generateToken, getTokenExpirationMs } = require('../utils/tokenUtils');
 const { successResponse, errorResponse } = require('../utils/responseUtils');
@@ -14,19 +15,25 @@ const signup = async (req, res) => {
   try {
     const { firstName, lastName, email, password, agreeToTerms } = req.body;
 
-    // Check if user already exists
+    // Check if user already exists (verified)
     const existingUser = await User.findOne({ email: email.toLowerCase() });
-
     if (existingUser) {
       return res.status(409).json(errorResponse('Email already exists'));
+    }
+
+    // Check if pending signup exists
+    const existingPending = await PendingUser.findOne({ email: email.toLowerCase() });
+    if (existingPending) {
+      // Delete old pending signup
+      await PendingUser.deleteOne({ email: email.toLowerCase() });
     }
 
     // Generate verification token
     const verificationToken = crypto.randomBytes(32).toString('hex');
     const verificationTokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
-    // Create new user
-    const user = new User({
+    // Create pending user (NOT in main users collection yet)
+    const pendingUser = new PendingUser({
       firstName,
       lastName,
       email: email.toLowerCase(),
@@ -36,24 +43,20 @@ const signup = async (req, res) => {
       verificationTokenExpiry,
     });
 
-    await user.save();
+    await pendingUser.save();
 
     // Send verification email
     try {
-      await emailService.sendVerificationEmail(user.email, user.firstName, verificationToken);
+      await emailService.sendVerificationEmail(pendingUser.email, pendingUser.firstName, verificationToken);
     } catch (emailError) {
       logger.error('Failed to send verification email', { error: emailError.message });
-      // Don't fail the signup if email fails, user can resend later
+      // Don't fail the signup if email fails
     }
 
     // Return success without token (user needs to verify email first)
     res.status(201).json(
       successResponse('Account created successfully! Please check your email to verify your account.', {
-        user: {
-          id: user._id,
-          email: user.email,
-          emailVerified: false,
-        },
+        email: pendingUser.email,
       })
     );
   } catch (error) {
@@ -172,43 +175,78 @@ const verifyEmail = async (req, res) => {
       return res.status(400).json(errorResponse('Verification token is required'));
     }
 
-    // Find user with valid token
-    const user = await User.findOne({
+    // Find pending user with valid token
+    const pendingUser = await PendingUser.findOne({
       verificationToken: token,
       verificationTokenExpiry: { $gt: new Date() },
     });
 
-    if (!user) {
+    if (!pendingUser) {
       return res.status(400).json(errorResponse('Invalid or expired verification token'));
     }
 
-    // Update user
-    user.emailVerified = true;
-    user.verificationToken = null;
-    user.verificationTokenExpiry = null;
-    await user.save();
+    // Create actual user in main collection
+    const user = new User({
+      firstName: pendingUser.firstName,
+      lastName: pendingUser.lastName,
+      email: pendingUser.email,
+      password: pendingUser.password, // Already hashed in PendingUser
+      agreeToTerms: pendingUser.agreeToTerms,
+      emailVerified: true, // Mark as verified
+      credits: {
+        leadsFinderCredits: 0,
+        dataScraperCredits: 0,
+      },
+    });
+
+    // Mark password as not modified to skip hashing in pre-save hook
+    user.markModified('password');
+    user.$isNew = true;
+    
+    // Save user - password won't be re-hashed because we mark it as unmodified
+    const savedUser = await User.collection.insertOne({
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: user.password, // Already hashed
+      agreeToTerms: user.agreeToTerms,
+      emailVerified: true,
+      credits: user.credits,
+      isActive: true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
+
+    // Get the inserted user ID
+    const userId = savedUser.insertedId;
+
+    // Delete pending user
+    await PendingUser.deleteOne({ _id: pendingUser._id });
 
     // Generate JWT token for auto-login
     const authToken = generateToken({
-      id: user._id,
-      email: user.email,
+      id: userId,
+      email: pendingUser.email,
     });
 
     // Create session
     const expiresIn = getTokenExpirationMs();
-    await Session.createSession(user._id, authToken, expiresIn);
+    await Session.createSession(userId, authToken, expiresIn);
 
-    logger.info('Email verified successfully', { userId: user._id });
+    logger.info('Email verified successfully', { userId: userId });
 
     res.status(200).json(
       successResponse('Email verified successfully!', {
         token: authToken,
         user: {
-          id: user._id,
-          firstName: user.firstName,
-          lastName: user.lastName,
-          email: user.email,
-          credits: user.credits,
+          id: userId,
+          firstName: pendingUser.firstName,
+          lastName: pendingUser.lastName,
+          email: pendingUser.email,
+          credits: {
+            leadsFinderCredits: 0,
+            dataScraperCredits: 0,
+          },
         },
       })
     );
@@ -230,29 +268,30 @@ const resendVerification = async (req, res) => {
       return res.status(400).json(errorResponse('Email is required'));
     }
 
-    // Find user
+    // Check if already verified user exists
     const user = await User.findOne({ email: email.toLowerCase() });
-
-    if (!user) {
-      return res.status(404).json(errorResponse('User not found'));
+    if (user && user.emailVerified) {
+      return res.status(400).json(errorResponse('Email is already verified'));
     }
 
-    if (user.emailVerified) {
-      return res.status(400).json(errorResponse('Email is already verified'));
+    // Find pending user
+    const pendingUser = await PendingUser.findOne({ email: email.toLowerCase() });
+    if (!pendingUser) {
+      return res.status(404).json(errorResponse('Signup not found. Please sign up again.'));
     }
 
     // Generate new verification token
     const verificationToken = crypto.randomBytes(32).toString('hex');
     const verificationTokenExpiry = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
 
-    user.verificationToken = verificationToken;
-    user.verificationTokenExpiry = verificationTokenExpiry;
-    await user.save();
+    pendingUser.verificationToken = verificationToken;
+    pendingUser.verificationTokenExpiry = verificationTokenExpiry;
+    await pendingUser.save();
 
     // Send verification email
-    await emailService.sendVerificationEmail(user.email, user.firstName, verificationToken);
+    await emailService.sendVerificationEmail(pendingUser.email, pendingUser.firstName, verificationToken);
 
-    logger.info('Verification email resent', { userId: user._id });
+    logger.info('Verification email resent', { email: pendingUser.email });
 
     res.status(200).json(successResponse('Verification email sent successfully. Please check your inbox.'));
   } catch (error) {

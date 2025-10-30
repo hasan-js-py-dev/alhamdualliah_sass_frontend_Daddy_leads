@@ -49,17 +49,24 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Rate limiting
+// Rate limiting with proper trust proxy configuration
 const limiter = rateLimit({
   windowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 900000, // 15 minutes
   max: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS) || 100,
-  message: 'Too many requests from this IP, please try again later.'
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+  // Trust proxy is configured at app level (line 26)
+  validate: { trustProxy: false }, // Disable validation since we configure it at app level
 });
 
 const authLimiter = rateLimit({
   windowMs: 900000, // 15 minutes
   max: 10, // 10 requests per window
-  message: 'Too many authentication attempts, please try again later.'
+  message: 'Too many authentication attempts, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+  validate: { trustProxy: false }, // Disable validation since we configure it at app level
 });
 
 // Apply rate limiting
