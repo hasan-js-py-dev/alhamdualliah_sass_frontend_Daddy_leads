@@ -27,10 +27,12 @@ const AccessPage = () => {
     password: '',
   });
 
-  // Redirect if already logged in
+  // Redirect if already logged in with a delay for smooth transition
   useEffect(() => {
     if (!authLoading && user) {
-      navigate('/dashboard', { replace: true });
+      setTimeout(() => {
+        navigate('/dashboard', { replace: true });
+      }, 3000);
     }
   }, [user, authLoading, navigate]);
 
