@@ -36,4 +36,18 @@ router.get('/verify', authenticateJWT, authController.verify);
  */
 router.post('/logout', authenticateJWT, authController.logout);
 
+/**
+ * @route   POST /v1/auth/verify-email
+ * @desc    Verify user email with token
+ * @access  Public
+ */
+router.post('/verify-email', authController.verifyEmail);
+
+/**
+ * @route   POST /v1/auth/resend-verification
+ * @desc    Resend verification email
+ * @access  Public
+ */
+router.post('/resend-verification', authController.resendVerification);
+
 module.exports = router;

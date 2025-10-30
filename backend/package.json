@@ -24,7 +24,8 @@
     "express-rate-limit": "^7.1.5",
     "dotenv": "^16.3.1",
     "morgan": "^1.10.0",
-    "cookie-parser": "^1.4.6"
+    "cookie-parser": "^1.4.6",
+    "resend": "^2.0.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"

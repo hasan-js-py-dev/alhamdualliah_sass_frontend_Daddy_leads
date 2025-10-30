@@ -5,11 +5,19 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Eye, EyeOff, Check } from 'lucide-react';
+import { Eye, EyeOff, Check, CheckCircle, AlertTriangle, Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import AnimatedTitle from '@/components/AnimatedTitle';
 import { authService } from '@/services/authService';
 import { useAuth } from '@/contexts/AuthContext';
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 const AccessPage = () => {
   const navigate = useNavigate();
@@ -26,6 +34,10 @@ const AccessPage = () => {
     email: '',
     password: '',
   });
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const [showErrorDialog, setShowErrorDialog] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [resendingEmail, setResendingEmail] = useState(false);
 
   // Redirect if already logged in with a delay for smooth transition
   useEffect(() => {
@@ -53,6 +65,32 @@ const AccessPage = () => {
     setSearchParams({ p: newMode });
   };
 
+  const handleResendVerification = async () => {
+    setResendingEmail(true);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000'}/v1/auth/resend-verification`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: formData.email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        toast.success('Verification email sent! Please check your inbox.');
+        setShowErrorDialog(false);
+      } else {
+        toast.error(data.message || 'Failed to resend verification email.');
+      }
+    } catch (error) {
+      toast.error('An error occurred. Please try again.');
+    } finally {
+      setResendingEmail(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -62,6 +100,9 @@ const AccessPage = () => {
     }
 
     setLoading(true);
+
+    // Add delay for smooth experience
+    await new Promise(resolve => setTimeout(resolve, 500));
 
     try {
       if (mode === 'signup') {
@@ -74,8 +115,10 @@ const AccessPage = () => {
         });
 
         if (result.success) {
-          toast.success('Account created successfully! Please login to continue.');
-          // Clear form data immediately after successful submission
+          // Show success dialog
+          setShowSuccessDialog(true);
+          
+          // Clear form data
           setFormData({
             firstName: '',
             lastName: '',
@@ -83,10 +126,6 @@ const AccessPage = () => {
             password: '',
           });
           setAgreeToTerms(false);
-          // Redirect to login page after successful signup
-          setTimeout(() => {
-            switchMode('login');
-          }, 1500);
         } else {
           toast.error(result.message || 'Signup failed. Please try again.');
         }
@@ -95,7 +134,7 @@ const AccessPage = () => {
 
         if (result.success) {
           toast.success('Logged in successfully!');
-          // Clear form data immediately after successful submission
+          // Clear form data
           setFormData({
             firstName: '',
             lastName: '',
@@ -104,7 +143,13 @@ const AccessPage = () => {
           });
           // Navigation will happen automatically via useEffect when user state updates
         } else {
-          toast.error(result.message || 'Invalid email or password.');
+          // Check if it's an email verification error
+          if (result.message?.includes('verify') || result.message?.includes('Email not verified')) {
+            setErrorMessage('Error: You need to verify your email first. We have sent you a verification email to your email address.');
+            setShowErrorDialog(true);
+          } else {
+            toast.error(result.message || 'Invalid email or password.');
+          }
         }
       }
     } catch (error) {
@@ -266,7 +311,12 @@ const AccessPage = () => {
                 className="w-full h-12 text-base font-semibold mt-6"
                 style={{ backgroundColor: '#6366f1', color: 'white' }}
               >
-                {loading ? 'Processing...' : mode === 'signup' ? 'Create Account' : 'Sign In'}
+                {loading ? (
+                  <span className="flex items-center justify-center gap-2">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Processing...
+                  </span>
+                ) : mode === 'signup' ? 'Sign Up' : 'Login'}
               </Button>
 
               <p className="text-center text-sm text-gray-600 mt-4">
@@ -331,6 +381,76 @@ const AccessPage = () => {
             </div>
           </div>
         </div>
+
+        {/* Success Dialog */}
+        <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <div className="flex justify-center mb-4">
+                <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center">
+                  <CheckCircle className="w-10 h-10 text-green-600" />
+                </div>
+              </div>
+              <DialogTitle className="text-center text-2xl">Success!</DialogTitle>
+              <DialogDescription className="text-center text-base pt-2">
+                Account created successfully. Please check your email to verify your account.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="sm:justify-center">
+              <Button
+                onClick={() => {
+                  setShowSuccessDialog(false);
+                  switchMode('login');
+                }}
+                className="w-full sm:w-auto"
+                style={{ backgroundColor: '#ff5722', color: 'white' }}
+              >
+                Great!
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
+
+        {/* Error Dialog */}
+        <Dialog open={showErrorDialog} onOpenChange={setShowErrorDialog}>
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <div className="flex justify-center mb-4">
+                <div className="w-16 h-16 rounded-full bg-red-100 flex items-center justify-center">
+                  <AlertTriangle className="w-10 h-10 text-red-600" />
+                </div>
+              </div>
+              <DialogTitle className="text-center text-2xl">Error</DialogTitle>
+              <DialogDescription className="text-center text-base pt-2">
+                {errorMessage}
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter className="sm:justify-center gap-2">
+              <Button
+                onClick={handleResendVerification}
+                disabled={resendingEmail}
+                variant="outline"
+                className="w-full sm:w-auto"
+              >
+                {resendingEmail ? (
+                  <span className="flex items-center gap-2">
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Sending...
+                  </span>
+                ) : (
+                  'Resend Verification Email'
+                )}
+              </Button>
+              <Button
+                onClick={() => setShowErrorDialog(false)}
+                className="w-full sm:w-auto"
+                style={{ backgroundColor: '#ff5722', color: 'white' }}
+              >
+                Got it
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
       </div>
     </>
   );

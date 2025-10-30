@@ -11,6 +11,7 @@ import ProductPage from "./pages/ProductPage";
 import PricingPage from "./pages/PricingPage";
 import ConnectPage from "./pages/ConnectPage";
 import AccessPage from "./pages/AccessPage";
+import VerifyEmailPage from "./pages/VerifyEmailPage";
 import DashboardHomePage from "./pages/dashboard/DashboardHomePage";
 import DashboardPage from "./pages/dashboard/DashboardPage";
 import BuyCreditsPage from "./pages/dashboard/BuyCreditsPage";
@@ -35,6 +36,7 @@ const App = () => (
               
               {/* Auth Routes - Only on app subdomain */}
               <Route path="/access" element={<DomainRedirect type="app"><AccessPage /></DomainRedirect>} />
+              <Route path="/verify-email" element={<DomainRedirect type="app"><VerifyEmailPage /></DomainRedirect>} />
               
               {/* Protected Dashboard Routes - Only on app subdomain */}
               <Route 
