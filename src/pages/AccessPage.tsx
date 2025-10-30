@@ -178,11 +178,13 @@ const AccessPage = () => {
                     <Label htmlFor="firstName" className="text-gray-700">First Name</Label>
                     <Input
                       id="firstName"
+                      name="firstName"
                       type="text"
                       placeholder="First Name"
                       value={formData.firstName}
                       onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
                       required
+                      autoComplete="given-name"
                       className="bg-white border-gray-300"
                     />
                   </div>
@@ -190,11 +192,13 @@ const AccessPage = () => {
                     <Label htmlFor="lastName" className="text-gray-700">Last Name</Label>
                     <Input
                       id="lastName"
+                      name="lastName"
                       type="text"
                       placeholder="Last Name"
                       value={formData.lastName}
                       onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
                       required
+                      autoComplete="family-name"
                       className="bg-white border-gray-300"
                     />
                   </div>
@@ -205,11 +209,13 @@ const AccessPage = () => {
                 <Label htmlFor="email" className="text-gray-700">Email</Label>
                 <Input
                   id="email"
+                  name="email"
                   type="email"
                   placeholder="Signup with personal and business email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
+                  autoComplete={mode === 'signup' ? 'email' : 'username'}
                   className="bg-white border-gray-300"
                 />
               </div>
@@ -219,11 +225,13 @@ const AccessPage = () => {
                 <div className="relative">
                   <Input
                     id="password"
+                    name="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="Password"
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                     required
+                    autoComplete={mode === 'signup' ? 'new-password' : 'current-password'}
                     className="bg-white border-gray-300 pr-10"
                   />
                   <button
