@@ -19,7 +19,7 @@ passport.use(
         const user = await User.findOne({ email: email.toLowerCase() });
 
         if (!user) {
-          return done(null, false, { message: 'Invalid email or password' });
+          return done(null, false, { message: 'NO_ACCOUNT_FOUND' });
         }
 
         // Check if user is active

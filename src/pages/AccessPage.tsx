@@ -143,8 +143,13 @@ const AccessPage = () => {
           });
           // Navigation will happen automatically via useEffect when user state updates
         } else {
+          // Check if it's a "no account found" error
+          if (result.message?.includes('NO_ACCOUNT_FOUND')) {
+            setErrorMessage("You haven't created an account yet. To get access, please sign up.");
+            setShowErrorDialog(true);
+          }
           // Check if it's an email verification error
-          if (result.message?.includes('verify') || result.message?.includes('Email not verified')) {
+          else if (result.message?.includes('verify') || result.message?.includes('Email not verified')) {
             setErrorMessage('Error: You need to verify your email first. We have sent you a verification email to your email address.');
             setShowErrorDialog(true);
           } else {
@@ -426,21 +431,34 @@ const AccessPage = () => {
               </DialogDescription>
             </DialogHeader>
             <DialogFooter className="sm:justify-center gap-2">
-              <Button
-                onClick={handleResendVerification}
-                disabled={resendingEmail}
-                variant="outline"
-                className="w-full sm:w-auto"
-              >
-                {resendingEmail ? (
-                  <span className="flex items-center gap-2">
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Sending...
-                  </span>
-                ) : (
-                  'Resend Verification Email'
-                )}
-              </Button>
+              {errorMessage?.includes("haven't created an account") ? (
+                <Button
+                  onClick={() => {
+                    setShowErrorDialog(false);
+                    switchMode('signup');
+                  }}
+                  className="w-full sm:w-auto"
+                  style={{ backgroundColor: '#6366f1', color: 'white' }}
+                >
+                  Sign Up
+                </Button>
+              ) : (
+                <Button
+                  onClick={handleResendVerification}
+                  disabled={resendingEmail}
+                  variant="outline"
+                  className="w-full sm:w-auto"
+                >
+                  {resendingEmail ? (
+                    <span className="flex items-center gap-2">
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Sending...
+                    </span>
+                  ) : (
+                    'Resend Verification Email'
+                  )}
+                </Button>
+              )}
               <Button
                 onClick={() => setShowErrorDialog(false)}
                 className="w-full sm:w-auto"
