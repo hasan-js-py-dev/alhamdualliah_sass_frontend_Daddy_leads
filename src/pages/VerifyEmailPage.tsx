@@ -4,10 +4,10 @@ import { Helmet } from 'react-helmet-async';
 import { CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { API_BASE_URL } from '@/services/authService';
-
-
+import { useAuth } from '@/contexts/AuthContext';
 const VerifyEmailPage = () => {
   const navigate = useNavigate();
+  const { refreshUser } = useAuth();
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
   
@@ -42,10 +42,11 @@ const VerifyEmailPage = () => {
           setStatus('success');
           setMessage('Email verified successfully! Redirecting to dashboard...');
 
-          // Redirect to dashboard after 3 seconds
+          // Refresh auth state and redirect
+          await refreshUser();
           setTimeout(() => {
             navigate('/dashboard', { replace: true });
-          }, 3000);
+          }, 500);
         } else {
           setStatus('error');
           setMessage(data.message || 'Email verification failed');
