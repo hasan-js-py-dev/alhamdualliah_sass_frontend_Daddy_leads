@@ -1,5 +1,5 @@
 // Authentication service for API communication
-const API_BASE_URL = import.meta.env.DEV 
+export const API_BASE_URL = import.meta.env.DEV 
   ? 'http://localhost:5000/v1' 
   : 'https://api.daddy-leads.com/v1';
 

@@ -3,8 +3,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { CheckCircle, XCircle, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { API_BASE_URL } from '@/services/authService';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:3000';
 
 const VerifyEmailPage = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const VerifyEmailPage = () => {
       }
 
       try {
-        const response = await fetch(`${API_BASE_URL}/v1/auth/verify-email`, {
+        const response = await fetch(`${API_BASE_URL}/auth/verify-email`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
