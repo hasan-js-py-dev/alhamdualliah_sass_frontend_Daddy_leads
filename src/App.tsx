@@ -3,7 +3,6 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./pages/dashboard/components/ProtectedRoute";
 import { DomainRedirect } from "./components/DomainRedirect";
 import HomePage from "./pages/HomePage";
@@ -22,11 +21,10 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <AuthProvider>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
           <Routes>
               {/* Public Marketing Routes - Only on main domain */}
               <Route path="/" element={<DomainRedirect type="marketing"><HomePage /></DomainRedirect>} />
@@ -286,10 +284,9 @@ const App = () => (
             
               {/* 404 */}
               <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </AuthProvider>
+          </Routes>
+        </BrowserRouter>
+      </TooltipProvider>
   </QueryClientProvider>
 );
 
