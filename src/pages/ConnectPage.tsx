@@ -66,7 +66,7 @@ const ConnectPage = () => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <a
-                      href="https://wa.link/vryx6n"
+                      href="https://wa.me/8801741776644"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-20 h-20 rounded-full flex items-center justify-center text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
@@ -100,7 +100,7 @@ const ConnectPage = () => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <a
-                      href="https://discord.gg/n977c57Wee"
+                      href="https://discord.com/invite/n977c57Wee"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-20 h-20 rounded-full flex items-center justify-center text-white shadow-xl hover:shadow-2xl hover:scale-110 transition-all duration-300"
