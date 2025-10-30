@@ -35,7 +35,7 @@ const EmailRow = ({ email, triggerVerify, shouldReset, isValid }: EmailRowProps)
         setStatus(isValid ? 'valid' : 'invalid');
       }, 1200);
     }
-  }, [triggerVerify, isValid]);
+  }, [triggerVerify, isValid, status]);
 
   useEffect(() => {
     return () => {
@@ -192,7 +192,7 @@ const EmailVerifyDemo = () => {
       clearTimeout(timer);
       clearInterval(interval);
     };
-  }, []);
+  }, [mockEmails.length]);
 
   return (
     <div className="w-full max-w-3xl">
