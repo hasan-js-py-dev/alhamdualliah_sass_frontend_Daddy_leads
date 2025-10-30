@@ -56,8 +56,8 @@ const limiter = rateLimit({
   message: 'Too many requests from this IP, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
-  // Trust proxy is configured at app level (line 26)
-  validate: { trustProxy: false }, // Disable validation since we configure it at app level
+  // Disable x-forwarded-for header validation when behind reverse proxy
+  validate: { xForwardedForHeader: false },
 });
 
 const authLimiter = rateLimit({
@@ -66,7 +66,7 @@ const authLimiter = rateLimit({
   message: 'Too many authentication attempts, please try again later.',
   standardHeaders: true,
   legacyHeaders: false,
-  validate: { trustProxy: false }, // Disable validation since we configure it at app level
+  validate: { xForwardedForHeader: false },
 });
 
 // Apply rate limiting

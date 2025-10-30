@@ -18,6 +18,9 @@ function getFrontendBaseUrl() {
 
 class EmailService {
   constructor() {
+    if (!process.env.RESEND_API_KEY) {
+      logger.warn('RESEND_API_KEY is not configured - email sending will fail');
+    }
     this.resend = new Resend(process.env.RESEND_API_KEY);
     this.fromEmail = process.env.FROM_EMAIL || 'onboarding@resend.dev';
   }
@@ -82,14 +85,24 @@ class EmailService {
       });
 
       if (error) {
-        logger.error('Resend email error', { error });
-        throw new Error('Failed to send verification email');
+        logger.error('Resend API error', { 
+          error: error.message || error,
+          name: error.name,
+          statusCode: error.statusCode,
+          email 
+        });
+        throw new Error(`Failed to send verification email: ${error.message || 'Unknown error'}`);
       }
 
       logger.info('Verification email sent', { email, messageId: data?.id });
       return { success: true, messageId: data?.id };
     } catch (error) {
-      logger.error('Email service error', { error: error.message });
+      logger.error('Email service error', { 
+        message: error.message,
+        stack: error.stack,
+        name: error.name,
+        email 
+      });
       throw error;
     }
   }
