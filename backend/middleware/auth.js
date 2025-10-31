@@ -41,6 +41,14 @@ const authenticateLocal = (req, res, next) => {
     }
 
     if (!user) {
+      // Check if user doesn't exist
+      if (info?.message === 'NO_ACCOUNT_FOUND') {
+        return res.status(401).json({
+          success: false,
+          message: 'No account found with this email. Please sign up first.',
+          code: 'NO_ACCOUNT_FOUND'
+        });
+      }
       return res.status(401).json(errorResponse(info?.message || 'Invalid credentials'));
     }
 

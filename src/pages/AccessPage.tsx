@@ -144,7 +144,7 @@ const AccessPage = () => {
           // Navigation will happen automatically via useEffect when user state updates
         } else {
           // Check if it's a "no account found" error
-          if (result.message?.includes('NO_ACCOUNT_FOUND')) {
+          if (result.code === 'NO_ACCOUNT_FOUND') {
             setErrorMessage("You haven't created an account yet. To get access, please sign up.");
             setShowErrorDialog(true);
           }

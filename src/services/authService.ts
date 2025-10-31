@@ -32,6 +32,7 @@ export interface AuthResponse {
     };
   };
   message?: string;
+  code?: string;
 }
 
 export interface VerifyResponse {
