@@ -59,7 +59,8 @@ const limiter = rateLimitEnabled
       message: 'Too many requests from this IP, please try again later.',
       standardHeaders: true,
       legacyHeaders: false,
-      // rely on Express' trust proxy setting configured above (set to 1)
+      validate: { trustProxy: false }, // disable validation; we explicitly trust a single proxy above
+      keyGenerator: (req, res) => req.socket?.remoteAddress || req.ip || 'unknown',
     })
   : (req, res, next) => next();
 
@@ -70,7 +71,8 @@ const authLimiter = rateLimitEnabled
       message: 'Too many authentication attempts, please try again later.',
       standardHeaders: true,
       legacyHeaders: false,
-      // rely on Express' trust proxy setting configured above (set to 1)
+      validate: { trustProxy: false }, // disable validation; we explicitly trust a single proxy above
+      keyGenerator: (req, res) => req.socket?.remoteAddress || req.ip || 'unknown',
     })
   : (req, res, next) => next();
 
