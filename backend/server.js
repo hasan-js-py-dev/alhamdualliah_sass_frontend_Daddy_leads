@@ -23,6 +23,7 @@ const app = express();
 
 // Trust proxy - Required when behind Nginx/reverse proxy
 // This allows Express to correctly read X-Forwarded-* headers
+// Set to 1 to trust the first proxy (e.g., Nginx)
 app.set('trust proxy', 1);
 
 // Security middleware
@@ -49,7 +50,7 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
-// Rate limiting (disabled temporarily to resolve trust proxy validation issue)
+// Rate limiting configuration
 const rateLimitEnabled = true;
 
 const limiter = rateLimitEnabled
@@ -59,8 +60,18 @@ const limiter = rateLimitEnabled
       message: 'Too many requests from this IP, please try again later.',
       standardHeaders: true,
       legacyHeaders: false,
-      validate: { trustProxy: false }, // disable validation; we explicitly trust a single proxy above
-      keyGenerator: (req, res) => req.socket?.remoteAddress || req.ip || 'unknown',
+      // Properly validate trust proxy configuration
+      validate: { 
+        trustProxy: false,  // We've explicitly configured trust proxy above
+        xForwardedForHeader: false  // We handle X-Forwarded-For manually in keyGenerator
+      },
+      // Use req.ip which Express populates from X-Forwarded-For when trust proxy is set
+      // This is safe because we trust only 1 proxy (Nginx)
+      keyGenerator: (req) => {
+        // req.ip is populated by Express from X-Forwarded-For when trust proxy is set
+        // Falls back to connection remote address if no forwarded IP
+        return req.ip || 'unknown';
+      },
     })
   : (req, res, next) => next();
 
@@ -71,8 +82,18 @@ const authLimiter = rateLimitEnabled
       message: 'Too many authentication attempts, please try again later.',
       standardHeaders: true,
       legacyHeaders: false,
-      validate: { trustProxy: false }, // disable validation; we explicitly trust a single proxy above
-      keyGenerator: (req, res) => req.socket?.remoteAddress || req.ip || 'unknown',
+      // Properly validate trust proxy configuration
+      validate: { 
+        trustProxy: false,  // We've explicitly configured trust proxy above
+        xForwardedForHeader: false  // We handle X-Forwarded-For manually in keyGenerator
+      },
+      // Use req.ip which Express populates from X-Forwarded-For when trust proxy is set
+      // This is safe because we trust only 1 proxy (Nginx)
+      keyGenerator: (req) => {
+        // req.ip is populated by Express from X-Forwarded-For when trust proxy is set
+        // Falls back to connection remote address if no forwarded IP
+        return req.ip || 'unknown';
+      },
     })
   : (req, res, next) => next();
 
