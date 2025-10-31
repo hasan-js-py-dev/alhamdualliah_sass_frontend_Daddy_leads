@@ -30,7 +30,6 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const { logout, user } = useAuth();
   const [leadFinderOpen, setLeadFinderOpen] = useState(true);
   const [dataScraperOpen, setDataScraperOpen] = useState(true);
-  const [showAllLeadFinder, setShowAllLeadFinder] = useState(false);
   const [showAllDataScraper, setShowAllDataScraper] = useState(false);
 
   const handleLogout = async () => {
@@ -63,10 +62,6 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     { name: 'RealEstate Directories', path: '/dashboard/realestate-directories', icon: Database, isDefault: false, color: 'text-lime-500' },
     { name: 'Scrape Companies from B2B Databases', path: '/dashboard/b2b-databases', icon: Database, isDefault: false, color: 'text-cyan-500' },
   ];
-
-  const leadFinderTools = showAllLeadFinder 
-    ? allLeadFinderTools 
-    : allLeadFinderTools.filter(tool => tool.isDefault);
 
   const dataScraperTools = showAllDataScraper 
     ? allDataScraperTools 
@@ -150,7 +145,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <div className="space-y-0.5 mt-1">
-                  {leadFinderTools.map((item) => {
+                  {allLeadFinderTools.map((item) => {
                     const isActive = location.pathname === item.path;
                     return (
                       <Link
@@ -161,6 +156,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                             ? 'bg-[#ff5f38] text-white shadow-sm'
                             : 'hover:bg-gray-100 text-gray-700'
                         }`}
+                        style={{ lineHeight: '24px' }}
                       >
                         <item.icon size={16} className={`flex-shrink-0 ${isActive ? 'text-white' : item.color}`} />
                         <span className="text-sm font-medium">
@@ -169,13 +165,6 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       </Link>
                     );
                   })}
-                  <button
-                    onClick={() => setShowAllLeadFinder(!showAllLeadFinder)}
-                    className="flex items-center space-x-2 px-3 py-2 ml-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-all duration-200 w-full group whitespace-nowrap"
-                  >
-                    <Menu size={16} className="flex-shrink-0" />
-                    <span className="text-sm font-medium">{showAllLeadFinder ? 'Show Less' : 'Show All'}</span>
-                  </button>
                 </div>
               </CollapsibleContent>
             </Collapsible>
@@ -199,6 +188,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                             ? 'bg-[#ff5f38] text-white shadow-sm'
                             : 'hover:bg-gray-100 text-gray-700'
                         }`}
+                        style={{ lineHeight: '24px' }}
                       >
                         <item.icon size={16} className={`flex-shrink-0 ${isActive ? 'text-white' : item.color}`} />
                         <span className="text-sm font-medium">
