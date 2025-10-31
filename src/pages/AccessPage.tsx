@@ -149,11 +149,22 @@ const AccessPage = () => {
             setShowErrorDialog(true);
           }
           // Check if it's an email verification error
-          else if (result.message?.includes('verify') || result.message?.includes('Email not verified')) {
+          else if (result.message?.toLowerCase().includes('verify')) {
             setErrorMessage('Error: You need to verify your email first. We have sent you a verification email to your email address.');
             setShowErrorDialog(true);
           } else {
-            toast.error(result.message || 'Invalid email or password.');
+            // Robust fallback: check if email exists and suggest signup when it doesn't
+            try {
+              const check = await authService.checkEmail(formData.email);
+              if (check?.success && !check?.data?.exists) {
+                setErrorMessage("You haven't created an account yet. To get access, please sign up.");
+                setShowErrorDialog(true);
+              } else {
+                toast.error(result.message || 'Invalid email or password.');
+              }
+            } catch (_) {
+              toast.error(result.message || 'Invalid email or password.');
+            }
           }
         }
       }

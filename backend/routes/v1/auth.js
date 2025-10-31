@@ -50,4 +50,11 @@ router.post('/verify-email', authController.verifyEmail);
  */
 router.post('/resend-verification', authController.resendVerification);
 
+/**
+ * @route   GET /v1/auth/check-email
+ * @desc    Check if an email exists (verified or pending)
+ * @access  Public
+ */
+router.get('/check-email', authController.checkEmail);
+
 module.exports = router;

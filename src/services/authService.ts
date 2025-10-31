@@ -52,6 +52,16 @@ export interface VerifyResponse {
   message?: string;
 }
 
+export interface CheckEmailResponse {
+  success: boolean;
+  data?: {
+    exists: boolean;
+    verified: boolean;
+    pending: boolean;
+  };
+  message?: string;
+}
+
 class AuthService {
   private getAuthHeaders(): HeadersInit {
     const token = localStorage.getItem('authToken');
@@ -124,6 +134,17 @@ class AuthService {
         success: false,
         message: 'Network error. Please check your connection.',
       };
+    }
+  }
+
+  async checkEmail(email: string): Promise<CheckEmailResponse> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/auth/check-email?email=${encodeURIComponent(email)}`);
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error('Check email error:', error);
+      return { success: false, message: 'Network error. Please check your connection.' };
     }
   }
 

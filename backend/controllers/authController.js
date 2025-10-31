@@ -316,6 +316,33 @@ const resendVerification = async (req, res) => {
   }
 };
 
+/**
+ * Check if email exists
+ * GET /v1/auth/check-email?email=...
+ */
+const checkEmail = async (req, res) => {
+  try {
+    const email = (req.query.email || '').toLowerCase();
+    if (!email) {
+      return res.status(400).json(errorResponse('Email is required'));
+    }
+
+    const user = await User.findOne({ email });
+    const pending = await PendingUser.findOne({ email });
+
+    return res.status(200).json(
+      successResponse('Email lookup successful', {
+        exists: !!user,
+        verified: !!(user && user.emailVerified),
+        pending: !!pending && !user,
+      })
+    );
+  } catch (error) {
+    logger.error('Check email error', error);
+    return res.status(500).json(errorResponse('Failed to check email'));
+  }
+};
+
 module.exports = {
   signup,
   login,
@@ -323,4 +350,5 @@ module.exports = {
   logout,
   verifyEmail,
   resendVerification,
+  checkEmail,
 };
