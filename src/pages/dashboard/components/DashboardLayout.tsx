@@ -90,7 +90,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           <Button 
             size="sm"
             variant="outline"
-            className="font-medium border-gray-300 hover:bg-gray-50"
+            className="font-medium border-gray-300 hover:bg-gray-50 text-[#374151]"
             onClick={() => window.open('https://api.whatsapp.com/send?phone=8801885781259', '_blank')}
           >
             <span className="mr-1.5">💬</span>
@@ -101,10 +101,10 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           <Button 
             size="sm"
             variant="outline"
-            className="font-medium border-gray-300 hover:bg-gray-50"
+            className="font-medium border-gray-300 hover:bg-gray-50 text-[#374151]"
             onClick={() => window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')}
           >
-            <Download className="mr-1.5" size={16} />
+            <Download className="mr-1.5 text-[#374151]" size={16} />
             Download Extension
           </Button>
 
