@@ -86,8 +86,30 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         </div>
 
         <div className="flex items-center gap-4">
+          {/* Help Button with WhatsApp */}
+          <Button 
+            size="sm"
+            variant="outline"
+            className="font-medium border-gray-300 hover:bg-gray-50"
+            onClick={() => window.open('https://api.whatsapp.com/send?phone=8801885781259', '_blank')}
+          >
+            <span className="mr-1.5">💬</span>
+            Help
+          </Button>
+
+          {/* Download Extension Button */}
+          <Button 
+            size="sm"
+            variant="outline"
+            className="font-medium border-gray-300 hover:bg-gray-50"
+            onClick={() => window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')}
+          >
+            <Download className="mr-1.5" size={16} />
+            Download Extension
+          </Button>
+
           {/* Credits Display */}
-          <div className="flex items-center gap-5 px-5 py-2.5 rounded-lg bg-gray-50">
+          <div className="flex items-center gap-5 px-5 py-2.5 rounded-lg bg-gray-50 border border-gray-200">
             <div className="flex items-center gap-3">
               <span className="text-sm font-semibold text-gray-700">B2B Lead:</span>
               <span className="text-lg font-bold text-[#ff5f38] px-3 py-1 rounded bg-orange-50 min-w-[80px] text-center">
@@ -103,27 +125,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             </div>
           </div>
 
-          {/* Action Buttons */}
-          <Button 
-            size="sm"
-            variant="outline"
-            className="font-medium"
-            onClick={() => window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')}
-          >
-            <Download className="mr-1.5" size={16} />
-            Download Extension
-          </Button>
-
-          <Button 
-            size="sm"
-            variant="outline"
-            className="font-medium"
-            onClick={() => window.open('https://api.whatsapp.com/send?phone=8801885781259', '_blank')}
-          >
-            <MessageCircle className="mr-1.5" size={16} />
-            Help
-          </Button>
-
+          {/* Buy Credits Button */}
           <Button 
             size="sm"
             className="bg-[#ff5f38] hover:bg-[#e55532] text-white font-medium shadow-sm"
