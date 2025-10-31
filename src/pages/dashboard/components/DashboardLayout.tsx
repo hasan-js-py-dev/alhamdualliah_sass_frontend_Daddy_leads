@@ -85,7 +85,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           <Button 
             size="sm"
             variant="outline"
-            className="font-medium border-gray-300 hover:bg-gray-50 text-[#374151]"
+            className="font-medium border-gray-300 hover:bg-green-50 hover:border-green-300 text-[#374151] hover:text-green-600"
             onClick={() => window.open('https://api.whatsapp.com/send?phone=8801885781259', '_blank')}
           >
             <span className="mr-1.5 text-xl">💬</span>
@@ -96,7 +96,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           <Button 
             size="sm"
             variant="outline"
-            className="font-medium border-gray-300 hover:bg-gray-50 text-[#374151]"
+            className="font-medium border-gray-300 hover:bg-blue-50 hover:border-blue-300 text-[#374151] hover:text-blue-600"
             onClick={() => window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')}
           >
             <Download className="mr-1.5 text-[#374151]" size={16} />
@@ -136,7 +136,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
         {/* Sidebar */}
         <aside className="w-80 flex flex-col bg-white border-r border-gray-200 overflow-hidden">
           {/* Navigation */}
-          <nav className="flex-1 px-3 py-4 space-y-2 overflow-y-auto">
+          <nav className="flex-1 px-3 py-4 space-y-2 overflow-y-auto" style={{ lineHeight: '24px' }}>
             {/* B2B Lead Finder */}
             <Collapsible open={leadFinderOpen} onOpenChange={setLeadFinderOpen}>
               <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 rounded-lg bg-[#ff5f38] text-white transition-all duration-200 group">
