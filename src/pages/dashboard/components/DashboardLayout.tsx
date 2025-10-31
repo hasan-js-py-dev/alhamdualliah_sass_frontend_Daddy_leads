@@ -7,10 +7,10 @@ import {
   CheckCircle, 
   ChevronDown,
   CreditCard,
-  Settings,
   LogOut,
   Download,
-  Menu
+  Menu,
+  MessageCircle
 } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
@@ -30,7 +30,6 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   const { logout, user } = useAuth();
   const [leadFinderOpen, setLeadFinderOpen] = useState(true);
   const [dataScraperOpen, setDataScraperOpen] = useState(true);
-  const [accountOpen, setAccountOpen] = useState(false);
   const [showAllLeadFinder, setShowAllLeadFinder] = useState(false);
   const [showAllDataScraper, setShowAllDataScraper] = useState(false);
 
@@ -69,162 +68,167 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     : allDataScraperTools.filter(tool => tool.isDefault);
 
   return (
-    <div className="flex h-screen bg-gray-50">
-      {/* Sidebar */}
-      <aside className="w-72 flex flex-col bg-gradient-to-br from-orange-50 via-amber-50 to-rose-50 text-gray-900 shadow-2xl border-r border-gray-200">
-        {/* Logo */}
-        <div className="p-6 border-b border-gray-200">
-          <Link to="/dashboard" className="flex items-center space-x-3 group">
-            <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-orange-500 to-rose-500 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform">
-              <span className="text-xl font-bold text-white">DL</span>
+    <div className="flex h-screen bg-gray-50 flex-col">
+      {/* Top Header Bar */}
+      <header className="h-16 bg-white border-b border-gray-200 shadow-sm flex items-center justify-between px-6 z-10">
+        <div className="flex items-center space-x-3">
+          <Link to="/dashboard" className="flex items-center space-x-2 group">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-500 to-rose-500 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
+              <span className="text-lg font-bold text-white">DL</span>
             </div>
-            <span className="text-gray-900 font-bold text-xl tracking-tight">Daddy Leads</span>
+            <span className="text-gray-900 font-bold text-lg tracking-tight">Daddy Leads</span>
           </Link>
         </div>
 
-        {/* Navigation */}
-        <nav className="flex-1 px-4 py-4 space-y-3 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-          {/* B2B Lead Finder */}
-          <Collapsible open={leadFinderOpen} onOpenChange={setLeadFinderOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/60 transition-all duration-200 group">
-              <span className="text-sm font-bold tracking-wide uppercase text-gray-900">B2B Lead Finder</span>
-              <ChevronDown size={18} className={`transition-transform duration-200 text-gray-600 group-hover:text-gray-900 ${leadFinderOpen ? 'rotate-180' : ''}`} />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <div className="space-y-1.5 mt-2">
-                {leadFinderTools.map((item) => {
-                  const isActive = location.pathname === item.path;
-                  return (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className={`flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl transition-all duration-200 group ${
-                        isActive
-                          ? 'bg-white/80 shadow-md'
-                          : 'hover:bg-white/60 hover:translate-x-1'
-                      }`}
-                    >
-                      <item.icon size={20} className="flex-shrink-0 text-gray-700" />
-                      <span className="text-base font-medium text-gray-900">
-                        {item.name}
-                      </span>
-                    </Link>
-                  );
-                })}
-                <button
-                  onClick={() => setShowAllLeadFinder(!showAllLeadFinder)}
-                  className="flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-gray-700 hover:bg-white/60 hover:text-gray-900 transition-all duration-200 w-full group hover:translate-x-1"
-                >
-                  <Menu size={20} className="flex-shrink-0" />
-                  <span className="text-base font-medium">{showAllLeadFinder ? 'Show Less' : 'Show All'}</span>
-                </button>
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
-
-          {/* Data Scraper */}
-          <Collapsible open={dataScraperOpen} onOpenChange={setDataScraperOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/60 transition-all duration-200 group">
-              <span className="text-sm font-bold tracking-wide uppercase text-gray-900">Data Scraper</span>
-              <ChevronDown size={18} className={`transition-transform duration-200 text-gray-600 group-hover:text-gray-900 ${dataScraperOpen ? 'rotate-180' : ''}`} />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <div className="space-y-1.5 mt-2">
-                {dataScraperTools.map((item) => {
-                  const isActive = location.pathname === item.path;
-                  return (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className={`flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl transition-all duration-200 group ${
-                        isActive
-                          ? 'bg-white/80 shadow-md'
-                          : 'hover:bg-white/60 hover:translate-x-1'
-                      }`}
-                    >
-                      <item.icon size={20} className="flex-shrink-0 text-gray-700" />
-                      <span className="text-base font-medium text-gray-900">
-                        {item.name}
-                      </span>
-                    </Link>
-                  );
-                })}
-                <button
-                  onClick={() => setShowAllDataScraper(!showAllDataScraper)}
-                  className="flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-gray-700 hover:bg-white/60 hover:text-gray-900 transition-all duration-200 w-full group hover:translate-x-1"
-                >
-                  <Menu size={20} className="flex-shrink-0" />
-                  <span className="text-base font-medium">{showAllDataScraper ? 'Show Less' : 'Show All'}</span>
-                </button>
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
-        </nav>
-
-        {/* Credits Section */}
-        <div className="px-4 pb-6 space-y-3 border-t border-gray-200 pt-6">
-          <div className="px-4 py-4 rounded-xl bg-white/60 backdrop-blur-sm border border-gray-200 shadow-md">
-            <div className="text-xs font-semibold text-gray-600 mb-3 uppercase tracking-wide">Your Credits</div>
-            <div className="space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-900">Lead Finder</span>
-                <span className="text-base font-bold text-orange-600 px-3 py-1 rounded-lg bg-orange-50">
-                  {user?.credits?.leadsFinderCredits || 0}
-                </span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-900">Data Scraper</span>
-                <span className="text-base font-bold text-blue-600 px-3 py-1 rounded-lg bg-blue-50">
-                  {user?.credits?.dataScraperCredits || 0}
-                </span>
-              </div>
+        <div className="flex items-center gap-4">
+          {/* Credits Display */}
+          <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-gray-50">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-medium text-gray-600">B2B Lead:</span>
+              <span className="text-sm font-bold text-orange-600 px-2 py-0.5 rounded bg-orange-50">
+                {user?.credits?.leadsFinderCredits || 0}
+              </span>
+            </div>
+            <div className="h-4 w-px bg-gray-300" />
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-medium text-gray-600">Data Scraper:</span>
+              <span className="text-sm font-bold text-blue-600 px-2 py-0.5 rounded bg-blue-50">
+                {user?.credits?.dataScraperCredits || 0}
+              </span>
             </div>
           </div>
 
+          {/* Action Buttons */}
           <Button 
-            className="w-full bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+            size="sm"
+            className="bg-[#ff5f38] hover:bg-[#e55532] text-white font-medium shadow-sm"
             onClick={() => navigate('/dashboard/buy-credits')}
           >
-            <CreditCard className="mr-2" size={18} />
+            <CreditCard className="mr-1.5" size={16} />
             Buy Credits
           </Button>
 
           <Button 
-            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+            size="sm"
+            variant="outline"
+            className="font-medium"
             onClick={() => window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')}
           >
-            <Download className="mr-2" size={18} />
-            Cookie Exporter Extension
+            <Download className="mr-1.5" size={16} />
+            Download Extension
           </Button>
 
-          {/* Account */}
-          <Collapsible open={accountOpen} onOpenChange={setAccountOpen}>
-            <CollapsibleTrigger className="flex items-center justify-between w-full px-4 py-3 rounded-xl hover:bg-white/60 transition-all duration-200 group">
-              <div className="flex items-center space-x-3">
-                <Settings size={20} className="text-gray-600 group-hover:text-gray-900 transition-colors" />
-                <span className="text-sm font-semibold text-gray-900">Account</span>
-              </div>
-              <ChevronDown size={18} className={`transition-transform duration-200 text-gray-600 group-hover:text-gray-900 ${accountOpen ? 'rotate-180' : ''}`} />
-            </CollapsibleTrigger>
-            <CollapsibleContent>
-              <div className="space-y-1 mt-2">
-                <button
-                  onClick={handleLogout}
-                  className="w-full flex items-center space-x-3 px-4 py-3 ml-2 rounded-xl text-gray-700 hover:bg-white/60 hover:text-gray-900 transition-all duration-200 group hover:translate-x-1"
-                >
-                  <LogOut size={20} className="flex-shrink-0" />
-                  <span className="text-base font-medium">Logout</span>
-                </button>
-              </div>
-            </CollapsibleContent>
-          </Collapsible>
+          <Button 
+            size="sm"
+            variant="outline"
+            className="font-medium"
+            onClick={() => window.open('https://wa.me/your-number', '_blank')}
+          >
+            <MessageCircle className="mr-1.5" size={16} />
+            Help
+          </Button>
         </div>
-      </aside>
+      </header>
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-auto">
-        {children}
-      </main>
+      <div className="flex flex-1 overflow-hidden">
+        {/* Sidebar */}
+        <aside className="w-64 flex flex-col bg-white border-r border-gray-200 overflow-hidden">
+          {/* Navigation */}
+          <nav className="flex-1 px-3 py-4 space-y-2 overflow-y-auto">
+            {/* B2B Lead Finder */}
+            <Collapsible open={leadFinderOpen} onOpenChange={setLeadFinderOpen}>
+              <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 rounded-lg bg-[#ff5f38] text-white transition-all duration-200 group">
+                <span className="text-xs font-bold tracking-wide uppercase">B2B Lead Finder</span>
+                <ChevronDown size={16} className={`transition-transform duration-200 ${leadFinderOpen ? 'rotate-180' : ''}`} />
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div className="space-y-0.5 mt-1">
+                  {leadFinderTools.map((item) => {
+                    const isActive = location.pathname === item.path;
+                    return (
+                      <Link
+                        key={item.path}
+                        to={item.path}
+                        className={`flex items-center space-x-2 px-3 py-2 ml-2 rounded-lg transition-all duration-200 group whitespace-nowrap overflow-hidden ${
+                          isActive
+                            ? 'bg-[#ff5f38] text-white shadow-sm'
+                            : 'hover:bg-gray-100 text-gray-700'
+                        }`}
+                      >
+                        <item.icon size={16} className="flex-shrink-0" />
+                        <span className="text-sm font-medium truncate">
+                          {item.name}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                  <button
+                    onClick={() => setShowAllLeadFinder(!showAllLeadFinder)}
+                    className="flex items-center space-x-2 px-3 py-2 ml-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-all duration-200 w-full group whitespace-nowrap"
+                  >
+                    <Menu size={16} className="flex-shrink-0" />
+                    <span className="text-sm font-medium">{showAllLeadFinder ? 'Show Less' : 'Show All'}</span>
+                  </button>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+
+            {/* Data Scraper */}
+            <Collapsible open={dataScraperOpen} onOpenChange={setDataScraperOpen}>
+              <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 rounded-lg bg-[#ff5f38] text-white transition-all duration-200 group">
+                <span className="text-xs font-bold tracking-wide uppercase">Data Scraper</span>
+                <ChevronDown size={16} className={`transition-transform duration-200 ${dataScraperOpen ? 'rotate-180' : ''}`} />
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <div className="space-y-0.5 mt-1">
+                  {dataScraperTools.map((item) => {
+                    const isActive = location.pathname === item.path;
+                    return (
+                      <Link
+                        key={item.path}
+                        to={item.path}
+                        className={`flex items-center space-x-2 px-3 py-2 ml-2 rounded-lg transition-all duration-200 group whitespace-nowrap overflow-hidden ${
+                          isActive
+                            ? 'bg-[#ff5f38] text-white shadow-sm'
+                            : 'hover:bg-gray-100 text-gray-700'
+                        }`}
+                      >
+                        <item.icon size={16} className="flex-shrink-0" />
+                        <span className="text-sm font-medium truncate">
+                          {item.name}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                  <button
+                    onClick={() => setShowAllDataScraper(!showAllDataScraper)}
+                    className="flex items-center space-x-2 px-3 py-2 ml-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-all duration-200 w-full group whitespace-nowrap"
+                  >
+                    <Menu size={16} className="flex-shrink-0" />
+                    <span className="text-sm font-medium">{showAllDataScraper ? 'Show Less' : 'Show All'}</span>
+                  </button>
+                </div>
+              </CollapsibleContent>
+            </Collapsible>
+          </nav>
+
+          {/* Logout Button */}
+          <div className="px-3 pb-4 border-t border-gray-200 pt-4">
+            <button
+              onClick={handleLogout}
+              className="w-full flex items-center space-x-2 px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-all duration-200 group"
+            >
+              <LogOut size={18} className="flex-shrink-0" />
+              <span className="text-sm font-medium">Logout</span>
+            </button>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 overflow-auto">
+          {children}
+        </main>
+      </div>
     </div>
   );
 };
