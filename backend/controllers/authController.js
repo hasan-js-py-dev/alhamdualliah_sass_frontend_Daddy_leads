@@ -42,8 +42,22 @@ const signup = async (req, res) => {
       verificationToken,
       verificationTokenExpiry,
     });
-
-    await pendingUser.save();
+    // Save pending user with robust error handling
+    try {
+      await pendingUser.save();
+    } catch (err) {
+      if (err && err.code === 11000) {
+        // Duplicate key (email)
+        return res.status(409).json(
+          errorResponse('Signup already started. Please check your email or resend verification.')
+        );
+      }
+      if (err && err.name === 'ValidationError') {
+        const errors = Object.values(err.errors).map((e) => ({ field: e.path, message: e.message }));
+        return res.status(400).json(errorResponse('Validation failed', errors));
+      }
+      throw err; // Unknown error -> handled by outer catch
+    }
 
     // Send verification email
     try {
