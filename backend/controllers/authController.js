@@ -49,7 +49,7 @@ const signup = async (req, res) => {
     try {
       await emailService.sendVerificationEmail(pendingUser.email, pendingUser.firstName, verificationToken);
     } catch (emailError) {
-      logger.error('Failed to send verification email', { error: emailError.message });
+      logger.error('Failed to send verification email', emailError);
       // Don't fail the signup if email fails
     }
 
@@ -60,7 +60,7 @@ const signup = async (req, res) => {
       })
     );
   } catch (error) {
-    logger.error('Signup error', { error: error.message, stack: error.stack });
+    logger.error('Signup error', error);
     res.status(500).json(errorResponse('An error occurred during signup. Please try again.'));
   }
 };
@@ -105,7 +105,7 @@ const login = async (req, res) => {
       })
     );
   } catch (error) {
-    logger.error('Login error', { userId: req.user?._id });
+    logger.error('Login error', error);
     res.status(500).json(errorResponse('An error occurred during login. Please try again.'));
   }
 };
@@ -131,7 +131,7 @@ const verify = async (req, res) => {
       })
     );
   } catch (error) {
-    logger.error('Verify error', { userId: req.user?._id });
+    logger.error('Verify error', error);
     res.status(500).json(errorResponse('An error occurred during verification. Please try again.'));
   }
 };
@@ -155,10 +155,7 @@ const logout = async (req, res) => {
     res.status(200).json(successResponse('Logout successful'));
   } catch (error) {
     // Log error without exposing sensitive details
-    logger.error('Logout error', { 
-      userId: req.user?._id,
-      timestamp: new Date().toISOString() 
-    });
+    logger.error('Logout error', error);
     res.status(500).json(errorResponse('Logout failed'));
   }
 };
@@ -251,7 +248,7 @@ const verifyEmail = async (req, res) => {
       })
     );
   } catch (error) {
-    logger.error('Email verification error', { error: error.message });
+    logger.error('Email verification error', error);
     res.status(500).json(errorResponse('An error occurred during email verification.'));
   }
 };
@@ -295,7 +292,7 @@ const resendVerification = async (req, res) => {
 
     res.status(200).json(successResponse('Verification email sent successfully. Please check your inbox.'));
   } catch (error) {
-    logger.error('Resend verification error', { error: error.message });
+    logger.error('Resend verification error', error);
     res.status(500).json(errorResponse('An error occurred while sending verification email.'));
   }
 };
