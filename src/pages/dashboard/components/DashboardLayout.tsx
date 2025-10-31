@@ -85,7 +85,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </Link>
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-4">
           {/* Credits Display */}
           <div className="flex items-center gap-5 px-5 py-2.5 rounded-lg bg-gray-50">
             <div className="flex items-center gap-3">
@@ -106,15 +106,6 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           {/* Action Buttons */}
           <Button 
             size="sm"
-            className="bg-[#ff5f38] hover:bg-[#e55532] text-white font-medium shadow-sm"
-            onClick={() => navigate('/dashboard/buy-credits')}
-          >
-            <CreditCard className="mr-1.5" size={16} />
-            Buy Credits
-          </Button>
-
-          <Button 
-            size="sm"
             variant="outline"
             className="font-medium"
             onClick={() => window.open('https://chromewebstore.google.com/detail/cookie-editor/hlkenndednhfkekhgcdicdfddnkalmdm', '_blank')}
@@ -127,10 +118,19 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             size="sm"
             variant="outline"
             className="font-medium"
-            onClick={() => window.open('https://wa.me/your-number', '_blank')}
+            onClick={() => window.open('https://api.whatsapp.com/send?phone=8801885781259', '_blank')}
           >
             <MessageCircle className="mr-1.5" size={16} />
             Help
+          </Button>
+
+          <Button 
+            size="sm"
+            className="bg-[#ff5f38] hover:bg-[#e55532] text-white font-medium shadow-sm"
+            onClick={() => navigate('/dashboard/buy-credits')}
+          >
+            <CreditCard className="mr-1.5" size={16} />
+            Buy Credits
           </Button>
         </div>
       </header>
