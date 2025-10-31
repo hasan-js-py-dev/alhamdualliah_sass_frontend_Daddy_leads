@@ -68,9 +68,9 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     : allDataScraperTools.filter(tool => tool.isDefault);
 
   return (
-    <div className="flex h-screen bg-gray-50 flex-col">
+    <div className="flex h-screen bg-gray-50 flex-col font-poppins">
       {/* Top Header Bar */}
-      <header className="h-16 bg-white border-b border-gray-200 shadow-sm flex items-center justify-between px-6 z-10">
+      <header className="h-16 bg-white border-b border-gray-200 shadow-sm flex items-center justify-between px-6 z-10" style={{ fontSize: '16px', lineHeight: '24px' }}>
         <div className="flex items-center space-x-3">
           <Link to="/dashboard" className="flex items-center space-x-2 group">
             <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-orange-500 to-rose-500 flex items-center justify-center shadow group-hover:scale-105 transition-transform">
@@ -134,9 +134,9 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-80 flex flex-col bg-white border-r border-gray-200 overflow-hidden">
+        <aside className="w-80 flex flex-col bg-white border-r border-gray-200 overflow-hidden" style={{ fontSize: '16px', lineHeight: '24px' }}>
           {/* Navigation */}
-          <nav className="flex-1 px-3 py-4 space-y-2 overflow-y-auto" style={{ lineHeight: '24px' }}>
+          <nav className="flex-1 px-3 py-4 space-y-2 overflow-y-auto">
             {/* B2B Lead Finder */}
             <Collapsible open={leadFinderOpen} onOpenChange={setLeadFinderOpen}>
               <CollapsibleTrigger className="flex items-center justify-between w-full px-3 py-2 rounded-lg bg-[#ff5f38] text-white transition-all duration-200 group">
