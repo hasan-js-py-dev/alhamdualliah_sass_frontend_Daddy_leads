@@ -23,7 +23,7 @@ const app = express();
 
 // Trust proxy - Required when behind Nginx/reverse proxy
 // This allows Express to correctly read X-Forwarded-* headers
-app.set('trust proxy', false);
+app.set('trust proxy', 1);
 
 // Security middleware
 app.use(helmet());
@@ -50,7 +50,7 @@ app.use(cors({
 }));
 
 // Rate limiting (disabled temporarily to resolve trust proxy validation issue)
-const rateLimitEnabled = false;
+const rateLimitEnabled = true;
 
 const limiter = rateLimitEnabled
   ? rateLimit({
@@ -59,8 +59,7 @@ const limiter = rateLimitEnabled
       message: 'Too many requests from this IP, please try again later.',
       standardHeaders: true,
       legacyHeaders: false,
-      trustProxy: false,
-      validate: { trustProxy: false, xForwardedForHeader: false },
+      // rely on Express' trust proxy setting configured above (set to 1)
     })
   : (req, res, next) => next();
 
@@ -71,8 +70,7 @@ const authLimiter = rateLimitEnabled
       message: 'Too many authentication attempts, please try again later.',
       standardHeaders: true,
       legacyHeaders: false,
-      trustProxy: false,
-      validate: { trustProxy: false, xForwardedForHeader: false },
+      // rely on Express' trust proxy setting configured above (set to 1)
     })
   : (req, res, next) => next();
 
