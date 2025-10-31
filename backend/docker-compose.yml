@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   backend:
-    image: ghcr.io/hasan-js-py-dev/alhamdualliah_sass_frontend_daddy_leads/backend:latest
+    build: .
     container_name: daddy-leads-backend
     restart: unless-stopped
     env_file: .env
