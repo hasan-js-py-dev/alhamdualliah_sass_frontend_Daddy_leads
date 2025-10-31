@@ -59,8 +59,10 @@ const limiter = rateLimitEnabled
       message: 'Too many requests from this IP, please try again later.',
       standardHeaders: true,
       legacyHeaders: false,
-      validate: { trustProxy: false }, // disable validation; we explicitly trust a single proxy above
-      keyGenerator: (req, res) => req.socket?.remoteAddress || req.ip || 'unknown',
+      // Express handles X-Forwarded-For via req.ip when trust proxy is set to 1 (single proxy)
+      validate: { trustProxy: false, xForwardedForHeader: false },
+      // Use req.ip which respects trust proxy and is safe behind a reverse proxy
+      keyGenerator: (req, res) => req.ip || 'unknown',
     })
   : (req, res, next) => next();
 
@@ -71,8 +73,10 @@ const authLimiter = rateLimitEnabled
       message: 'Too many authentication attempts, please try again later.',
       standardHeaders: true,
       legacyHeaders: false,
-      validate: { trustProxy: false }, // disable validation; we explicitly trust a single proxy above
-      keyGenerator: (req, res) => req.socket?.remoteAddress || req.ip || 'unknown',
+      // Express handles X-Forwarded-For via req.ip when trust proxy is set to 1 (single proxy)
+      validate: { trustProxy: false, xForwardedForHeader: false },
+      // Use req.ip which respects trust proxy and is safe behind a reverse proxy
+      keyGenerator: (req, res) => req.ip || 'unknown',
     })
   : (req, res, next) => next();
 
