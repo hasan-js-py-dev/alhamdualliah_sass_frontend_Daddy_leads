@@ -38,25 +38,30 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
     navigate('/access?p=login');
   };
 
+  // Format number with commas for readability
+  const formatCredits = (num: number) => {
+    return num.toLocaleString('en-US');
+  };
+
   const allLeadFinderTools = [
-    { name: 'LinkedIn Sales Nav Scraper', path: '/dashboard/linkedin-sales-nav-scraper', icon: Zap, isDefault: true, gradient: 'from-blue-400 to-cyan-300' },
-    { name: 'Bulk LinkedIn Profile Enricher', path: '/dashboard/bulk-linkedin-profile-enricher', icon: Database, isDefault: true, gradient: 'from-purple-400 to-pink-300' },
-    { name: 'Apollo Scraper', path: '/dashboard/apollo-scraper', icon: Database, isDefault: true, gradient: 'from-orange-400 to-yellow-300' },
-    { name: 'Email Enricher', path: '/dashboard/email-enricher', icon: Mail, isDefault: false, gradient: 'from-green-400 to-emerald-300' },
-    { name: 'Domain Enricher', path: '/dashboard/domain-enricher', icon: Database, isDefault: false, gradient: 'from-indigo-400 to-blue-300' },
-    { name: 'Zoominfo Scraper', path: '/dashboard/zoominfo-scraper', icon: Database, isDefault: false, gradient: 'from-red-400 to-orange-300' },
-    { name: 'Crunchbase Scraper', path: '/dashboard/crunchbase-scraper', icon: Database, isDefault: false, gradient: 'from-teal-400 to-cyan-300' },
-    { name: 'Lemlist Scraper', path: '/dashboard/lemlist-scraper', icon: Mail, isDefault: false, gradient: 'from-violet-400 to-purple-300' },
+    { name: 'LinkedIn Sales Nav Scraper', path: '/dashboard/linkedin-sales-nav-scraper', icon: Zap, isDefault: true, color: 'text-blue-500' },
+    { name: 'Bulk LinkedIn Profile Enricher', path: '/dashboard/bulk-linkedin-profile-enricher', icon: Database, isDefault: true, color: 'text-purple-500' },
+    { name: 'Apollo Scraper', path: '/dashboard/apollo-scraper', icon: Database, isDefault: true, color: 'text-orange-500' },
+    { name: 'Email Enricher', path: '/dashboard/email-enricher', icon: Mail, isDefault: false, color: 'text-green-500' },
+    { name: 'Domain Enricher', path: '/dashboard/domain-enricher', icon: Database, isDefault: false, color: 'text-indigo-500' },
+    { name: 'Zoominfo Scraper', path: '/dashboard/zoominfo-scraper', icon: Database, isDefault: false, color: 'text-red-500' },
+    { name: 'Crunchbase Scraper', path: '/dashboard/crunchbase-scraper', icon: Database, isDefault: false, color: 'text-teal-500' },
+    { name: 'Lemlist Scraper', path: '/dashboard/lemlist-scraper', icon: Mail, isDefault: false, color: 'text-violet-500' },
   ];
 
   const allDataScraperTools = [
-    { name: 'Email Verifier', path: '/dashboard/email-verifier', icon: CheckCircle, isDefault: true, gradient: 'from-emerald-400 to-green-300' },
-    { name: 'LinkedIn Sales Nav Company Scraper', path: '/dashboard/linkedin-company-scraper', icon: Database, isDefault: true, gradient: 'from-sky-400 to-blue-300' },
-    { name: 'Google Map Scraper', path: '/dashboard/google-map-scraper', icon: Database, isDefault: true, gradient: 'from-rose-400 to-pink-300' },
-    { name: 'Yelp Scraper', path: '/dashboard/yelp-scraper', icon: Database, isDefault: false, gradient: 'from-amber-400 to-orange-300' },
-    { name: 'Restaurant Directories', path: '/dashboard/restaurant-directories', icon: Database, isDefault: false, gradient: 'from-fuchsia-400 to-pink-300' },
-    { name: 'RealEstate Directories', path: '/dashboard/realestate-directories', icon: Database, isDefault: false, gradient: 'from-lime-400 to-green-300' },
-    { name: 'Scrape Companies from B2B Databases', path: '/dashboard/b2b-databases', icon: Database, isDefault: false, gradient: 'from-cyan-400 to-teal-300' },
+    { name: 'Email Verifier', path: '/dashboard/email-verifier', icon: CheckCircle, isDefault: true, color: 'text-emerald-500' },
+    { name: 'LinkedIn Sales Nav Company Scraper', path: '/dashboard/linkedin-company-scraper', icon: Database, isDefault: true, color: 'text-sky-500' },
+    { name: 'Google Map Scraper', path: '/dashboard/google-map-scraper', icon: Database, isDefault: true, color: 'text-rose-500' },
+    { name: 'Yelp Scraper', path: '/dashboard/yelp-scraper', icon: Database, isDefault: false, color: 'text-amber-500' },
+    { name: 'Restaurant Directories', path: '/dashboard/restaurant-directories', icon: Database, isDefault: false, color: 'text-fuchsia-500' },
+    { name: 'RealEstate Directories', path: '/dashboard/realestate-directories', icon: Database, isDefault: false, color: 'text-lime-500' },
+    { name: 'Scrape Companies from B2B Databases', path: '/dashboard/b2b-databases', icon: Database, isDefault: false, color: 'text-cyan-500' },
   ];
 
   const leadFinderTools = showAllLeadFinder 
@@ -80,20 +85,20 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
           </Link>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-6">
           {/* Credits Display */}
-          <div className="flex items-center gap-3 px-4 py-2 rounded-lg bg-gray-50">
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-medium text-gray-600">B2B Lead:</span>
-              <span className="text-sm font-bold text-orange-600 px-2 py-0.5 rounded bg-orange-50">
-                {user?.credits?.leadsFinderCredits || 0}
+          <div className="flex items-center gap-5 px-5 py-2.5 rounded-lg bg-gray-50">
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-semibold text-gray-700">B2B Lead:</span>
+              <span className="text-lg font-bold text-[#ff5f38] px-3 py-1 rounded bg-orange-50 min-w-[80px] text-center">
+                {formatCredits(user?.credits?.leadsFinderCredits || 0)}
               </span>
             </div>
-            <div className="h-4 w-px bg-gray-300" />
-            <div className="flex items-center gap-2">
-              <span className="text-xs font-medium text-gray-600">Data Scraper:</span>
-              <span className="text-sm font-bold text-blue-600 px-2 py-0.5 rounded bg-blue-50">
-                {user?.credits?.dataScraperCredits || 0}
+            <div className="h-6 w-px bg-gray-300" />
+            <div className="flex items-center gap-3">
+              <span className="text-sm font-semibold text-gray-700">Data Scraper:</span>
+              <span className="text-lg font-bold text-blue-600 px-3 py-1 rounded bg-blue-50 min-w-[80px] text-center">
+                {formatCredits(user?.credits?.dataScraperCredits || 0)}
               </span>
             </div>
           </div>
@@ -132,7 +137,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
 
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
-        <aside className="w-64 flex flex-col bg-white border-r border-gray-200 overflow-hidden">
+        <aside className="w-80 flex flex-col bg-white border-r border-gray-200 overflow-hidden">
           {/* Navigation */}
           <nav className="flex-1 px-3 py-4 space-y-2 overflow-y-auto">
             {/* B2B Lead Finder */}
@@ -149,14 +154,14 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       <Link
                         key={item.path}
                         to={item.path}
-                        className={`flex items-center space-x-2 px-3 py-2 ml-2 rounded-lg transition-all duration-200 group whitespace-nowrap overflow-hidden ${
+                        className={`flex items-center space-x-3 px-3 py-2 ml-2 rounded-lg transition-all duration-200 group ${
                           isActive
                             ? 'bg-[#ff5f38] text-white shadow-sm'
                             : 'hover:bg-gray-100 text-gray-700'
                         }`}
                       >
-                        <item.icon size={16} className="flex-shrink-0" />
-                        <span className="text-sm font-medium truncate">
+                        <item.icon size={16} className={`flex-shrink-0 ${isActive ? 'text-white' : item.color}`} />
+                        <span className="text-sm font-medium">
                           {item.name}
                         </span>
                       </Link>
@@ -187,14 +192,14 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
                       <Link
                         key={item.path}
                         to={item.path}
-                        className={`flex items-center space-x-2 px-3 py-2 ml-2 rounded-lg transition-all duration-200 group whitespace-nowrap overflow-hidden ${
+                        className={`flex items-center space-x-3 px-3 py-2 ml-2 rounded-lg transition-all duration-200 group ${
                           isActive
                             ? 'bg-[#ff5f38] text-white shadow-sm'
                             : 'hover:bg-gray-100 text-gray-700'
                         }`}
                       >
-                        <item.icon size={16} className="flex-shrink-0" />
-                        <span className="text-sm font-medium truncate">
+                        <item.icon size={16} className={`flex-shrink-0 ${isActive ? 'text-white' : item.color}`} />
+                        <span className="text-sm font-medium">
                           {item.name}
                         </span>
                       </Link>
