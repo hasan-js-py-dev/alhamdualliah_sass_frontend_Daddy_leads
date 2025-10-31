@@ -63,7 +63,7 @@ const limiter = rateLimitEnabled
       // Properly validate trust proxy configuration
       validate: { 
         trustProxy: false,  // We've explicitly configured trust proxy above
-        xForwardedForHeader: false  // We handle X-Forwarded-For manually in keyGenerator
+        xForwardedForHeader: false  // Express handles X-Forwarded-For automatically via req.ip when trust proxy is set
       },
       // Use req.ip which Express populates from X-Forwarded-For when trust proxy is set
       // This is safe because we trust only 1 proxy (Nginx)
@@ -85,7 +85,7 @@ const authLimiter = rateLimitEnabled
       // Properly validate trust proxy configuration
       validate: { 
         trustProxy: false,  // We've explicitly configured trust proxy above
-        xForwardedForHeader: false  // We handle X-Forwarded-For manually in keyGenerator
+        xForwardedForHeader: false  // Express handles X-Forwarded-For automatically via req.ip when trust proxy is set
       },
       // Use req.ip which Express populates from X-Forwarded-For when trust proxy is set
       // This is safe because we trust only 1 proxy (Nginx)
