@@ -93,7 +93,7 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
             className="font-medium border-gray-300 hover:bg-gray-50 text-[#374151]"
             onClick={() => window.open('https://api.whatsapp.com/send?phone=8801885781259', '_blank')}
           >
-            <span className="mr-1.5">💬</span>
+            <span className="mr-1.5 text-xl">💬</span>
             Help
           </Button>
 
